@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body::-webkit-scrollbar {
+    width: 10px;
+  }
+  body::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #7ae8ff 0%, #ccf6ff 100%);
+    @apply rounded-md bg-gradient-to-b from-primary to-white dark:from-gray-600 dark:to-gray-500;
+    outline: none;
+  }
+  body {
+    transition: all 0.4s ease;
+  }
+}
