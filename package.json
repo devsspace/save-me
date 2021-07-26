@@ -12,6 +12,7 @@
     "next": "latest",
     "next-themes": "^0.0.15",
     "react": "^17.0.2",
+    "react-datepicker": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.11.1",
     "react-icons": "^4.2.0",
@@ -22,7 +23,9 @@
     "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-next": "^11.0.1",
+    "eslint-config-prettier": "^8.3.0",
     "postcss": "^8.3.5",
+    "prettier": "^2.3.2",
     "tailwindcss": "^2.2.4"
   }
 }

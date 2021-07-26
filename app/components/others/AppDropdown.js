@@ -28,7 +28,11 @@ export default function AppDropdown({ data }) {
               {data.map((person) => (
                 <Listbox.Option
                   key={person.id}
-                  className={({ active }) => `${active ? "text-dark bg-primaryLight dark:bg-dark" : "text-dark"}
+                  className={({ active }) => `${
+                    active
+                      ? "text-dark bg-primaryLight dark:bg-dark"
+                      : "text-dark"
+                  }
 cursor-default select-none relative py-2 pl-10 pr-4`}
                   value={person}
                 >
