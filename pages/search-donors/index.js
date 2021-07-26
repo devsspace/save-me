@@ -1,11 +1,7 @@
-import React from 'react';
-
-const index = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
-
-export default index;
+export default function SearchDonorsPage() {
+  return (
+    <div>
+      <h1>hello</h1>
+    </div>
+  )
+}
