@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "next",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb/hooks"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": ["warn"],
+    "react/button-has-type": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-unescaped-entities": 0,
+    "@next/next/no-img-element": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-props-no-spreading": 0,
+    "quotes": ["error", "double"],
+    "semi": ["error", "never"]
+  }
+}
