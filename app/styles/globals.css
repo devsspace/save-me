@@ -18,10 +18,11 @@
     font-family: "Poppins", sans-serif;
     @apply bg-light dark:bg-dark;
   }
-  p {
-    @apply text-dark dark:text-light;
-  }
   button {
     font-family: "Recursive", sans-serif;
+  }
+  p,
+  h1 {
+    @apply text-dark dark:text-light;
   }
 }
