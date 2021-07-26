@@ -1,6 +1,7 @@
 import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
 import AppDropdown from "@components/others/AppDropdown"
+import districtsData from "@configs/fakeData/districts"
 import { HiSearch } from "react-icons/hi"
 
 export default function SearchDonorsPage() {
@@ -15,10 +16,13 @@ export default function SearchDonorsPage() {
     { id: 8, name: "AB-" },
   ]
   return (
-    <section>
+    <section className="container mx-auto">
       <DarkMode />
-      <h1 className="text-3xl font-bold mt-5 ml-5">Search Donors</h1>
-      <div className="flex justify-center">
+      <h1 className="text-3xl font-bold mt-5 mb-2">Search Donors</h1>
+      <div className="flex justify-center space-x-4">
+        <AppDropdown data={bloodGroups} />
+        <AppDropdown data={districtsData} />
+        <AppDropdown data={bloodGroups} />
         <AppDropdown data={bloodGroups} />
         <AppButton Icon={HiSearch}>Search</AppButton>
       </div>
