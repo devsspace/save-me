@@ -20,7 +20,7 @@ export default function SearchDonorsPage() {
     <section className="container mx-auto">
       <DarkMode />
       <h1 className="text-3xl font-bold mt-5 mb-2">Search Donors</h1>
-      <div className="flex justify-center space-x-4">
+      <div className="flex space-x-4">
         <AppDropdown data={bloodGroups} />
         <AppDropdown data={districtsData} />
         <AppDatePicker />
