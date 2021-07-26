@@ -39,6 +39,8 @@
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
     "quotes": ["error", "double"],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "linebreak-style":"off",
+    "arrow-body-style":"off"
   }
 }
