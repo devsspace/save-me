@@ -1,6 +1,6 @@
 export default function AppButton({
   onClick = null,
-  text = "",
+  children,
   Icon,
   className = "",
   iconClassName = "",
@@ -13,7 +13,7 @@ export default function AppButton({
     >
       {Icon && <Icon className={`w-6 h-6 mr-0.5 ${iconClassName}`} />}
       <button className={`text-lg uppercase font-bold ${textClassName}`}>
-        {text}
+        {children}
       </button>
     </div>
   )

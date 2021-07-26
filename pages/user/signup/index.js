@@ -1,3 +1,4 @@
+import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
 import Link from "next/link"
 import React, { useState } from "react"
@@ -5,7 +6,8 @@ import classes from "../login/login.module.css"
 
 const index = () => {
   return (
-    <div className={classes.login}>
+    <div className={`bg-primary dark:bg-dark ${classes.login}`}>
+      <DarkMode />
       <h1>Join Now</h1>
       <LogInForm />
       <small>
@@ -83,7 +85,7 @@ const index = () => {
           value={user.confirmPassword}
           onChange={handleChange}
         />
-        <AppButton text="Sign up" />
+        <AppButton>Sign Up</AppButton>
       </form>
     )
   }

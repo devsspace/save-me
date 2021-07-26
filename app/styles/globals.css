@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Recursive:wght@800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,5 +15,14 @@
   }
   body {
     transition: all 0.4s ease;
+    font-family: "Poppins", sans-serif;
+    @apply bg-light dark:bg-dark;
+  }
+  button {
+    font-family: "Recursive", sans-serif;
+  }
+  p,
+  h1 {
+    @apply text-dark dark:text-light;
   }
 }
