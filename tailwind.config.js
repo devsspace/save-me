@@ -9,6 +9,7 @@ module.exports = {
         light: "#F4F4F4",
         primary: "#00CFFC",
         primaryDark: "#0081F1",
+        primaryLight: "#dbf9ff",
         error: "#dc143c",
       },
     },
