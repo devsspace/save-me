@@ -1,4 +1,4 @@
-import DarkMode from "../app/components/DarkMode"
+import DarkMode from "@components/DarkMode"
 
 export default function Home() {
   return (
@@ -14,6 +14,7 @@ export default function Home() {
           target="_blank"
           href="https://youtu.be/dQw4w9WgXcQ"
           className="text-gray-600 animate-pulse dark:text-gray-200"
+          rel="noreferrer"
         >
           Click Here & I'll Save You!
         </a>

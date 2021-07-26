@@ -30,6 +30,7 @@
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": ["warn"],
     "react/button-has-type": "off",
+    "import/no-unresolved": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-unescaped-entities": 0,
     "@next/next/no-img-element": 0,
