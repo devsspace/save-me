@@ -9,6 +9,7 @@ module.exports = {
         light: "#F4F4F4",
         primary: "#00CFFC",
         primaryDark: "#0081F1",
+        primaryLight: "#dbf9ff",
         error: "#dc143c",
       },
     },
@@ -16,5 +17,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms")({
+    strategy: "class",
+  })],
 }

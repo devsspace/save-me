@@ -1,56 +1,53 @@
 {
-    // Linting Setup
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        "source.organizeImports": true
-    },
-    "editor.formatOnSave": false,
-    "eslint.alwaysShowStatus": true,
-    "editor.cursorWidth": 2,
+  // Linting Setup
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "editor.formatOnSave": false,
+  "eslint.alwaysShowStatus": true,
+  "editor.cursorWidth": 2,
 
-    // editor
-    "editor.fontLigatures": true,
-    "editor.wordWrap": "on",
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "comment",
-                "settings": {
-                    "fontStyle": "",
-                    "foreground": "#909090"
-                }
-            }
-        ]
-    },
+  // editor
+  "editor.fontLigatures": true,
+  "editor.wordWrap": "on",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "",
+          "foreground": "#909090"
+        }
+      }
+    ]
+  },
 
-    // cursor
-    "editor.cursorSmoothCaretAnimation": true,
-    "editor.cursorBlinking": "expand",
-    "emmet.excludeLanguages": ["markdown"],
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
-    },
-    "editor.minimap.enabled": false,
-    "diffEditor.wordWrap": "off",
-    "editor.linkedEditing": true,
-    "prettier.semi": false,
-    "editor.suggestSelection": "first",
-    "prettier.arrowParens": "avoid",
-    "editor.tabSize": 2,
-    "explorer.compactFolders": false,
-    "window.zoomLevel": 1,
-    "files.associations": {
-        "*.js": "javascript"
-    },
-    "javascript.preferences.quoteStyle": "double",
-    "javascript.preferences.importModuleSpecifier": "non-relative",
-    "editor.renderWhitespace": "all",
-    "editor.autoClosingBrackets": "always",
-    "tabnine.experimentalAutoImports": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    // "[javascript]": {
-    //   "editor.defaultFormatter": null
-    // },
-    "npm-intellisense.packageSubfoldersIntellisense": true,
-    "npm-intellisense.showBuildInLibs": true
+  // cursor
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorBlinking": "expand",
+  "emmet.excludeLanguages": ["markdown"],
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.minimap.enabled": false,
+  "diffEditor.wordWrap": "off",
+  "editor.linkedEditing": true,
+  "prettier.semi": false,
+  "editor.suggestSelection": "first",
+  "prettier.arrowParens": "avoid",
+  "editor.tabSize": 2,
+  "explorer.compactFolders": false,
+  "window.zoomLevel": 1,
+  "files.associations": {
+    "*.js": "javascript"
+  },
+  "javascript.preferences.quoteStyle": "double",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "editor.renderWhitespace": "all",
+  "editor.autoClosingBrackets": "always",
+  "tabnine.experimentalAutoImports": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "npm-intellisense.packageSubfoldersIntellisense": true,
+  "npm-intellisense.showBuildInLibs": true
 }

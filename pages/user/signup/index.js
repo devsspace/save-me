@@ -8,30 +8,33 @@ import classes from "../login/login.module.css"
 
 const Signup = () => {
   return (
-    <div className={`bg-light dark:bg-dark ${classes.login}`}>
+    <div className="bg-light dark:bg-dark text-center">
       <DarkMode />
       <h1>Join Now</h1>
-      <LogInForm />
+      <SignupForm />
       <small className="text-blue-400">
         <Link href="/user/login">Already have an account?</Link>
       </small>
     </div>
   )
 
-  function LogInForm() {
-    const { register, formState: { errors }, handleSubmit } = useForm()
-    const initialState = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-    }
-    const [user, setUser] = useState(initialState)
+  function SignupForm() {
+    const {
+      register,
+      formState: { errors },
+      handleSubmit,
+    } = useForm()
+    
+    // const initialState = {
+    //   email: "",
+    //   password: "",
+    //   confirmPassword: "",
+    //   isDonor: false,
+    // }
+    // const [user, setUser] = useState(initialState)
+    
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
-
-    const handleChange = (e) => {
-      setUser({ ...user, [e.target.name]: e.target.value })
-    }
 
     async function handleSignup(data) {
       // e.preventDefault()
@@ -88,23 +91,15 @@ const Signup = () => {
         />
 
         <span className="my-3 flex items-center">
-          <input name="isDonor" type="checkbox" {...register("isDonor")} className="mr-2 rounded" />
+          <input
+            name="isDonor"
+            type="checkbox"
+            {...register("isDonor")}
+            className="mr-2 rounded"
+          />
           <span>I am a Donor</span>
         </span>
 
-        {/*
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-          value={user.password}
-          pattern=".{6,}"
-          onChange={handleChange}
-          onInvalid={e => e.target.setCustomValidity("Do you tell that a password!?")}
-          onInput={e => e.target.setCustomValidity("")}
-        />
-        /> */}
         <AppButton className="m-auto">Sign Up</AppButton>
       </form>
     )
