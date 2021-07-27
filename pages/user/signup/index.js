@@ -6,7 +6,7 @@ import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import classes from "../login/login.module.css"
 
-const index = () => {
+const Signup = () => {
   return (
     <div className={`bg-light dark:bg-dark ${classes.login}`}>
       <DarkMode />
@@ -19,7 +19,7 @@ const index = () => {
   )
 
   function LogInForm() {
-    const { register, handleSubmit } = useForm()
+    const { register, formState: { errors }, handleSubmit } = useForm()
     const initialState = {
       email: "",
       password: "",
@@ -33,7 +33,7 @@ const index = () => {
       setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-    async function handleLogIn(data) {
+    async function handleSignup(data) {
       // e.preventDefault()
       // setLoading(true)
 
@@ -54,7 +54,7 @@ const index = () => {
     }
 
     return (
-      <form onSubmit={handleSubmit(handleLogIn)} className={classes.loginForm}>
+      <form onSubmit={handleSubmit(handleSignup)} className={classes.loginForm}>
         {loading && (
           <div className="loading">
             <h1>Loading...</h1>
@@ -62,25 +62,37 @@ const index = () => {
         )}
         {error && <p className="error-text">{error}</p>}
 
-        <FormInput name="email" type="email" placeholder="Email" register={register} />
-        <FormInput name="password" type="password" placeholder="Password" register={register} />
-        <FormInput name="confirmPassword" type="password" placeholder="Confirm Password" register={register} />
-        {/* <input
-          type="email"
+        <FormInput
           name="email"
+          type="email"
           placeholder="Email"
-          required
-          value={user.email}
-          onChange={handleChange}
+          register={register}
+          errors={errors}
+          className="my-2"
         />
         <FormInput
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
-          value={user.email}
-          onChange={handleChange}
+          name="password"
+          type="password"
+          placeholder="Password"
+          register={register}
+          errors={errors}
+          className="my-2"
         />
+        <FormInput
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+          register={register}
+          errors={errors}
+          className="my-2"
+        />
+
+        <span className="my-3 flex items-center">
+          <input name="isDonor" type="checkbox" {...register("isDonor")} className="mr-2 rounded" />
+          <span>I am a Donor</span>
+        </span>
+
+        {/*
         <input
           type="password"
           name="password"
@@ -92,18 +104,11 @@ const index = () => {
           onInvalid={e => e.target.setCustomValidity("Do you tell that a password!?")}
           onInput={e => e.target.setCustomValidity("")}
         />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          required
-          value={user.confirmPassword}
-          onChange={handleChange}
         /> */}
-        <AppButton>Sign Up</AppButton>
+        <AppButton className="m-auto">Sign Up</AppButton>
       </form>
     )
   }
 }
 
-export default index
+export default Signup

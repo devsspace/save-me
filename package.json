@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.0",
     "@tailwindcss/forms": "^0.3.3",
     "axios": "^0.21.1",
     "next": "latest",
