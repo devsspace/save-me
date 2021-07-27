@@ -81,14 +81,14 @@ const DonorInfo = () => (
               />
             </div>
 
-            <button
+            {/* <button
               id="button"
               type="button"
               className="w-full px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-green-500 hover:bg-blue-400 hover:shadow-lg focus:outline-none"
             >
               Save
-            </button>
-            <AppButton />
+            </button> */}
+            <AppButton>Save data</AppButton>
           </form>
         </div>
       </div>

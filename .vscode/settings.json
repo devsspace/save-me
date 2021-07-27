@@ -6,7 +6,7 @@
   },
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
-  "editor.cursorWidth": 4,
+  "editor.cursorWidth": 2,
 
   // editor
   "editor.fontLigatures": true,
@@ -48,9 +48,6 @@
   "editor.autoClosingBrackets": "always",
   "tabnine.experimentalAutoImports": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "[javascript]": {
-  //   "editor.defaultFormatter": null
-  // },
   "npm-intellisense.packageSubfoldersIntellisense": true,
   "npm-intellisense.showBuildInLibs": true
 }

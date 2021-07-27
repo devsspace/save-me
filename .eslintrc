@@ -15,6 +15,7 @@
     "plugin:react/recommended",
     "next/core-web-vitals",
     "airbnb",
+    "prettier",
     "airbnb/hooks"
   ],
   "parserOptions": {
@@ -39,6 +40,9 @@
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
     "quotes": ["error", "double"],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "linebreak-style": "off",
+    "arrow-body-style": "off",
+    "jsx-a11y/label-has-associated-control": 0
   }
 }
