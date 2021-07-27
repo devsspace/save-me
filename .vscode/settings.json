@@ -4,7 +4,7 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "eslint.alwaysShowStatus": true,
   "editor.cursorWidth": 2,
 

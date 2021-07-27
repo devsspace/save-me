@@ -3,7 +3,7 @@ import React from "react"
 
 const DonorInfo = () => (
   <>
-    <div className="my-12">
+    <div className="my-12 flex flex-col md:flex-row">
       <div className="min-h-screen p-0 sm:p-12">
         <div className="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
           <h1 className="text-2xl font-bold mb-8">Basic Info</h1>
@@ -92,6 +92,7 @@ const DonorInfo = () => (
           </form>
         </div>
       </div>
+      <div>jsidofffffffffffff</div>
     </div>
   </>
 )

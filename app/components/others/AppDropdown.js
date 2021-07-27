@@ -9,7 +9,7 @@ export default function AppDropdown({ data }) {
     <div className="w-52">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
-          <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-default sm:text-sm">
+          <Listbox.Button className="relative w-full focus:ring-2 focus:ring-primary py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-default sm:text-sm">
             <span className="block truncate text-dark">{selected.name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <HiSelector
@@ -40,7 +40,7 @@ cursor-default select-none relative py-2 pl-10 pr-4`}
                     <>
                       <span
                         className={`${
-                          selected ? "font-medium" : "font-normal"
+                          selected ? "font-semibold" : "font-normal"
                         } block truncate`}
                       >
                         {person.name}

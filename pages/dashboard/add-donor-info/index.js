@@ -1,5 +1,5 @@
 import DarkMode from "@components/DarkMode"
-import DonorInfo from "@components/DonorInfo"
+import MultiStepForm from "@components/MultiStepForm/MultiStepForm"
 import React from "react"
 
 const DonorProfile = () => (
@@ -11,7 +11,7 @@ const DonorProfile = () => (
           <h1 className="text-2xl">Donor Profile</h1>
         </div>
       </div>
-      <DonorInfo />
+      <MultiStepForm />
     </div>
   </>
 )
