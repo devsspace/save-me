@@ -6,7 +6,7 @@ import {
   FaCheckCircle,
   FaHeartbeat,
   FaStar,
-  FaTimesCircle
+  FaTimesCircle,
 } from "react-icons/fa"
 import { HiLocationMarker } from "react-icons/hi"
 
@@ -52,13 +52,13 @@ export default function BloodDonor({ donorInfo }) {
           />
         ) : (
           <div
-            className="relative h-3 w-3 bg-light border-2 border-white-400
+            className="relative h-3 w-3 bg-white border-2 border-gray-400
        rounded-full right-[60px] bottom-[10px]"
           />
         )}
 
         <AppText
-          className="relative left-[140px] bottom-[40px] justify-center bg-gradient-to-l
+          className="relative left-[175px] bottom-[40px] justify-center bg-gradient-to-l
           from-transparent to-gray-200 dark:transparent dark:to-transparent
           p-1 w-7 h-7 rounded-full"
           Icon={FaStar}
