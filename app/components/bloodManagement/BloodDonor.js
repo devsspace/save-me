@@ -6,7 +6,7 @@ import {
   FaCheckCircle,
   FaHeartbeat,
   FaStar,
-  FaTimesCircle,
+  FaTimesCircle
 } from "react-icons/fa"
 import { HiLocationMarker } from "react-icons/hi"
 

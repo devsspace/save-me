@@ -42,6 +42,7 @@
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
     "linebreak-style": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "jsx-a11y/label-has-associated-control": 0
   }
 }

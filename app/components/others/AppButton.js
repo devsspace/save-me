@@ -9,7 +9,7 @@ export default function AppButton({
   return (
     <div
       onClick={onClick}
-      className={`flex items-center  text-lg cursor-pointer bg-primary px-4 py-1 rounded-md shadow-md ${className}`}
+      className={`full px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-blue-500 hover:bg-green-500 hover:shadow-lg focus:outline-none ${className}`}
     >
       {Icon && (
         <Icon className={`w-5 h-5 mr-0.5 text-white ${iconClassName}`} />
