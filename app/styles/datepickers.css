@@ -1,6 +1,6 @@
 .react-datepicker__input-container input {
-  @apply block w-52 text-sm font-semibold bg-white dark:bg-gray-600 border-none rounded shadow-md 
-  form-input focus:ring-2 focus:ring-primary;
+  @apply block w-[154px] sm:w-48 font-semibold bg-white dark:bg-gray-600 border-none rounded shadow-md 
+  form-input focus:ring-2 focus:ring-primary cursor-pointer;
 }
 
 .react-datepicker__tab-loop {

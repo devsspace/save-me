@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker"
 
 export default function AppDatePicker() {
   const [startDate, setDate] = useState(new Date())
-  const [endDate] = useState(new Date().setMonth(startDate.getMonth() + 1))
+  const [endDate] = useState(new Date().setMonth(startDate?.getMonth() + 1))
   return (
     <div className="relative">
       <DatePicker
