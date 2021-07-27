@@ -1,7 +1,8 @@
 import axios from "axios"
 import React, { useState } from "react"
 
-const UploadImage = () => {
+const UploadImage = ({ formData, setForm, navigation }) => {
+  const { imgInfo } = formData
   const [imgURL, setImgURL] = useState(null)
   console.log(imgURL)
   // upload images
