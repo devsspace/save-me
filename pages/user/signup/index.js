@@ -26,15 +26,15 @@ const Signup = () => {
       formState: { errors },
       handleSubmit,
     } = useForm()
-    
+
     // const initialState = {
-      //   email: "",
-      //   password: "",
-      //   confirmPassword: "",
-      //   isDonor: false,
-      // }
-      // const [user, setUser] = useState(initialState)
-      
+    //   email: "",
+    //   password: "",
+    //   confirmPassword: "",
+    //   isDonor: false,
+    // }
+    // const [user, setUser] = useState(initialState)
+
     const [showPass, setShowPass] = useState(false)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
