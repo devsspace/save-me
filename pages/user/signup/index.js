@@ -13,7 +13,7 @@ const Signup = () => {
       <h1>Join Now</h1>
       <SignupForm />
       <small className="text-blue-400">
-        <Link href="/user/login">Already have an account?</Link>
+        <Link href="/user/login">Already have an account?</Link> test
       </small>
     </div>
   )
