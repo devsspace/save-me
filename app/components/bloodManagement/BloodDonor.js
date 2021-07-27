@@ -2,13 +2,17 @@ import AppText from "@components/bloodManagement/AppText"
 import Image from "next/image"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 import { BsHeartHalf } from "react-icons/bs"
-import { FaCheckCircle, FaHeartbeat, FaTimesCircle } from "react-icons/fa"
+import {
+  FaCheckCircle,
+  FaHeartbeat,
+  FaStar,
+  FaTimesCircle,
+} from "react-icons/fa"
 import { HiLocationMarker } from "react-icons/hi"
 
 export default function BloodDonor({ donorInfo }) {
-  const active = true
-  const { name, age, phone, eligible, group, gender, district, donated } =
-    donorInfo
+  const isActive = Math.floor(Math.random() * 2) + 1
+  const { name, eligible, group, district, donated } = donorInfo
 
   let AppHeartIcon
   if (donated >= 10) {
@@ -24,14 +28,13 @@ export default function BloodDonor({ donorInfo }) {
   return (
     <div
       className="m-2 bg-white dark:bg-gray-600 rounded-md shadow-md
-     flex items-center space-x-3 p-2"
+     flex items-center space-x-3 p-2 cursor-pointer"
     >
       <Image
         src="/images/bloodDonorProfile.svg"
         width={50}
         height={50}
         objectFit="contain"
-        className="cursor-pointer"
         alt={`${name} - A Blood Donor`}
       />
       <div>
@@ -42,10 +45,30 @@ export default function BloodDonor({ donorInfo }) {
           p-1 w-7 h-7 rounded-full"
           textClassName="text-xs text-red-500 dark:text-gray-600 font-bold"
         />
+        {isActive === 1 ? (
+          <div
+            className="relative h-3 w-3 bg-green-400
+         rounded-full right-[60px] bottom-[10px]"
+          />
+        ) : (
+          <div
+            className="relative h-3 w-3 bg-light border-2 border-white-400
+       rounded-full right-[60px] bottom-[10px]"
+          />
+        )}
+
+        <AppText
+          className="relative left-[140px] bottom-[40px] justify-center bg-gradient-to-l
+          from-transparent to-gray-200 dark:transparent dark:to-transparent
+          p-1 w-7 h-7 rounded-full"
+          Icon={FaStar}
+          iconClassName="text-yellow-400 dark:text-yellow-400"
+          textClassName="text-xs text-red-500 dark:text-gray-600 font-bold"
+        />
         <AppText
           text={`Donation: ${donated}`}
           Icon={AppHeartIcon}
-          className="-mt-7"
+          className="-mt-16"
           iconClassName="text-red-500 dark:text-red-400"
         />
         {eligible ? (
