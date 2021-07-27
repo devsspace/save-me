@@ -11,6 +11,7 @@ import FormInput from "@components/others/FormInput"
 import Link from "next/link"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import classes from "./login.module.css"
 
 const Login = () => {
@@ -55,6 +56,7 @@ const Login = () => {
         formState: { errors },
         handleSubmit,
       } = useForm()
+    const [showPass, setShowPass] = useState(false)
 
       async function handleLogin(data) {
         // e.preventDefault()
@@ -96,15 +98,23 @@ const Login = () => {
             errors={errors}
             className="my-2"
           />
-          <FormInput
-            name="password"
-            type="password"
-            placeholder="Password"
-            register={register}
-            errors={errors}
-            className="my-2"
-          />
-
+          <div className="relative">
+            <FormInput
+              name="password"
+              type={showPass ? "text" : "password"}
+              placeholder="Password"
+              register={register}
+              errors={errors}
+              className="my-2"
+            />
+            <span onClick={() => setShowPass(!showPass)}>
+              {showPass ? (
+                <AiOutlineEyeInvisible className="absolute right-3 top-5" />
+              ) : (
+                <AiOutlineEye className="absolute right-3 top-5" />
+              )}
+            </span>
+          </div>
 
           <AppButton className="m-auto">Log in</AppButton>
         </form>
