@@ -18,7 +18,6 @@ const Basic = ({ formData, setForm, navigation }) => {
           <div className="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
             <form>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Name</label>
                 <input
                   type="text"
                   onChange={setForm}
@@ -29,14 +28,13 @@ const Basic = ({ formData, setForm, navigation }) => {
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Blood Group</label>
                 <select
                   name="bloodGroup"
                   onChange={setForm}
                   value={bloodGroup}
                   className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
                 >
-                  <option value="Select">Select</option>
+                  <option value="Select">Select blood group</option>
                   <option value="A (+VE)">A (+VE)</option>
                   <option value="A (-VE)">A (-VE)</option>
                   <option value="B (+VE)">B (+VE)</option>
@@ -48,20 +46,18 @@ const Basic = ({ formData, setForm, navigation }) => {
                 </select>
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Gender</label>
                 <select
                   name="gender"
                   onChange={setForm}
                   value={gender}
                   className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
                 >
-                  <option value="Select">Select</option>
+                  <option value="Select">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Mobile Number</label>
                 <input
                   type="text"
                   placeholder="Enter mobile number"
@@ -72,7 +68,7 @@ const Basic = ({ formData, setForm, navigation }) => {
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Date of birth</label>
+                <label>Date of Birth</label>
                 <input
                   type="date"
                   onChange={setForm}
@@ -82,9 +78,7 @@ const Basic = ({ formData, setForm, navigation }) => {
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">
-                  Last blood donation data
-                </label>
+                <label>Last donation date</label>
                 <input
                   type="date"
                   onChange={setForm}
