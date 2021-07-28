@@ -9,12 +9,8 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-/* .loginForm > input {
+.loginForm input:not([type=checkbox]) {
     display: block;
-    width: 95%;
-    margin: 1rem auto;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border-radius: 20px;
-    border: 1px solid black;
-} */
+    width: 100%;
+    /* border: 1px solid black; */
+}

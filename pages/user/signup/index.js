@@ -1,9 +1,11 @@
 import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
+import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
 import Link from "next/link"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai/"
 import classes from "../login/login.module.css"
 
 const Signup = () => {
@@ -13,7 +15,7 @@ const Signup = () => {
       <h1>Join Now</h1>
       <SignupForm />
       <small className="text-blue-400">
-        <Link href="/user/login">Already have an account?</Link> test
+        <Link href="/user/login">Already have an account?</Link>
       </small>
     </div>
   )
@@ -24,7 +26,7 @@ const Signup = () => {
       formState: { errors },
       handleSubmit,
     } = useForm()
-    
+
     // const initialState = {
     //   email: "",
     //   password: "",
@@ -32,7 +34,8 @@ const Signup = () => {
     //   isDonor: false,
     // }
     // const [user, setUser] = useState(initialState)
-    
+
+    const [showPass, setShowPass] = useState(false)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -73,23 +76,34 @@ const Signup = () => {
           errors={errors}
           className="my-2"
         />
-        <FormInput
-          name="password"
-          type="password"
-          placeholder="Password"
-          register={register}
-          errors={errors}
-          className="my-2"
-        />
+        <div className="relative">
+          <FormInput
+            name="password"
+            type={showPass ? "text" : "password"}
+            placeholder="Password"
+            register={register}
+            errors={errors}
+            className="my-2"
+          />
+          <span onClick={() => setShowPass(!showPass)}>
+            {showPass ? (
+              <AiOutlineEyeInvisible className="absolute right-3 top-5" />
+            ) : (
+              <AiOutlineEye className="absolute right-3 top-5" />
+            )}
+          </span>
+        </div>
+
         <FormInput
           name="confirmPassword"
-          type="password"
+          type={showPass ? "text" : "password"}
           placeholder="Confirm Password"
           register={register}
           errors={errors}
           className="my-2"
         />
 
+        <AppSwitch />
         <span className="my-3 flex items-center">
           <input
             name="isDonor"

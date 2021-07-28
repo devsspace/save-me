@@ -6,10 +6,10 @@ import { HiCheck, HiSelector } from "react-icons/hi"
 export default function AppDropdown({ data }) {
   const [selected, setSelected] = useState(data[0])
   return (
-    <div className="w-52">
+    <div className="w-full">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
-          <Listbox.Button className="relative w-full focus:ring-2 focus:ring-primary py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-default sm:text-sm">
+          <Listbox.Button className="relative w-full focus:ring-2 focus:ring-primary py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-pointer">
             <span className="block truncate text-dark">{selected.name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <HiSelector
@@ -24,7 +24,7 @@ export default function AppDropdown({ data }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto bg-white dark:bg-gray-600 rounded-md shadow-md max-h-60 ring-1 ring-dark ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto bg-white dark:bg-gray-600 rounded-md shadow-md max-h-60 ring-1 ring-dark ring-opacity-5 focus:outline-none z-10">
               {data.map((person) => (
                 <Listbox.Option
                   key={person.id}
