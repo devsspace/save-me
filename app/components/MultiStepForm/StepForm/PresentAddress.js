@@ -1,4 +1,4 @@
-import Button from "@material-ui/core/Button"
+import { Button } from "@material-ui/core"
 import React from "react"
 
 const PresentAddress = ({ formData, setForm, navigation }) => {
@@ -51,10 +51,13 @@ const PresentAddress = ({ formData, setForm, navigation }) => {
               </div>
             </form>
             <div style={{ marginTop: "1rem" }}>
+              {/* <AppButton onClick={() => navigation.previous()}>Back</AppButton>
+              <AppButton onClick={() => navigation.next()}>Next</AppButton> */}
               <Button
                 color="secondary"
                 variant="contained"
                 style={{ marginRight: "1rem" }}
+                onClick={() => navigation.previous()}
               >
                 Back
               </Button>

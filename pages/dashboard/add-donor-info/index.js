@@ -1,10 +1,10 @@
-import DarkMode from "@components/DarkMode"
+import BloodNavBar from "@components/bloodManagement/BloodNavBar"
 import MultiStepForm from "@components/MultiStepForm/MultiStepForm"
 import React from "react"
 
 const DonorProfile = () => (
   <>
-    <DarkMode />
+    <BloodNavBar />
     <div>
       <div className="h-24 min-h-0 md:min-h-full flex items-center">
         <div className="container mx-auto">
