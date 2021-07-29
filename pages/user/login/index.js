@@ -7,6 +7,7 @@
 // import "./Login.css"
 import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
+import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
 import Link from "next/link"
 import React, { useState } from "react"
@@ -115,7 +116,7 @@ const Login = () => {
               )}
             </span>
           </div>
-
+          <AppSwitch label="Remember me" />
           <AppButton className="m-auto">Log in</AppButton>
         </form>
       )

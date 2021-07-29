@@ -103,8 +103,8 @@ const Signup = () => {
           className="my-2"
         />
 
-        <AppSwitch />
-        <span className="my-3 flex items-center">
+        <AppSwitch label="I am a donor" />
+        {/* <span className="my-3 flex items-center">
           <input
             name="isDonor"
             type="checkbox"
@@ -112,7 +112,7 @@ const Signup = () => {
             className="mr-2 rounded"
           />
           <span>I am a Donor</span>
-        </span>
+        </span> */}
 
         <AppButton className="m-auto">Sign Up</AppButton>
       </form>
