@@ -1,7 +1,8 @@
+import withAuth from "@components/auth/withAuth"
 import React from "react"
 
-const index = () => {
-  return <div />
+const AddPatientInfo = () => {
+  return <div>Add patient info here.</div>
 }
 
-export default index
+export default withAuth(AddPatientInfo)
