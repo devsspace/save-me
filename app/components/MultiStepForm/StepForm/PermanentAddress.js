@@ -8,7 +8,7 @@ const PermanentAddress = ({ formData, setForm, navigation }) => {
   }
   return (
     <>
-      <div className="my-12">
+      <div className="">
         <div className="min-h-screen p-0 sm:p-12">
           <div className="mx-auto max-w-md px-6 py-5 bg-white border-0 shadow-lg sm:rounded-3xl">
             <h1 className="text-center text-2xl">Permanent Address</h1>
