@@ -38,7 +38,7 @@
   "prettier.arrowParens": "avoid",
   "editor.tabSize": 2,
   "explorer.compactFolders": false,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "files.associations": {
     "*.js": "javascript"
   },

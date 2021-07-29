@@ -14,7 +14,7 @@ const SaveLives = () => {
           Find blood donors near your location and make a blood
         </p>
         <p className="text-center text-xl">request in less than 5 minutes.</p>
-        <div className="grid md:grid-cols-3 sm:grid-cols-2">
+        <div className="grid md:grid-cols-3 sm:grid-cols-2 my-10">
           <div className="text-center grid justify-items-center">
             <BiDonateBlood className="text-7xl text-red-500" />
             <h1 className="text-xl">Find Blood</h1>
