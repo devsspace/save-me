@@ -10,7 +10,6 @@ const PermanentAddress = ({ formData, setForm, navigation }) => {
           <div className="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
             <form>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Permanent Address</label>
                 <input
                   type="text"
                   onChange={setForm}
@@ -21,7 +20,6 @@ const PermanentAddress = ({ formData, setForm, navigation }) => {
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Present Police Station</label>
                 <input
                   type="text"
                   onChange={setForm}
@@ -32,7 +30,6 @@ const PermanentAddress = ({ formData, setForm, navigation }) => {
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Present District</label>
                 <input
                   type="text"
                   name="permanentDistrict"

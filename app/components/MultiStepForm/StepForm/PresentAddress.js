@@ -1,4 +1,4 @@
-import Button from "@material-ui/core/Button"
+import { Button } from "@material-ui/core"
 import React from "react"
 
 const PresentAddress = ({ formData, setForm, navigation }) => {
@@ -10,18 +10,16 @@ const PresentAddress = ({ formData, setForm, navigation }) => {
           <div className="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
             <form>
               <div className="w-full mb-5">
-                <label className="text-gray-500">National ID number</label>
                 <input
                   type="text"
                   name="nid"
                   onChange={setForm}
                   value={nid}
-                  placeholder="Enter id number"
+                  placeholder="Enter NID number"
                   className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Present Address</label>
                 <input
                   type="text"
                   onChange={setForm}
@@ -32,7 +30,6 @@ const PresentAddress = ({ formData, setForm, navigation }) => {
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Present Police Station</label>
                 <input
                   type="text"
                   onChange={setForm}
@@ -43,7 +40,6 @@ const PresentAddress = ({ formData, setForm, navigation }) => {
                 />
               </div>
               <div className="w-full mb-5">
-                <label className="text-gray-500">Present District</label>
                 <input
                   type="text"
                   name="presentDistrict"
@@ -55,6 +51,8 @@ const PresentAddress = ({ formData, setForm, navigation }) => {
               </div>
             </form>
             <div style={{ marginTop: "1rem" }}>
+              {/* <AppButton onClick={() => navigation.previous()}>Back</AppButton>
+              <AppButton onClick={() => navigation.next()}>Next</AppButton> */}
               <Button
                 color="secondary"
                 variant="contained"

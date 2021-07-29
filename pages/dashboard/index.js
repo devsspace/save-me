@@ -1,8 +1,12 @@
+import withAuth from "@components/auth/withAuth"
 import React from "react"
 
-const index = () => {
-    const a = {}
-    return <div />
+const Dashboard = () => {
+    return (
+        <div>
+            Welcome to your dashboard
+        </div>
+    )
 }
 
-export default index
+export default withAuth(Dashboard)

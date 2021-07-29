@@ -2,12 +2,7 @@ import AppText from "@components/bloodManagement/AppText"
 import Image from "next/image"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 import { BsHeartHalf } from "react-icons/bs"
-import {
-  FaCheckCircle,
-  FaHeartbeat,
-  FaStar,
-  FaTimesCircle,
-} from "react-icons/fa"
+import { FaCheckCircle, FaHeartbeat, FaTimesCircle } from "react-icons/fa"
 import { HiLocationMarker } from "react-icons/hi"
 
 export default function BloodDonor({ donorInfo }) {
@@ -56,19 +51,10 @@ export default function BloodDonor({ donorInfo }) {
        rounded-full right-[60px] bottom-[10px]"
           />
         )}
-
-        <AppText
-          className="relative left-[175px] bottom-[40px] justify-center bg-gradient-to-l
-          from-transparent to-gray-200 dark:transparent dark:to-transparent
-          p-1 w-7 h-7 rounded-full"
-          Icon={FaStar}
-          iconClassName="text-yellow-400 dark:text-yellow-400"
-          textClassName="text-xs text-red-500 dark:text-gray-600 font-bold"
-        />
         <AppText
           text={`Donation: ${donated}`}
           Icon={AppHeartIcon}
-          className="-mt-16"
+          className="-mt-9"
           iconClassName="text-red-500 dark:text-red-400"
         />
         {eligible ? (
