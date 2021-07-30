@@ -9,7 +9,7 @@ API.interceptors.request.use((req) => {
   try {
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
   } catch (error) {
-    console.log(error)
+    console.warn("No token found")
   }
   return req
 })
