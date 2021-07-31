@@ -8,17 +8,19 @@ export function DonorWrapper({ children }) {
     bloodGroup: "",
     location: "",
     date: "",
-    eligibility: true
+    eligibility: true,
   })
   const sharedState = {
     donors,
     setDonors,
     searchInfo,
-    setSearchInfo
+    setSearchInfo,
   }
 
   return (
-    <DonorContext.Provider value={sharedState}>{children}</DonorContext.Provider>
+    <DonorContext.Provider value={sharedState}>
+      {children}
+    </DonorContext.Provider>
   )
 }
 
