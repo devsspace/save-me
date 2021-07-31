@@ -35,14 +35,14 @@ export default function SearchDonorsInputs() {
       </div>
       <div className="flex space-x-3">
         <AppDropdown
-          searchInfo={searchInfo}
-          setSearchInfo={setSearchInfo}
+          state={searchInfo}
+          setState={setSearchInfo}
           name="bloodGroup"
           data={bloodGroups}
         />
         <AppDropdown
-          searchInfo={searchInfo}
-          setSearchInfo={setSearchInfo}
+          state={searchInfo}
+          setState={setSearchInfo}
           name="location"
           data={districts}
         />
@@ -50,12 +50,12 @@ export default function SearchDonorsInputs() {
       <div className="flex space-x-3">
         <AppDatePicker
           name="date"
-          searchInfo={searchInfo}
-          setSearchInfo={setSearchInfo}
+          state={searchInfo}
+          setState={setSearchInfo}
         />
         <AppDropdown
-          searchInfo={searchInfo}
-          setSearchInfo={setSearchInfo}
+          state={searchInfo}
+          setState={setSearchInfo}
           name="eligibility"
           data={donorEligibility}
         />

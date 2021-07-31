@@ -1,13 +1,17 @@
 import { useState } from "react"
 import DatePicker from "react-datepicker"
 
-export default function AppDatePicker({ name, searchInfo, setSearchInfo }) {
-  const [startDate, setDate] = useState(searchInfo.date)
+export default function AppDatePicker({
+  name = "appDatePicker",
+  state = {},
+  setState = () => null,
+}) {
+  const [startDate, setDate] = useState(state.date)
   const [endDate] = useState(new Date().setMonth(startDate?.getMonth() + 1))
 
   const handleDateChange = (date) => {
     setDate(date)
-    setSearchInfo({ ...searchInfo, [name]: date })
+    setState({ ...state, [name]: date })
   }
   return (
     <div className="relative">
