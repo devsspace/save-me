@@ -5,10 +5,10 @@ export const DonorContext = createContext()
 export function DonorWrapper({ children }) {
   const [donors, setDonors] = useState(null)
   const [searchInfo, setSearchInfo] = useState({
-    bloodGroup: "",
-    location: "",
+    bloodGroup: "A+",
+    location: "Dhaka",
     date: "",
-    eligibility: true,
+    eligibility: "eligible",
   })
   const sharedState = {
     donors,
@@ -16,6 +16,7 @@ export function DonorWrapper({ children }) {
     searchInfo,
     setSearchInfo,
   }
+  
 
   return (
     <DonorContext.Provider value={sharedState}>

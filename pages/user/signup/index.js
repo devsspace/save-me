@@ -3,7 +3,7 @@ import AppButton from "@components/others/AppButton"
 import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
 import { signUp } from "app/api"
-import { useAppContext } from "app/contexts/UserContext"
+import { useUserContext } from "app/contexts/UserContext"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
@@ -12,7 +12,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai/"
 import classes from "../login/login.module.css"
 
 const Signup = () => {
-  const { currentUser, setCurrentUser } = useAppContext()
+  const { currentUser, setCurrentUser } = useUserContext()
   const router = useRouter()
 
 

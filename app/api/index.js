@@ -17,3 +17,6 @@ API.interceptors.request.use((req) => {
 export const logIn = (user) => API.post("/user/login", user)
 export const signUp = (user) => API.post("/user/signup", user)
 export const getUser = () => API.get("/user")
+
+export const searchDonor = (searchInfo) =>
+  API.get(`/donors?bloodGroup=${searchInfo.bloodGroup}&location=${searchInfo.location}&date=${searchInfo.date}&eligibility=${searchInfo.eligibility}`)
