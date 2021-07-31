@@ -9,18 +9,20 @@ import { useDonorContext } from "app/contexts/DonorContext"
 import { HiHeart, HiSearch } from "react-icons/hi"
 
 export default function SearchDonorsInputs() {
-  const {searchInfo, setDonors} = useDonorContext()
-  
+  const { searchInfo, setSearchInfo, setDonors } = useDonorContext()
+
   const handleSearch = async () => {
-    console.log(searchInfo)
+    // console.log(searchInfo)
+    // setDonors([])
+    // FIXME: shohaul will fix this later when backend route is completed <3
     try {
       const { data } = await searchDonor(searchInfo)
-      if(data.name) setDonors(data)
+      setDonors(data)
     } catch (error) {
       console.log(error)
     }
   }
-  
+
   return (
     <div className="flex flex-col justify-center space-y-4">
       <div>
@@ -32,15 +34,41 @@ export default function SearchDonorsInputs() {
         </p>
       </div>
       <div className="flex space-x-3">
-        <AppDropdown name="bloodGroup" data={bloodGroups} />
-        <AppDropdown name="location" data={districts} />
+        <AppDropdown
+          searchInfo={searchInfo}
+          setSearchInfo={setSearchInfo}
+          name="bloodGroup"
+          data={bloodGroups}
+        />
+        <AppDropdown
+          searchInfo={searchInfo}
+          setSearchInfo={setSearchInfo}
+          name="location"
+          data={districts}
+        />
       </div>
       <div className="flex space-x-3">
-        <AppDatePicker />
-        <AppDropdown name="eligibility" data={donorEligibility} />
+        <AppDatePicker
+          name="date"
+          searchInfo={searchInfo}
+          setSearchInfo={setSearchInfo}
+        />
+        <AppDropdown
+          searchInfo={searchInfo}
+          setSearchInfo={setSearchInfo}
+          name="eligibility"
+          data={donorEligibility}
+        />
       </div>
       <div className="flex justify-center">
-        <AppButton Icon={HiSearch} onClick={handleSearch}>Search</AppButton>
+        <AppButton
+          searchInfo={searchInfo}
+          setSearchInfo={setSearchInfo}
+          Icon={HiSearch}
+          onClick={handleSearch}
+        >
+          Search
+        </AppButton>
       </div>
     </div>
   )
