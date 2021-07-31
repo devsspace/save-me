@@ -1,16 +1,18 @@
 /* eslint-disable no-shadow */
 import { Listbox, Transition } from "@headlessui/react"
+import { useDonorContext } from "app/contexts/DonorContext"
 import { Fragment, useState } from "react"
 import { HiCheck, HiSelector } from "react-icons/hi"
 
-export default function AppDropdown({ data }) {
+export default function AppDropdown({ name, data }) {
+  const {searchInfo, setSearchInfo} = useDonorContext()
   const [selected, setSelected] = useState(data[0])
   return (
     <div className="w-full">
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox value={searchInfo[name]} onChange={(data) => setSearchInfo({...searchInfo, [name]: data.name})}>
         <div className="relative">
           <Listbox.Button className="relative w-full focus:ring-2 focus:ring-primary py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-pointer">
-            <span className="block truncate text-dark">{selected.name}</span>
+            <span className="block truncate text-dark">{searchInfo[name]}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <HiSelector
                 className="w-5 h-5 text-gray-600 dark:text-light"

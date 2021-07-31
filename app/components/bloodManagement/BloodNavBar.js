@@ -8,7 +8,7 @@ const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "About us", href: "#", current: false },
   { name: "Search Donors", href: "/search-donors", current: false },
-  { name: "Blood Request", href: "#", current: false },
+  { name: "Blood Request", href: "/request-blood", current: false },
   { name: "Register", href: "/user/signup", current: false },
 ]
 
@@ -43,7 +43,7 @@ const BloodNavBar = () => {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-2">
                     {navigation.map((item) => (
-                      <Link href={item.href}>
+                      <Link key={item.name} href={item.href}>
                         <a
                           key={item.name}
                           href={item.href}
