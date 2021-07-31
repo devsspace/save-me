@@ -7,7 +7,9 @@ API.interceptors.request.use((req) => {
   //   req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
   // }
   try {
-    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("profile")).token
+    }`
   } catch (error) {
     console.warn("No token found")
   }
@@ -19,4 +21,10 @@ export const signUp = (user) => API.post("/user/signup", user)
 export const getUser = () => API.get("/user")
 
 export const searchDonor = (searchInfo) =>
-  API.get(`/donors?bloodGroup=${searchInfo.bloodGroup}&location=${searchInfo.location}&date=${searchInfo.date}&eligibility=${searchInfo.eligibility}`)
+  API.get(
+    `/donors?bloodGroup=${encodeURIComponent(
+      searchInfo.bloodGroup
+    )}&location=${encodeURIComponent(searchInfo.location)}&date=${
+      searchInfo.date
+    }&eligibility=${encodeURIComponent(searchInfo.eligibility)}`
+  )

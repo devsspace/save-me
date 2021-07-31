@@ -3,59 +3,46 @@ import { useUserContext } from "app/contexts/UserContext"
 import Login from "pages/user/login"
 import { useEffect, useState } from "react"
 
-
-export default (Component) => {
-  
+export default function withAuth(Component) {
   const Auth = (props) => {
     const { currentUser, setCurrentUser } = useUserContext()
     const [loading, setLoading] = useState(false)
-    
+
     useEffect(() => {
       const checkUserAuthentication = async () => {
         setLoading(true)
-        
+
         try {
           const { data } = await getUser()
           const user = data?.user || null
 
           setCurrentUser(user)
           setLoading(false)
-
-        } 
-        
-        catch (error) {
+        } catch (error) {
           console.warn("No user found from getUser function")
           setLoading(false)
         }
       }
-      
-      if(!currentUser) checkUserAuthentication()
+
+      if (!currentUser) checkUserAuthentication()
     }, [])
-    
-    
-    if(loading) {
-      return (
-        <h1>Loadingggg...</h1>
-      )
+
+    if (loading) {
+      return <h1>Loadingggg...</h1>
     }
 
-    
     // If user is not logged in
 
     /** ------Option 1------ */
     if (!currentUser?.email) {
-      return (
-        <Login />
-        )
-      }
+      return <Login />
+    }
 
     /** ------Option 2------ */
     // if(!currentUser?.email) router.replace(`/user/login?from=${router.pathname}`)
 
     // If user is logged in
-    return (
-      <Component {...props} />
-    )
+    return <Component {...props} />
   }
 
   // Copy getInitial props
@@ -70,7 +57,7 @@ export default (Component) => {
   //   return <Component {...props} />
   // }
   // HOCComponent.getInitialProps = async (context) => {
- 
+
   //   const userAuth = await checkUserAuthentication()
 
   //   // Are you an authorized user or not?

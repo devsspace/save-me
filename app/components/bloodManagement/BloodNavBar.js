@@ -43,7 +43,7 @@ const BloodNavBar = () => {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-2">
                     {navigation.map((item) => (
-                      <Link href={item.href}>
+                      <Link key={item.name} href={item.href}>
                         <a
                           key={item.name}
                           href={item.href}
