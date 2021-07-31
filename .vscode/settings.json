@@ -4,7 +4,7 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "eslint.alwaysShowStatus": true,
   "editor.cursorWidth": 2,
 
@@ -38,7 +38,7 @@
   "prettier.arrowParens": "avoid",
   "editor.tabSize": 2,
   "explorer.compactFolders": false,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "files.associations": {
     "*.js": "javascript"
   },

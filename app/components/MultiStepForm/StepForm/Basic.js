@@ -13,11 +13,12 @@ const Basic = ({ formData, setForm, navigation }) => {
 
   return (
     <>
-      <div className="my-12">
+      <div className="">
         <div className="min-h-screen p-0 sm:p-12">
-          <div className="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
+          <div className="mx-auto max-w-md px-6 py-5 bg-white border-0 shadow-lg sm:rounded-3xl">
+            <h1 className="text-center text-2xl">Basic Info</h1>
             <form>
-              <div className="w-full mb-5">
+              <div className="w-full mb-5 my-5">
                 <input
                   type="text"
                   onChange={setForm}
@@ -88,7 +89,12 @@ const Basic = ({ formData, setForm, navigation }) => {
                 />
               </div>
             </form>
-            <AppButton onClick={() => navigation.next()}>Next</AppButton>
+            <AppButton
+              className="w-20 mx-auto"
+              onClick={() => navigation.next()}
+            >
+              Next
+            </AppButton>
           </div>
         </div>
       </div>

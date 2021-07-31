@@ -1,15 +1,16 @@
-import { Button } from "@material-ui/core"
+import AppButton from "@components/others/AppButton"
 import React from "react"
 
 const PresentAddress = ({ formData, setForm, navigation }) => {
   const { nid, presentAdd, presentPoliceStation, presentDistrict } = formData
   return (
     <>
-      <div className="my-12">
+      <div className="">
         <div className="min-h-screen p-0 sm:p-12">
-          <div className="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
+          <div className="mx-auto max-w-md px-6 py-5 bg-white border-0 shadow-lg sm:rounded-3xl">
+            <h1 className="text-center text-2xl">Present Address</h1>
             <form>
-              <div className="w-full mb-5">
+              <div className="w-full mb-5 my-5">
                 <input
                   type="text"
                   name="nid"
@@ -50,24 +51,13 @@ const PresentAddress = ({ formData, setForm, navigation }) => {
                 />
               </div>
             </form>
-            <div style={{ marginTop: "1rem" }}>
-              {/* <AppButton onClick={() => navigation.previous()}>Back</AppButton>
-              <AppButton onClick={() => navigation.next()}>Next</AppButton> */}
-              <Button
-                color="secondary"
-                variant="contained"
-                style={{ marginRight: "1rem" }}
-                onClick={() => navigation.previous()}
-              >
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+              <AppButton className="w-20" onClick={() => navigation.previous()}>
                 Back
-              </Button>
-              <Button
-                color="primary"
-                variant="contained"
-                onClick={() => navigation.next()}
-              >
+              </AppButton>
+              <AppButton className="w-20" onClick={() => navigation.next()}>
                 Next
-              </Button>
+              </AppButton>
             </div>
           </div>
         </div>

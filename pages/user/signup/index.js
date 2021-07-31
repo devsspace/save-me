@@ -2,13 +2,22 @@ import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
 import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
+import { signUp } from "app/api"
+import { useAppContext } from "app/contexts/AppContext"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai/"
 import classes from "../login/login.module.css"
 
 const Signup = () => {
+  const { currentUser, setCurrentUser } = useAppContext()
+  const router = useRouter()
+
+
+  if(currentUser) router.replace("/dashboard")
+
   return (
     <div className="bg-light dark:bg-dark text-center">
       <DarkMode />
@@ -27,36 +36,32 @@ const Signup = () => {
       handleSubmit,
     } = useForm()
 
-    // const initialState = {
-    //   email: "",
-    //   password: "",
-    //   confirmPassword: "",
-    //   isDonor: false,
-    // }
-    // const [user, setUser] = useState(initialState)
-
-    const [showPass, setShowPass] = useState(false)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
+    const [showPass, setShowPass] = useState(false)
+    const [isDonor, setIsDonor] = useState(false)
 
-    async function handleSignup(data) {
-      // e.preventDefault()
-      // setLoading(true)
+    async function handleSignup(userInfo) {
+      
+      setLoading(true)
+      const newUser = { ...userInfo, isDonor }
 
-      // try {
-      //   const { data } = await signUp(user)
+      try {
+        const { data } = await signUp(newUser)
+        if (!data.user) {
+          setError(data.message)
+          setLoading(false)
+          return
+        }
+        console.log("Signed up user ==== ", data.user)
+        localStorage.setItem("profile", JSON.stringify(data))
+        setCurrentUser(data.user)
+        // router.push("/dashboard/add-donor-info")
 
-      //   if (!data.user) {
-      //     setError(data.message)
-      //     setLoading(false)
-      //     return
-      //   }
-      //   // history.push("/login")
-      // } catch (err) {
-      //   setError(err.message)
-      //   setLoading(false)
-      // }
-      console.log(data)
+      } catch (err) {
+        setError(err.message)
+        setLoading(false)
+      }
     }
 
     return (
@@ -103,8 +108,8 @@ const Signup = () => {
           className="my-2"
         />
 
-        <AppSwitch />
-        <span className="my-3 flex items-center">
+        <AppSwitch label="I am a donor" enabled={isDonor} setEnabled={setIsDonor} />
+        {/* <span className="my-3 flex items-center">
           <input
             name="isDonor"
             type="checkbox"
@@ -112,7 +117,7 @@ const Signup = () => {
             className="mr-2 rounded"
           />
           <span>I am a Donor</span>
-        </span>
+        </span> */}
 
         <AppButton className="m-auto">Sign Up</AppButton>
       </form>

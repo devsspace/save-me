@@ -2,12 +2,13 @@ import { Disclosure, Menu, Transition } from "@headlessui/react"
 import Link from "next/link"
 import { Fragment } from "react"
 import { FiAlignLeft, FiX } from "react-icons/fi"
+import { RiUserHeartFill } from "react-icons/ri"
 
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "About us", href: "#", current: false },
   { name: "Search Donors", href: "/search-donors", current: false },
-  { name: "Blood Request", href: "#", current: false },
+  { name: "Blood Request", href: "/request-blood", current: false },
   { name: "Register", href: "/user/signup", current: false },
 ]
 
@@ -68,12 +69,7 @@ const BloodNavBar = () => {
                     <>
                       <div>
                         <Menu.Button className="bg-gray-200 flex">
-                          <a href="#">User</a>
-                          {/* <img
-                            className="h-8 w-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt=""
-                          /> */}
+                          <RiUserHeartFill className="text-2xl text-green-400" />
                         </Menu.Button>
                       </div>
                       <Transition
