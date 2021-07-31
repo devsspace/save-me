@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react"
 
 export const DonorContext = createContext()
 
-export function UserWrapper({ children }) {
+export function DonorWrapper({ children }) {
   const [donors, setDonors] = useState(null)
   const [searchInfo, setSearchInfo] = useState({
     bloodGroup: "",
