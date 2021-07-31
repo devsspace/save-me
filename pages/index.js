@@ -1,12 +1,10 @@
-import SaveLives from "@components/bloodManagement/SaveLives"
+import Home from "@components/home"
 
-export default function Home() {
+
+const index = () => {
   return (
-    <section>
-      <div className="text-right mr-10">{/* <DarkMode /> */}</div>
-      <div className="flex flex-col space-y-2 items-center h-[90vh] justify-center">
-        <SaveLives />
-      </div>
-    </section>
+    <Home />
   )
 }
+
+export default index

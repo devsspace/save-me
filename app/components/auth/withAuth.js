@@ -1,5 +1,5 @@
 import { getUser } from "app/api"
-import { useAppContext } from "app/contexts/AppContext"
+import { useUserContext } from "app/contexts/UserContext"
 import Login from "pages/user/login"
 import { useEffect, useState } from "react"
 
@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 export default (Component) => {
   
   const Auth = (props) => {
-    const { currentUser, setCurrentUser } = useAppContext()
+    const { currentUser, setCurrentUser } = useUserContext()
     const [loading, setLoading] = useState(false)
     
     useEffect(() => {

@@ -7,6 +7,7 @@ import donorEligibility from "@configs/fakeData/donorEligibility"
 import { HiHeart, HiSearch } from "react-icons/hi"
 
 export default function SearchDonorsInputs() {
+  
   return (
     <div className="flex flex-col justify-center space-y-4">
       <div>
