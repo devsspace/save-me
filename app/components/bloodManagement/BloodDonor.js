@@ -9,7 +9,7 @@ import { HiLocationMarker } from "react-icons/hi"
 export default function BloodDonor({ donorInfo }) {
   const router = useRouter()
   const isActive = Math.floor(Math.random() * 2) + 1
-  const { name, eligible, group, district, donated, _id } = donorInfo
+  const { eligibility, bloodGroup, location, donated = 10, _id } = donorInfo
 
   let AppHeartIcon
   if (donated >= 10) {
@@ -26,18 +26,18 @@ export default function BloodDonor({ donorInfo }) {
     <div
       className="m-2 bg-white dark:bg-gray-600 rounded-md shadow-md
      flex items-center space-x-3 p-2 cursor-pointer"
-     onClick={() => router.push(`${router.pathname}/${_id}`)}
+      onClick={() => router.push(`${router.pathname}/${_id}`)}
     >
       <Image
         src="/images/bloodDonorProfile.svg"
         width={50}
         height={50}
         objectFit="contain"
-        alt={`${name} - A Blood Donor`}
+        alt="Blood Donor"
       />
       <div>
         <AppText
-          text={group}
+          text={bloodGroup}
           className="relative right-[35px] top-[10px] justify-center bg-gradient-to-l
           from-transparent to-yellow-200 dark:from-white dark:to-blue-300
           p-1 w-7 h-7 rounded-full"
@@ -60,7 +60,7 @@ export default function BloodDonor({ donorInfo }) {
           className="-mt-9"
           iconClassName="text-red-500 dark:text-red-400"
         />
-        {eligible ? (
+        {eligibility ? (
           <AppText
             text="Eligible <3"
             Icon={FaCheckCircle}
@@ -74,7 +74,7 @@ export default function BloodDonor({ donorInfo }) {
           />
         )}
         <AppText
-          text={district}
+          text={location}
           Icon={HiLocationMarker}
           iconClassName="text-gray-600"
         />

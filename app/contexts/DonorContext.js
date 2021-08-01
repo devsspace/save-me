@@ -4,6 +4,7 @@ import { useForm } from "react-hooks-helper"
 export const DonorContext = createContext()
 
 export function DonorWrapper({ children }) {
+  const [loading, setLoading] = useState(false)
   const initialDonorData = {
     fullName: "",
     bloodGroup: "",
@@ -27,6 +28,8 @@ export function DonorWrapper({ children }) {
     setDonor,
     searchInfo,
     setSearchInfo,
+    loading,
+    setLoading,
   }
 
   return (
