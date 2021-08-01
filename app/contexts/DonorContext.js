@@ -4,6 +4,7 @@ export const DonorContext = createContext()
 
 export function DonorWrapper({ children }) {
   const [donors, setDonors] = useState(null)
+  const [loading, setLoading] = useState(false)
   const [searchInfo, setSearchInfo] = useState({
     bloodGroup: "A+",
     location: "Dhaka",
@@ -15,6 +16,8 @@ export function DonorWrapper({ children }) {
     setDonors,
     searchInfo,
     setSearchInfo,
+    loading,
+    setLoading,
   }
 
   return (

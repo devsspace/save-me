@@ -7,7 +7,8 @@ import { HiLocationMarker } from "react-icons/hi"
 
 export default function BloodDonor({ donorInfo }) {
   const isActive = Math.floor(Math.random() * 2) + 1
-  const { name, eligible, group, district, donated } = donorInfo
+  console.log(donorInfo)
+  const { eligibility, bloodGroup, location, donated = 10 } = donorInfo
 
   let AppHeartIcon
   if (donated >= 10) {
@@ -30,11 +31,11 @@ export default function BloodDonor({ donorInfo }) {
         width={50}
         height={50}
         objectFit="contain"
-        alt={`${name} - A Blood Donor`}
+        alt="Blood Donor"
       />
       <div>
         <AppText
-          text={group}
+          text={bloodGroup}
           className="relative right-[35px] top-[10px] justify-center bg-gradient-to-l
           from-transparent to-yellow-200 dark:from-white dark:to-blue-300
           p-1 w-7 h-7 rounded-full"
@@ -57,7 +58,7 @@ export default function BloodDonor({ donorInfo }) {
           className="-mt-9"
           iconClassName="text-red-500 dark:text-red-400"
         />
-        {eligible ? (
+        {eligibility ? (
           <AppText
             text="Eligible <3"
             Icon={FaCheckCircle}
@@ -71,7 +72,7 @@ export default function BloodDonor({ donorInfo }) {
           />
         )}
         <AppText
-          text={district}
+          text={location}
           Icon={HiLocationMarker}
           iconClassName="text-gray-600"
         />

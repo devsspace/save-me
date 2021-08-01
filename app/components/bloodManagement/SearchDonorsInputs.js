@@ -9,16 +9,22 @@ import { useDonorContext } from "app/contexts/DonorContext"
 import { HiHeart, HiSearch } from "react-icons/hi"
 
 export default function SearchDonorsInputs() {
-  const { searchInfo, setSearchInfo, setDonors } = useDonorContext()
+  const { searchInfo, setSearchInfo, setDonors, loading, setLoading } =
+    useDonorContext()
 
   const handleSearch = async () => {
     // console.log(searchInfo)
     // setDonors([])
     // FIXME: shohaul will fix this later when backend route is completed <3
     try {
+      setLoading(true)
       const { data } = await searchDonor(searchInfo)
       setDonors(data)
+      setTimeout(() => {
+        setLoading(false)
+      }, 10000)
     } catch (error) {
+      setLoading(false)
       console.log(error)
     }
   }
