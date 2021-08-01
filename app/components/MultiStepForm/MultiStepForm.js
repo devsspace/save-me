@@ -1,23 +1,11 @@
 import Basic from "@components/MultiStepForm/StepForm/Basic"
 import PermanentAddress from "@components/MultiStepForm/StepForm/PermanentAddress"
 import PresentAddress from "@components/MultiStepForm/StepForm/PresentAddress"
+import { useDonorContext } from "app/contexts/DonorContext"
 import React from "react"
-import { useForm, useStep } from "react-hooks-helper"
+import { useStep } from "react-hooks-helper"
 
-const defaultData = {
-  fullName: "",
-  bloodGroup: "",
-  gender: "",
-  mobileNumber: "",
-  lastDonation: "",
-  nid: "",
-  presentAdd: "",
-  presentPoliceStation: "",
-  presentDistrict: "",
-  permanenttAdd: "",
-  permanentPoliceStation: "",
-  permanentDistrict: "",
-}
+
 
 const steps = [
   { id: "basic" },
@@ -25,14 +13,14 @@ const steps = [
   { id: "permanentAddress" },
 ]
 const MultiStepForm = () => {
-  const [formData, setForm] = useForm(defaultData)
-  console.log(formData)
+  const {donor, setDonor} = useDonorContext()
+  console.log(donor)
   const { step, navigation } = useStep({
     steps,
     initialStep: 0,
   })
 
-  const props = { formData, setForm, navigation }
+  const props = { formData: donor, setForm: setDonor, navigation }
 
   switch (step.id) {
     case "basic":

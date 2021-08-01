@@ -44,7 +44,7 @@ const Signup = () => {
     async function handleSignup(userInfo) {
       
       setLoading(true)
-      const newUser = { ...userInfo, isDonor }
+      const newUser = { ...userInfo, role: isDonor ? "donor" : "user" }
 
       try {
         const { data } = await signUp(newUser)

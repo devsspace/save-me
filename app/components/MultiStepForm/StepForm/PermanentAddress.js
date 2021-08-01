@@ -1,10 +1,19 @@
 import AppButton from "@components/others/AppButton"
+import { saveProfile } from "app/api"
 import React from "react"
 
 const PermanentAddress = ({ formData, setForm, navigation }) => {
   const { permanenttAdd, permanentPoliceStation, permanentDistrict } = formData
+  
   const handleSave = () => {
-    alert("Data successfully saved")
+    try {
+      const { data } = saveProfile(formData)
+      console.log(data)
+      alert("Data successfully saved")
+      
+    } catch (error) {
+      console.log(error.message || "something went wrong!")
+    }
   }
   return (
     <>
