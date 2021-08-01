@@ -19,15 +19,15 @@ API.interceptors.request.use((req) => {
 export const logIn = (user) => API.post("/user/login", user)
 export const signUp = (user) => API.post("/user/signup", user)
 export const getUser = () => API.get("/user")
+export const saveProfile = (profileInfo) => API.put(`/user`, profileInfo)
+
 
 export const searchDonor = (searchInfo) =>
-API.get(
-  `/donors?bloodGroup=${encodeURIComponent(
-    searchInfo.bloodGroup
+  API.get(
+    `/donors?bloodGroup=${encodeURIComponent(
+      searchInfo.bloodGroup
     )}&location=${encodeURIComponent(searchInfo.location)}&date=${
       searchInfo.date
     }&eligibility=${encodeURIComponent(searchInfo.eligibility)}`
-    )
-    
-    
-export const saveDonorInfo = (donorInfo) => API.put(`/donors/`, donorInfo)
+  )
+export const getDonor = (donorId) => API.get(`/donors/${donorId}`)

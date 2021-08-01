@@ -1,15 +1,13 @@
 import AppButton from "@components/others/AppButton"
-import { saveDonorInfo } from "app/api"
-import { useUserContext } from "app/contexts/UserContext"
+import { saveProfile } from "app/api"
 import React from "react"
 
 const PermanentAddress = ({ formData, setForm, navigation }) => {
   const { permanenttAdd, permanentPoliceStation, permanentDistrict } = formData
-  const {currentUser} = useUserContext()
   
   const handleSave = () => {
     try {
-      const { data } = saveDonorInfo({...formData, userId: currentUser._id})
+      const { data } = saveProfile(formData)
       console.log(data)
       alert("Data successfully saved")
       
