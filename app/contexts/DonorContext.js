@@ -7,16 +7,8 @@ export function DonorWrapper({ children }) {
   const initialDonorData = {
     fullName: "",
     bloodGroup: "",
-    gender: "",
     mobileNumber: "",
-    lastDonation: "",
-    nid: "",
     presentAdd: "",
-    presentPoliceStation: "",
-    presentDistrict: "",
-    permanenttAdd: "",
-    permanentPoliceStation: "",
-    permanentDistrict: "",
   }
   const initialSearchInfo = {
     bloodGroup: "A+",
