@@ -21,10 +21,13 @@ export const signUp = (user) => API.post("/user/signup", user)
 export const getUser = () => API.get("/user")
 
 export const searchDonor = (searchInfo) =>
-  API.get(
-    `/donors?bloodGroup=${encodeURIComponent(
-      searchInfo.bloodGroup
+API.get(
+  `/donors?bloodGroup=${encodeURIComponent(
+    searchInfo.bloodGroup
     )}&location=${encodeURIComponent(searchInfo.location)}&date=${
       searchInfo.date
     }&eligibility=${encodeURIComponent(searchInfo.eligibility)}`
-  )
+    )
+    
+    
+export const saveDonorInfo = (donorInfo) => API.put(`/donors/`, donorInfo)
