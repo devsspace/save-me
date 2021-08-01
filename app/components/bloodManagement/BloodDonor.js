@@ -1,13 +1,15 @@
 import AppText from "@components/bloodManagement/AppText"
 import Image from "next/image"
+import { useRouter } from "next/router"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 import { BsHeartHalf } from "react-icons/bs"
 import { FaCheckCircle, FaHeartbeat, FaTimesCircle } from "react-icons/fa"
 import { HiLocationMarker } from "react-icons/hi"
 
 export default function BloodDonor({ donorInfo }) {
+  const router = useRouter()
   const isActive = Math.floor(Math.random() * 2) + 1
-  const { name, eligible, group, district, donated } = donorInfo
+  const { name, eligible, group, district, donated, _id } = donorInfo
 
   let AppHeartIcon
   if (donated >= 10) {
@@ -24,6 +26,7 @@ export default function BloodDonor({ donorInfo }) {
     <div
       className="m-2 bg-white dark:bg-gray-600 rounded-md shadow-md
      flex items-center space-x-3 p-2 cursor-pointer"
+     onClick={() => router.push(`${router.pathname}/${_id}`)}
     >
       <Image
         src="/images/bloodDonorProfile.svg"
