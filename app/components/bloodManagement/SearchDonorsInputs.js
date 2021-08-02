@@ -22,7 +22,7 @@ export default function SearchDonorsInputs() {
       setDonors(data)
       setTimeout(() => {
         setLoading(false)
-      }, 10000)
+      }, 1000)
     } catch (error) {
       setLoading(false)
       console.log(error)

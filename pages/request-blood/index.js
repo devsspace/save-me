@@ -2,6 +2,7 @@ import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
 import AppDatePicker from "@components/others/AppDatePicker"
 import AppDropdown from "@components/others/AppDropdown"
+import LoadingSpinner from "@components/others/LoadingSpinner"
 import bloodGroups from "@configs/fakeData/bloodGroups"
 import districts from "@configs/fakeData/districts"
 import { getUser, requestBlood } from "app/api"
@@ -10,10 +11,10 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { HiHeart, HiReply } from "react-icons/hi"
 
-
 const RequestBlood = () => {
   let {currentUser} = useUserContext()
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
   
   let initialRequestInfo = {
     bloodGroup: "A+",
@@ -31,6 +32,7 @@ const RequestBlood = () => {
   }, [])
 
   const handleRequest = async () => {
+    setLoading(true)
     localStorage.setItem("reqInfo", JSON.stringify(bloodReqInfo))
     if(!currentUser?._id){
       try {
@@ -52,15 +54,17 @@ const RequestBlood = () => {
           successAlert(message)
         }
         else
-          errorAlert(data?.message)
-          
-        } catch (error) {
-          errorAlert(data?.message)
-          
+        errorAlert(data?.message)
+        
+      } catch (error) {
+        errorAlert(data?.message)  
       }
+      setLoading(false)
 
     }
   }
+
+  if(loading) return <LoadingSpinner />
 
   return (
     <div className="flex flex-col justify-center space-y-4 w-1/2 m-auto text-center">
