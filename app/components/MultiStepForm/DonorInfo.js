@@ -1,7 +1,9 @@
+import { errorAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
 import AppDropdown from "@components/others/AppDropdown"
 import FormInput from "@components/others/FormInput"
-import bloodGroups from "@configs/fakeData/bloodGroups.js"
+import bloodGroups from "@configs/fakeData/bloodGroups"
+import districts from "@configs/fakeData/districts"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
@@ -10,17 +12,25 @@ const DonorInfo = () => {
     name: "",
     bloodGroup: "A+",
     phoneNumber: "",
-    location: ""
+    location: "Dhaka"
   })
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm()
-  console.log(donorInfo)
 
   const handleSave = (data) => {
-    console.log(data)
+    const donorProfile = {...donorInfo, ...data}
+    console.log(donorProfile)
+    try {
+      // const { data } = saveProfile(donorProfile)
+      // if(data?._id) successAlert("Successfully saved your profile")
+      // else errorAlert()
+      errorAlert("Work processing")
+    } catch (error) {
+      errorAlert(error.message)
+    }
   }
   return (
     <div className="mx-auto max-w-6xl p-12">
@@ -37,46 +47,57 @@ const DonorInfo = () => {
           />
         </div>
         <div className="md:w-1/2 flex justify-start mt-5 md:justify-end w-full md:w-1/2 ">
-          <form onSubmit={handleSubmit(handleSave)}>
+          <form>
             <div className="shadow-md flex-auto max-w-sm p-10 pb-20">
-            <div className="w-full">
-              <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                <span className="text-red-400 mr-1">*</span> Full Name
+              <div className="w-full">
+                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                  <span className="text-red-400 mr-1">*</span> Full Name
+                </div>
+                <FormInput
+                  name="name"
+                  required
+                  placeholder="Your name"
+                  register={register}
+                  errors={errors}
+                />
               </div>
-              <FormInput name="name" required placeholder="Your name" register={register} errors={errors} />
-            </div>
-            <div className="w-full">
-              <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                <span className="text-red-400 mr-1">*</span> Blood Group
+              <div className="w-full">
+                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                  <span className="text-red-400 mr-1">*</span> Blood Group
+                </div>
+                <AppDropdown
+                  data={bloodGroups}
+                  name="bloodGroup"
+                  state={donorInfo}
+                  setState={setDonorInfo}
+                />
               </div>
-              <AppDropdown data={bloodGroups} name="bloodGroup" state={donorInfo} setState={setDonorInfo} />
-            </div>
-            <div className="w-full">
-              <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                <span className="text-red-400 mr-1">*</span> Mobile Number
-              </div>
-              <div className="my-2 bg-white p-1 flex border border-gray-200 rounded">
-                {" "}
-                <input
+              <div className="w-full">
+                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                  <span className="text-red-400 mr-1">*</span> Mobile Number
+                </div>
+                <FormInput
+                  name="phoneNumber"
+                  type="number"
+                  required
                   placeholder="+880"
-                  className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-                />{" "}
+                  register={register}
+                  errors={errors}
+                />
               </div>
+              <div className="w-full mb-5">
+                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                  <span className="text-red-400 mr-1">*</span> Current Location
+                </div>
+                <AppDropdown
+                  data={districts}
+                  name="location"
+                  state={donorInfo}
+                  setState={setDonorInfo}
+                />
+              </div>
+              <AppButton className="justify-center" onClick={handleSubmit(handleSave)}>Save</AppButton>
             </div>
-            <div className="w-full">
-              <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                <span className="text-red-400 mr-1">*</span> Current Location
-              </div>
-              <div className="my-2 bg-white p-1 flex border border-gray-200 rounded">
-                {" "}
-                <input
-                  placeholder="Dhaka"
-                  className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-                />{" "}
-              </div>
-            </div>
-            <AppButton className="justify-center" >Save</AppButton>
-          </div>
           </form>
         </div>
       </div>
