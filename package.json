@@ -20,7 +20,9 @@
     "react-icons": "^4.2.0",
     "react-lottie": "^1.2.3",
     "react-query": "^3.19.0",
-    "react-tooltip": "^4.2.21"
+    "react-tooltip": "^4.2.21",
+    "sweetalert2": "^11.1.0",
+    "sweetalert2-react-content": "^4.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",

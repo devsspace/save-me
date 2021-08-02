@@ -1,5 +1,4 @@
 import { ErrorMessage } from "@hookform/error-message"
-
 export default function FormInput({
   Icon,
   name,
@@ -49,7 +48,7 @@ export default function FormInput({
         <ErrorMessage
           errors={errors}
           name={name}
-          render={({ message }) => <p className="text-error dark:text-error error">{message}</p>}
+          render={({ message }) => <p className="text-error dark:text-error text-left text-sm">⚠ {message}</p>}
         />
       )}
     </>

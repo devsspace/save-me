@@ -3,7 +3,7 @@ import React from "react"
 
 const DonorDetail = () => {
   const router = useRouter()
-  const { donorId } = router.query
+  const { userId } = router.query
   return <div />
 }
 

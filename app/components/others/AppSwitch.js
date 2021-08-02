@@ -1,6 +1,6 @@
 import { Switch } from "@headlessui/react"
 
-export default function AppSwitch({label, enabled, setEnabled}) {
+export default function AppSwitch({label, enabled = false, setEnabled = () => null}) {
 
   return (
     <div className="flex my-2">

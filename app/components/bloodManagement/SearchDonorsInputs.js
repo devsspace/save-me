@@ -13,16 +13,14 @@ export default function SearchDonorsInputs() {
     useDonorContext()
 
   const handleSearch = async () => {
-    // console.log(searchInfo)
-    // setDonors([])
-    // FIXME: shohaul will fix this later when backend route is completed <3
+
     try {
       setLoading(true)
       const { data } = await searchDonor(searchInfo)
       setDonors(data)
       setTimeout(() => {
         setLoading(false)
-      }, 10000)
+      }, 1000)
     } catch (error) {
       setLoading(false)
       console.log(error)

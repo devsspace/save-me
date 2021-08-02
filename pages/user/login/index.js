@@ -9,6 +9,7 @@ import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
 import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
+import { ErrorMessage, WarningMessage } from "@components/others/Messages"
 import { logIn } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import Link from "next/link"
@@ -33,6 +34,7 @@ const Login = () => {
     <div className="bg-light dark:bg-dark text-center">
       <DarkMode />
       <h1 className="dark:text-light">Welcome Back</h1>
+      {from && <WarningMessage message="You need to log in first" />}
 
       <LoginForm />
 
@@ -81,7 +83,7 @@ const Login = () => {
             <h1>Loading...</h1>
           </div>
         )}
-        {error && <p className="error-text">{error}</p>}
+        {error && <ErrorMessage message={error} />}
 
         <FormInput
           name="email"
@@ -168,7 +170,7 @@ const Login = () => {
         </button>
         <button
           onClick={handleFbSignIn}
-          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2"
+          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2 mb-3"
         >
           {/* <FontAwesomeIcon icon={faFacebook} size="1x" />  */}
           Continue with Facebook

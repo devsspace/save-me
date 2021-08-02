@@ -31,3 +31,6 @@ export const searchDonor = (searchInfo) =>
     }&eligibility=${encodeURIComponent(searchInfo.eligibility)}`
   )
 export const getDonor = (donorId) => API.get(`/donors/${donorId}`)
+
+
+export const requestBlood = (bloodReqInfo) => API.post(`/request-blood`, bloodReqInfo)

@@ -26,7 +26,7 @@ export default function BloodDonor({ donorInfo }) {
     <div
       className="m-2 bg-white dark:bg-gray-600 rounded-md shadow-md
      flex items-center space-x-3 p-2 cursor-pointer"
-      onClick={() => router.push(`${router.pathname}/${_id}`)}
+      onClick={() => router.push(`user/${_id}`)}
     >
       <Image
         src="/images/bloodDonorProfile.svg"
