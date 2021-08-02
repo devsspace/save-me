@@ -1,6 +1,27 @@
-import React from "react"
+import AppButton from "@components/others/AppButton"
+import AppDropdown from "@components/others/AppDropdown"
+import FormInput from "@components/others/FormInput"
+import bloodGroups from "@configs/fakeData/bloodGroups.js"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
 
 const DonorInfo = () => {
+  const [donorInfo, setDonorInfo] = useState({
+    name: "",
+    bloodGroup: "A+",
+    phoneNumber: "",
+    location: ""
+  })
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm()
+  console.log(donorInfo)
+
+  const handleSave = (data) => {
+    console.log(data)
+  }
   return (
     <div className="mx-auto max-w-6xl p-12">
       <div className="flex flex-col md:flex-row justify-center">
@@ -16,38 +37,19 @@ const DonorInfo = () => {
           />
         </div>
         <div className="md:w-1/2 flex justify-start mt-5 md:justify-end w-full md:w-1/2 ">
-          <div className="shadow-md flex-auto max-w-sm p-10 pb-20">
+          <form onSubmit={handleSubmit(handleSave)}>
+            <div className="shadow-md flex-auto max-w-sm p-10 pb-20">
             <div className="w-full">
               <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                 <span className="text-red-400 mr-1">*</span> Full Name
               </div>
-              <div className="my-2 bg-white p-1 flex border border-gray-200 rounded">
-                <input
-                  placeholder="Jhon"
-                  className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-                />{" "}
-              </div>
+              <FormInput name="name" required placeholder="Your name" register={register} errors={errors} />
             </div>
             <div className="w-full">
               <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                 <span className="text-red-400 mr-1">*</span> Blood Group
               </div>
-              <div className="my-2 bg-white p-1 flex rounded">
-                <select
-                  name="bloodGroup"
-                  className="pt-2 pb-1 block w-full bg-transparent"
-                >
-                  <option value="Select">Select blood group</option>
-                  <option value="A (+VE)">A (+VE)</option>
-                  <option value="A (-VE)">A (-VE)</option>
-                  <option value="B (+VE)">B (+VE)</option>
-                  <option value="B (-VE)">B (-VE)</option>
-                  <option value="O (+VE)">O (+VE)</option>
-                  <option value="O (-VE)">O (-VE)</option>
-                  <option value="AB (+VE)">AB (+VE)</option>
-                  <option value="AB (-VE)">AB (-VE)</option>
-                </select>
-              </div>
+              <AppDropdown data={bloodGroups} name="bloodGroup" state={donorInfo} setState={setDonorInfo} />
             </div>
             <div className="w-full">
               <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
@@ -73,15 +75,9 @@ const DonorInfo = () => {
                 />{" "}
               </div>
             </div>
-            <div className="mt-6 relative">
-              <div
-                className="shadow-md font-medium py-2 px-4 text-white
-                  cursor-pointer bg-primary hover:bg-green-400 rounded text-lg tr-mt  absolute text-center w-full"
-              >
-                Save
-              </div>
-            </div>
+            <AppButton className="justify-center" >Save</AppButton>
           </div>
+          </form>
         </div>
       </div>
     </div>
