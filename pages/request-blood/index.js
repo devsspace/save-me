@@ -1,11 +1,67 @@
+import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
 import AppDatePicker from "@components/others/AppDatePicker"
 import AppDropdown from "@components/others/AppDropdown"
 import bloodGroups from "@configs/fakeData/bloodGroups"
 import districts from "@configs/fakeData/districts"
+import { getUser, requestBlood } from "app/api"
+import { useUserContext } from "app/contexts/UserContext"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 import { HiHeart, HiReply } from "react-icons/hi"
 
-export default function RequestBlood() {
+
+const RequestBlood = () => {
+  let {currentUser} = useUserContext()
+  const router = useRouter()
+  
+  let initialRequestInfo = {
+    bloodGroup: "A+",
+    location: "Dhaka",
+    date: new Date(),
+    numberOfBags: 1,
+  }
+  const [bloodReqInfo, setBloodReqInfo] = useState(initialRequestInfo)
+
+  useEffect(() => {
+    try {
+      const previousInfo = JSON.parse(localStorage.getItem("reqInfo"))
+      if(previousInfo.bloodGroup) setBloodReqInfo(previousInfo)
+    } catch (error) {}
+  }, [])
+
+  const handleRequest = async () => {
+    localStorage.setItem("reqInfo", JSON.stringify(bloodReqInfo))
+    if(!currentUser?._id){
+      try {
+        const { data } = await getUser()
+        currentUser = data?.user || null
+      } catch (error) {
+        
+      }
+    }
+    if(!currentUser?._id){
+      router.push("/user/login?from=/request-blood")
+    }
+    else{
+      try {
+        const {data} = await requestBlood(bloodReqInfo)
+        console.log(data)
+        if(data?.bloodGroup){
+          const message = `${data.numberOfBags} bag(s) ${data.bloodGroup} blood on ${data.date} request added`
+          successAlert(message)
+        }
+        else
+          errorAlert(data?.message)
+          
+        } catch (error) {
+          errorAlert(data?.message)
+          
+      }
+
+    }
+  }
+
   return (
     <div className="flex flex-col justify-center space-y-4 w-1/2 m-auto text-center">
       <div>
@@ -17,13 +73,29 @@ export default function RequestBlood() {
         </p>
       </div>
       <div className="flex space-x-3">
-        <AppDropdown data={bloodGroups} />
-        <AppDropdown data={districts} />
-        <AppDatePicker />
+        <AppDropdown
+          name="bloodGroup"
+          data={bloodGroups}
+          state={bloodReqInfo}
+          setState={setBloodReqInfo}
+        />
+        <AppDropdown
+          name="location"
+          data={districts}
+          state={bloodReqInfo}
+          setState={setBloodReqInfo}
+        />
+        <AppDatePicker
+          name="date"
+          state={bloodReqInfo}
+          setState={setBloodReqInfo}
+        />
       </div>
       <div className="flex justify-center">
-        <AppButton Icon={HiReply}>Request</AppButton>
+        <AppButton Icon={HiReply} onClick={handleRequest}>Request</AppButton>
       </div>
     </div>
   )
 }
+
+export default RequestBlood

@@ -33,6 +33,14 @@ const Login = () => {
     <div className="bg-light dark:bg-dark text-center">
       <DarkMode />
       <h1 className="dark:text-light">Welcome Back</h1>
+      {from && (
+        <div
+          class="bg-red-100 border border-red-400 w-80 m-auto px-4 py-3 rounded relative"
+          role="alert"
+        >
+          <span class="block sm:inline text-red-700">You need to log in first</span>
+        </div>
+      )}
 
       <LoginForm />
 
@@ -168,7 +176,7 @@ const Login = () => {
         </button>
         <button
           onClick={handleFbSignIn}
-          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2"
+          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2 mb-3"
         >
           {/* <FontAwesomeIcon icon={faFacebook} size="1x" />  */}
           Continue with Facebook
