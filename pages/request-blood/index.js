@@ -41,7 +41,7 @@ const RequestBlood = () => {
       }
     }
     if(!currentUser?._id){
-      router.push("/user/login?from=/request-blood")
+      router.push(`/user/login?from=${router.pathname}`)
     }
     else{
       try {

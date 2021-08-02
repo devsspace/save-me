@@ -9,6 +9,7 @@ import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
 import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
+import { ErrorMessage, WarningMessage } from "@components/others/Messages"
 import { logIn } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import Link from "next/link"
@@ -33,14 +34,7 @@ const Login = () => {
     <div className="bg-light dark:bg-dark text-center">
       <DarkMode />
       <h1 className="dark:text-light">Welcome Back</h1>
-      {from && (
-        <div
-          class="bg-red-100 border border-red-400 w-80 m-auto px-4 py-3 rounded relative"
-          role="alert"
-        >
-          <span class="block sm:inline text-red-700">You need to log in first</span>
-        </div>
-      )}
+      {from && <WarningMessage message="You need to log in first" />}
 
       <LoginForm />
 
@@ -89,7 +83,7 @@ const Login = () => {
             <h1>Loading...</h1>
           </div>
         )}
-        {error && <p className="error-text">{error}</p>}
+        {error && <ErrorMessage message={error} />}
 
         <FormInput
           name="email"
