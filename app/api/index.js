@@ -24,7 +24,7 @@ export const saveProfile = (profileInfo) => API.put(`/user`, profileInfo)
 
 export const searchDonor = (searchInfo) => {
   if(!searchInfo) return API.get('/donors')
-  API.get(
+  return API.get(
     `/donors?bloodGroup=${encodeURIComponent(
       searchInfo.bloodGroup
     )}&location=${encodeURIComponent(searchInfo.location)}&date=${
