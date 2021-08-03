@@ -15,7 +15,7 @@ const DonorInfo = () => {
     name: "",
     bloodGroup: "A+",
     phoneNumber: "",
-    location: "Dhaka"
+    location: "Dhaka",
   })
   const {
     register,
@@ -39,10 +39,6 @@ const DonorInfo = () => {
     <div className="mx-auto max-w-6xl p-12">
       <div className="flex flex-col md:flex-row justify-center">
         <div className="md:w-1/2 max-w-md flex flex-col justify-center">
-          {/* <div className="md:text-4xl text-xl text-primary uppercase">
-            We Save Lives
-          </div>
-          <div className="text-xl mt-4">Welcome, You're a Real Hero</div> */}
           <img
             className=""
             src="https://res.cloudinary.com/dxvzhnyuo/image/upload/v1627829528/blood-donor-removebg-preview_snnwvx.png"
@@ -99,7 +95,12 @@ const DonorInfo = () => {
                   setState={setDonorInfo}
                 />
               </div>
-              <AppButton className="justify-center" onClick={handleSubmit(handleSave)}>Save</AppButton>
+              <AppButton
+                className="justify-center"
+                onClick={handleSubmit(handleSave)}
+              >
+                Save
+              </AppButton>
             </div>
           </form>
         </div>
