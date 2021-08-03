@@ -1,13 +1,16 @@
-import { errorAlert } from "@components/others/Alerts"
+import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
 import AppDropdown from "@components/others/AppDropdown"
 import FormInput from "@components/others/FormInput"
 import bloodGroups from "@configs/fakeData/bloodGroups"
 import districts from "@configs/fakeData/districts"
+import { saveProfile } from "app/api"
+import { useUserContext } from "app/contexts/UserContext"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 const DonorInfo = () => {
+  const {currentUser} = useUserContext()
   const [donorInfo, setDonorInfo] = useState({
     name: "",
     bloodGroup: "A+",
@@ -20,14 +23,14 @@ const DonorInfo = () => {
     handleSubmit,
   } = useForm()
 
-  const handleSave = (data) => {
-    const donorProfile = {...donorInfo, ...data}
-    console.log(donorProfile)
+  const handleSave = async (data) => {
+    const donorProfile = {...currentUser, ...donorInfo, ...data}
     try {
-      // const { data } = saveProfile(donorProfile)
-      // if(data?._id) successAlert("Successfully saved your profile")
-      // else errorAlert()
-      errorAlert("Work processing")
+      const { data } = await saveProfile(donorProfile)
+      console.log(data)
+      if(data?.user) successAlert("Successfully saved your profile")
+      else errorAlert(data.message)
+      
     } catch (error) {
       errorAlert(error.message)
     }
