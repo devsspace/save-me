@@ -9,6 +9,7 @@ export default function FormInput({
   placeholder = "",
   register = () => null,
   errors = "",
+  refnc=null,
   ...otherInputProps
 }) {
   const check = {}
@@ -32,6 +33,7 @@ export default function FormInput({
             className={`placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-2 ${className}`}
             placeholder={placeholder}
             {...register(name, check)}
+            ref={refnc}
             {...otherInputProps}
           />
         </div>
@@ -41,6 +43,7 @@ export default function FormInput({
           className={`placeholder-gray-400 rounded-md text-dark dark:text-light bg-lighter dark:bg-gray-600 !ring-primary shadow-md border-none p-2 ${className}`}
           placeholder={placeholder}
           {...register(name, check)}
+          ref={refnc}
           {...otherInputProps}
         />
       )}
@@ -48,7 +51,11 @@ export default function FormInput({
         <ErrorMessage
           errors={errors}
           name={name}
-          render={({ message }) => <p className="text-error dark:text-error text-left text-sm">⚠ {message}</p>}
+          render={({ message }) => (
+            <p className="text-error dark:text-error text-left text-sm">
+              ⚠ {message}
+            </p>
+          )}
         />
       )}
     </>

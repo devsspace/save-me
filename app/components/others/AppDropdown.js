@@ -8,12 +8,14 @@ export default function AppDropdown({
   data = null,
   state = {},
   setState = () => null,
+  ...others
 }) {
   return (
     <div className="w-full">
       <Listbox
         value={state[name]}
         onChange={(data) => setState({ ...state, [name]: data.name })}
+        {...others}
       >
         <div className="relative">
           <Listbox.Button className="relative w-full focus:ring-2 focus:ring-primary py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-pointer">
