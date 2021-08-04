@@ -6,7 +6,7 @@ import { RiUserHeartFill } from "react-icons/ri"
 
 const navigation = [
   { name: "Home", href: "/", current: false },
-  { name: "About us", href: "#", current: false },
+  // { name: "About us", href: "#", current: false },
   { name: "Search Donors", href: "/search-donors", current: false },
   { name: "Blood Request", href: "/request-blood", current: false },
   { name: "Register", href: "/user/signup", current: false },
