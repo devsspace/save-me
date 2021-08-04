@@ -35,5 +35,6 @@ export const searchDonor = (searchInfo) => {
 
 export const getDonor = (donorId) => API.get(`/donors/${donorId}`)
 
+export const askDonation = (info) => API.post('/donation', info)
 
 export const requestBlood = (bloodReqInfo) => API.post(`/request-blood`, bloodReqInfo)

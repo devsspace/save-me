@@ -1,3 +1,4 @@
+import withAuth from "@components/auth/withAuth"
 import DonorCard from "@components/bloodManagement/DonorCard"
 import LoadingSpinner from "@components/others/LoadingSpinner"
 import { Table, TableBody, TableHead } from "@components/others/Table"
@@ -42,4 +43,4 @@ const Donors = () => {
   )
 }
 
-export default Donors
+export default withAuth(Donors)
