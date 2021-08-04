@@ -13,14 +13,11 @@ export default function SearchDonorsInputs() {
     useDonorContext()
 
   const handleSearch = async () => {
-
     try {
       setLoading(true)
       const { data } = await searchDonor(searchInfo)
-      setDonors(data)
-      setTimeout(() => {
-        setLoading(false)
-      }, 1000)
+      await setDonors(data)
+      setLoading(false)
     } catch (error) {
       setLoading(false)
       console.log(error)
