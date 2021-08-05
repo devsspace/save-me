@@ -36,20 +36,23 @@ const DonorDetail = () => {
   if (loading) return <LoadingSpinner />
 
   const handleSubmit = async () => {
-    if(!(detailsRef.current.value.length && currentUser.email)) {
+    if (!(detailsRef.current.value.length && currentUser.email)) {
       errorAlert("Details required")
       return
     }
-    const donationInfo = {askedBy: currentUser, askedTo: donor, details: detailsRef.current.value}
-    
+    const donationInfo = {
+      askedBy: currentUser,
+      askedTo: donor,
+      details: detailsRef.current.value,
+    }
+
     try {
       const { data } = await askDonation(donationInfo)
       console.log(data)
-      if(data.details) {
+      if (data.details) {
         successAlert(`Successfully Asked for donation to ${donor.name}`)
         detailsRef.current.value = ""
-      }
-      else errorAlert()
+      } else errorAlert()
     } catch (error) {
       console.log(error)
       errorAlert(error.message)
@@ -96,19 +99,31 @@ const DonorDetail = () => {
             <span className="uppercase text-sm text-gray-600 font-bold block">
               Full Name
             </span>
-            <FormInput name="name" value={currentUser.name} Icon={AiOutlineUser} />
+            <FormInput
+              name="name"
+              value={currentUser.name}
+              Icon={AiOutlineUser}
+            />
           </div>
           <div className="mt-5">
             <span className="uppercase text-sm text-gray-600 font-bold block">
               Email
             </span>
-            <FormInput value={currentUser.email} readOnly Icon={AiOutlineMail} />
+            <FormInput
+              value={currentUser.email}
+              readOnly
+              Icon={AiOutlineMail}
+            />
           </div>
           <div className="mt-5">
             <span className="uppercase text-sm text-gray-600 font-bold block">
               Phone
             </span>
-            <FormInput value={"+" + currentUser.phoneNumber} readOnly Icon={AiFillPhone} />
+            <FormInput
+              value={`+${currentUser.phoneNumber}`}
+              readOnly
+              Icon={AiFillPhone}
+            />
           </div>
           <div className="mt-5">
             <span className="uppercase text-sm text-gray-600 font-bold block">
@@ -118,10 +133,12 @@ const DonorDetail = () => {
               ref={detailsRef}
               className="placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-4"
               placeholder="Why do you need it? Detail location, extra phone number if needed..."
-            ></textarea>
+            />
           </div>
           <div className="mt-5">
-            <AppButton className="justify-center" onClick={handleSubmit}>Ask for donation</AppButton>
+            <AppButton className="justify-center" onClick={handleSubmit}>
+              Ask for donation
+            </AppButton>
           </div>
         </div>
       </div>

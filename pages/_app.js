@@ -1,12 +1,27 @@
 import BloodNavBar from "@components/bloodManagement/BloodNavBar"
+import DashNav from "@components/Dashboard/DashNav"
 import Footer from "@components/Footer/Footer"
 import { DonorWrapper } from "app/contexts/DonorContext"
 import { UserWrapper } from "app/contexts/UserContext"
 import { ThemeProvider } from "next-themes"
+import "../app/styles/dashboard.css"
 import "../app/styles/datepickers.css"
 import "../app/styles/globals.css"
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
+  if (router.pathname.startsWith("/dashboard")) {
+    return (
+      <ThemeProvider attribute="class">
+        <DonorWrapper>
+          <UserWrapper>
+            <DashNav />
+            <Component {...pageProps} />
+            <Footer />
+          </UserWrapper>
+        </DonorWrapper>
+      </ThemeProvider>
+    )
+  }
   return (
     <ThemeProvider attribute="class">
       <DonorWrapper>
