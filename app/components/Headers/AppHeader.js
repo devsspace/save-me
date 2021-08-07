@@ -5,7 +5,7 @@ export default function AppHeader({
   text = "",
   imgURL = "",
   width = 400,
-  height = 450,
+  height = 300,
   others = "",
 }) {
   return (

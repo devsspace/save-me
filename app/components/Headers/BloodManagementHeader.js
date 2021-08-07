@@ -8,8 +8,11 @@ export default function BloodManagementHeader() {
       title={
         <>
           Spare Only 15
-          <span className="text-primary dark:text-primary"> Minutes </span>Save
-          One Life!
+          <span className="text-primary dark:text-primary underline">
+            {" "}
+            Minutes{" "}
+          </span>
+          Save One Life!
         </>
       }
       others={

@@ -1,11 +1,12 @@
 import BloodManagementHeader from "@components/Headers/BloodManagementHeader"
+import ConsultationHeader from "@components/Headers/ConsultationHeader"
 
 export default function MainHeader() {
-  // const arrayOfComponents = [null, NewsLetter, ReadArticles]
-  // const RandomComponent = arrayOfComponents[Math.floor(Math.random() * 2) + 1]
+  const arrayOfComponents = [ConsultationHeader, BloodManagementHeader]
+  const RandomComponent = arrayOfComponents[Math.floor(Math.random() * 2)]
   return (
-    <section className="bg-gradient-to-b from-primaryLight to-transparent dark:from-transparent dark:to-transparent">
-      <BloodManagementHeader />
+    <section>
+      <RandomComponent />
     </section>
   )
 }
