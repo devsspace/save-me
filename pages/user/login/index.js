@@ -28,7 +28,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
 
   
-  if(currentUser) router.replace(from || "/dashboard")
+  if(currentUser) router.replace(from || "/dashboard/add-donor-info")
 
   return (
     <div className="bg-light dark:bg-dark text-center">

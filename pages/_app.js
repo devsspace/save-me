@@ -13,9 +13,7 @@ function MyApp({ Component, pageProps, router }) {
       <ThemeProvider attribute="class">
         <DonorWrapper>
           <UserWrapper>
-            {/* <DashNav /> */}
             <Component {...pageProps} />
-            <Footer />
           </UserWrapper>
         </DonorWrapper>
       </ThemeProvider>
