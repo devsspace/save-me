@@ -2,12 +2,14 @@ import withAuth from "@components/auth/withAuth"
 import DashBoardProfile from "@components/Dashboard/DashboardProfile"
 import DashButtons from "@components/Dashboard/DashButtons"
 import DashLogo from "@components/Dashboard/DashLogo"
+import { useUserContext } from "app/contexts/UserContext"
 import { useRef, useState } from "react"
 
-function DashNav({ children }) {
+function DashboardWrapper({ children, adminOnly }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false)
   const closeBtnRef = useRef()
   const sideBarRef = useRef()
+  const { currentUser } = useUserContext()
 
   const menuBtnChange = () => {
     if (sideBarRef.current.classList.contains("open")) {
@@ -41,11 +43,15 @@ function DashNav({ children }) {
           <DashBoardProfile />
         </ul>
       </div>
-      {/* <section className="home-section">
-        <div>{children}</div>
-      </section> */}
+      <section className="home-section">
+        {
+          adminOnly ? currentUser.role === "admin" ?
+          children : <h1 className="text-center text-5xl text-red-700">Increase your ability first!</h1>
+          : children
+          }
+      </section>
     </>
   )
 }
 
-export default withAuth(DashNav)
+export default withAuth(DashboardWrapper)

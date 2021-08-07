@@ -1,5 +1,4 @@
 import BloodNavBar from "@components/bloodManagement/BloodNavBar"
-import DashNav from "@components/Dashboard/DashNav"
 import Footer from "@components/Footer/Footer"
 import { DonorWrapper } from "app/contexts/DonorContext"
 import { UserWrapper } from "app/contexts/UserContext"
@@ -14,7 +13,7 @@ function MyApp({ Component, pageProps, router }) {
       <ThemeProvider attribute="class">
         <DonorWrapper>
           <UserWrapper>
-            <DashNav />
+            {/* <DashNav /> */}
             <Component {...pageProps} />
             <Footer />
           </UserWrapper>
