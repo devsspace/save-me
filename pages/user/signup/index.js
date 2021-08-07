@@ -16,7 +16,7 @@ const Signup = () => {
   const router = useRouter()
 
 
-  if(currentUser) router.replace("/dashboard")
+  if(currentUser) router.replace("/dashboard/add-donor-info")
 
   return (
     <div className="bg-light dark:bg-dark text-center">
