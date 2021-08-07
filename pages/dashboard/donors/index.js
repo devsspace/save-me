@@ -30,7 +30,8 @@ const Donors = () => {
 
   if (loading) return <LoadingSpinner />
   return (
-    <div>
+    <div className="dashboard-main">
+    <h1 className="title">Donors List</h1>
       <Table>
         <TableHead headItems={heads}></TableHead>
         <TableBody>

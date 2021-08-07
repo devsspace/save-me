@@ -1,9 +1,10 @@
+import withAuth from "@components/auth/withAuth"
 import DashBoardProfile from "@components/Dashboard/DashboardProfile"
 import DashButtons from "@components/Dashboard/DashButtons"
 import DashLogo from "@components/Dashboard/DashLogo"
 import { useRef, useState } from "react"
 
-export default function DashNav({ children }) {
+function DashNav({ children }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false)
   const closeBtnRef = useRef()
   const sideBarRef = useRef()
@@ -40,9 +41,11 @@ export default function DashNav({ children }) {
           <DashBoardProfile />
         </ul>
       </div>
-      <section className="home-section">
+      {/* <section className="home-section">
         <div>{children}</div>
-      </section>
+      </section> */}
     </>
   )
 }
+
+export default withAuth(DashNav)

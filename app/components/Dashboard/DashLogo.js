@@ -1,6 +1,9 @@
 import Image from "next/image"
+import { useRouter } from "next/router"
 
 export default function DashLogo() {
+  const router = useRouter()
+
   return (
     <>
       <Image
@@ -10,8 +13,11 @@ export default function DashLogo() {
         objectFit="contain"
         className="cursor-pointer"
         alt="Save Me Logo"
+        onClick={() => router.push("/")}
       />
-      <div className="logo_name ml-1">Save Me</div>
+      <div className="logo_name ml-1" onClick={() => router.push("/")}>
+        Save Me
+      </div>
     </>
   )
 }

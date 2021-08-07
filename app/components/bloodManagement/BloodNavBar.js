@@ -18,7 +18,7 @@ function classNames(...classes) {
 
 const BloodNavBar = () => {
   return (
-    <Disclosure as="nav" className="bg-gray-50 md:bg-gray-200">
+    <Disclosure as="nav" className="bg-primary-100 md:bg-primaryLight">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

@@ -31,6 +31,7 @@
     font-weight: 600;
     opacity: 0;
     transition: all 0.5s ease;
+    cursor: pointer;
   }
   .sidebar.open .logo-details .icon,
   .sidebar.open .logo-details .logo_name {
@@ -228,5 +229,9 @@
     transition: all 0.5s ease;
     z-index: 2;
     @apply bg-light dark:bg-dark;
+  }
+  .dashboard-main{
+    width: 95%;
+    margin-left: 5%;
   }
 }

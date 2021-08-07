@@ -1,33 +1,31 @@
 import DashButton from "@components/Dashboard/DashButton"
 import AppLink from "@components/others/AppLink"
 import { useTheme } from "next-themes"
+import { useRouter } from "next/router"
 
 export default function DashButtons({ sideBarIsOpen }) {
   const { theme, setTheme } = useTheme()
   const handleChangeTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
   }
+  const router = useRouter()
+
   return (
     <>
       <AppLink href="/">
         <DashButton
           sideBarIsOpen={sideBarIsOpen}
           boxIcon="bx-grid-alt"
-          text="Dashboard"
+          text="Profile"
+          onClick={() => router.push("/dashboard/add-donor-info")}
         />
       </AppLink>
       <AppLink href="/">
         <DashButton
           sideBarIsOpen={sideBarIsOpen}
-          boxIcon="bxs-message-dots"
-          text="Messages"
-        />
-      </AppLink>
-      <AppLink href="/">
-        <DashButton
-          sideBarIsOpen={sideBarIsOpen}
-          boxIcon="bx-code-alt"
-          text="Requests"
+          boxIcon="bxs-donate-blood"
+          text="Donors"
+          onClick={() => router.push("/dashboard/donors")}
         />
       </AppLink>
       <AppLink href="/">
@@ -35,6 +33,13 @@ export default function DashButtons({ sideBarIsOpen }) {
           sideBarIsOpen={sideBarIsOpen}
           boxIcon="bxs-droplet"
           text="Donations"
+        />
+      </AppLink>
+      <AppLink href="/">
+        <DashButton
+          sideBarIsOpen={sideBarIsOpen}
+          boxIcon="bxs-help-circle"
+          text="Requests"
         />
       </AppLink>
       <AppLink href="/">
