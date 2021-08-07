@@ -7,7 +7,7 @@ export default function AppInfoCard({ data }) {
     lastName,
     isOnline,
     photoURL,
-    worksAt,
+    bio,
     specializations,
     rating,
     conversations,
@@ -21,7 +21,7 @@ export default function AppInfoCard({ data }) {
       <img className="w-full h-32 sm:h-48 object-cover" src={photoURL} alt="" />
 
       <div className="m-3">
-        <p className="text-xs">{worksAt}</p>
+        <p className="text-xs">{bio}</p>
         <p className="font-bold">
           Dr. {firstName} {lastName}
         </p>
@@ -38,7 +38,7 @@ export default function AppInfoCard({ data }) {
         <div className="mt-2 flex items-end justify-between">
           <div>
             <p className="text-xl font-bold">৳ {communication[0].cost}</p>
-            <p className="text-sm">Per Consultation</p>
+            <p className="text-xs">Per Consultation</p>
           </div>
           <div className="mb-0.5">
             <AiOutlineArrowRight />
