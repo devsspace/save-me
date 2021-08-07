@@ -1,5 +1,5 @@
-import withAuth from "@components/auth/withAuth"
 import DonorCard from "@components/bloodManagement/DonorCard"
+import DashboardWrapper from "@components/Dashboard/DashboardWrapper"
 import LoadingSpinner from "@components/others/LoadingSpinner"
 import { Table, TableBody, TableHead } from "@components/others/Table"
 import { searchDonor } from "app/api"
@@ -30,17 +30,20 @@ const Donors = () => {
 
   if (loading) return <LoadingSpinner />
   return (
-    <div>
-      <Table>
-        <TableHead headItems={heads}></TableHead>
-        <TableBody>
-          {donors.map((donor) => (
-            <DonorCard donor={donor} />
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+    <DashboardWrapper adminOnly>
+      <div>
+        <h1 className="title">Donors List</h1>
+        <Table>
+          <TableHead headItems={heads}></TableHead>
+          <TableBody>
+            {donors.map((donor) => (
+              <DonorCard donor={donor} />
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </DashboardWrapper>
   )
 }
 
-export default withAuth(Donors)
+export default Donors

@@ -6,8 +6,8 @@ export default function AppDatePicker({
   state = {},
   setState = () => null,
 }) {
-  const [startDate, setDate] = useState(state.date)
-  const [endDate] = useState(new Date().setMonth(startDate?.getMonth() + 1))
+  const [startDate, setDate] = useState(state?.date)
+  const [endDate] = useState(new Date().setMonth(startDate.getMonth() + 1))
 
   const handleDateChange = (date) => {
     setDate(date)

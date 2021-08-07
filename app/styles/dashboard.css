@@ -31,6 +31,7 @@
     font-weight: 600;
     opacity: 0;
     transition: all 0.5s ease;
+    cursor: pointer;
   }
   .sidebar.open .logo-details .icon,
   .sidebar.open .logo-details .logo_name {
@@ -221,7 +222,7 @@
   }
   .home-section {
     position: relative;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     top: 0;
     left: 78px;
     width: calc(100% - 78px);
