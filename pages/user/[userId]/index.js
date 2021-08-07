@@ -1,6 +1,7 @@
 import withAuth from "@components/auth/withAuth"
 import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
+import AppDatePicker from "@components/others/AppDatePicker"
 import FormInput from "@components/others/FormInput"
 import LoadingSpinner from "@components/others/LoadingSpinner"
 import { askDonation, getDonor } from "app/api"
@@ -17,6 +18,7 @@ const DonorDetail = () => {
   const [donor, setDonor] = useState({})
   const { currentUser } = useUserContext()
   const detailsRef = useRef()
+  const [date, setDate] = useState({date: new Date()})
 
   useEffect(() => {
     const get = async () => {
@@ -43,6 +45,7 @@ const DonorDetail = () => {
     const donationInfo = {
       askedBy: currentUser,
       askedTo: donor,
+      date: date.date,
       details: detailsRef.current.value,
     }
 
@@ -102,6 +105,7 @@ const DonorDetail = () => {
             <FormInput
               name="name"
               value={currentUser.name}
+              readOnly
               Icon={AiOutlineUser}
             />
           </div>
@@ -124,6 +128,12 @@ const DonorDetail = () => {
               readOnly
               Icon={AiFillPhone}
             />
+          </div>
+          <div className="mt-5">
+            <span className="uppercase text-sm text-gray-600 font-bold block">
+              When
+            </span>
+            <AppDatePicker name="date" state={date} setState={setDate} className="!w-full" />
           </div>
           <div className="mt-5">
             <span className="uppercase text-sm text-gray-600 font-bold block">

@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker"
 
 export default function AppDatePicker({
   name = "appDatePicker",
+  className = "",
   state = {},
   setState = () => null,
 }) {
@@ -24,6 +25,7 @@ export default function AppDatePicker({
         minDate={new Date()}
         nextMonthButtonLabel=">"
         previousMonthButtonLabel="<"
+        className={className}
       />
     </div>
   )
