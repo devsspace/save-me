@@ -7,3 +7,5 @@ Where                                   What
 [] request blood                      error in date picker
 [X] dashboard                         user specific dashboard
 [] App drop down                      No default value  
+[] Search donor                       No date
+[] Search donor                       If user hasn't completed his profile he can't req
