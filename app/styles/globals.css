@@ -31,7 +31,7 @@
   button {
     @apply text-dark dark:text-light;
   }
-  .title{
-    @apply text-3xl text-center text-green-400 my-5 mx-auto
+  .title {
+    @apply text-3xl text-center text-green-400 my-5 mx-auto;
   }
 }
