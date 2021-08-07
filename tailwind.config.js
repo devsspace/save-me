@@ -6,6 +6,10 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    fontFamily: {
+      poppins: ["Poppins", "sans-serif"],
+      recursive: ["Recursive", "sans-serif"],
+    },
     extend: {
       colors: {
         dark: "#141414",
