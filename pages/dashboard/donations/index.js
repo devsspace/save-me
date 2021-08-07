@@ -23,7 +23,7 @@ const Donations = () => {
       get()
     }, [])
     console.log(donations)
-    const heads = ["Asked By", "Asked To", "Location", "Blood Group", "Details"]
+    const heads = ["Asked By", "Asked To", "Location", "Blood Group", "Date", "Details", "Status"]
 
     if (loading) return <LoadingSpinner />
   return (
