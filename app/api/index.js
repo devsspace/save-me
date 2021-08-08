@@ -39,4 +39,4 @@ export const askDonation = (info) => API.post('/donation', info)
 
 export const requestBlood = (bloodReqInfo) => API.post(`/request-blood`, bloodReqInfo)
 
-export const getDonations = () => API.get(`/donation`)
+export const getDonations = (limit=20, skip=0) => API.get(`/donation?limit=${limit}&skip=${skip}`)
