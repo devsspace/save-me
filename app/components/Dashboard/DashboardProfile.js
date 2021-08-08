@@ -11,7 +11,10 @@ export default function DashBoardProfile() {
           <div className="job">PokPok Pokak</div>
         </div>
       </div>
-      <i className="bx bx-log-out" id="log_out" />
+      <i className="bx bx-log-out cursor-pointer" id="log_out" onClick={() => {
+        localStorage.removeItem("profile")
+        window.location.reload()
+      }} />
     </li>
   )
 }

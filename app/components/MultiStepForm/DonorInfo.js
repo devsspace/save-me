@@ -14,9 +14,9 @@ const DonorInfo = () => {
   const [editable, setEditable] = useState(false);
   const [donorInfo, setDonorInfo] = useState({
     name: "",
-    bloodGroup: "A+",
+    bloodGroup: "",
     phoneNumber: "",
-    location: "Dhaka",
+    location: "",
   })
   const {
     register,
