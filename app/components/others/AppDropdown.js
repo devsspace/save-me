@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { Listbox, Transition } from "@headlessui/react"
-import { Fragment } from "react"
+import { Fragment, useEffect } from "react"
 import { HiCheck, HiSelector } from "react-icons/hi"
 
 export default function AppDropdown({
@@ -10,6 +10,11 @@ export default function AppDropdown({
   setState = () => null,
   ...others
 }) {
+  useEffect(
+    () => !state[name] && setState({ ...state, [name]: data[0].name }),
+    [state]
+  )
+
   return (
     <div className="w-full">
       <Listbox

@@ -2,13 +2,17 @@ import { useState } from "react"
 import DatePicker from "react-datepicker"
 
 export default function AppDatePicker({
-  name = "appDatePicker",
+  name = "date",
+  className = "",
   state = {},
   setState = () => null,
 }) {
-  const [startDate, setDate] = useState(state?.date)
-  const [endDate] = useState(new Date().setMonth(startDate.getMonth() + 1))
-
+  const [startDate, setDate] = useState(Date.parse(state?.date))
+  // const [endDate, setEndDate] = useState(new Date())
+  // useEffect(() => {
+  //   setEndDate(Date.parse(new Date().setMonth(startDate.getMonth() + 1)))
+  // }, [startDate])
+  // console.log(new Date(startDate.getTime() + 2592000000))
   const handleDateChange = (date) => {
     setDate(date)
     setState({ ...state, [name]: date })
@@ -20,10 +24,11 @@ export default function AppDatePicker({
         onChange={(date) => handleDateChange(date)}
         selectsStart
         startDate={startDate}
-        endDate={endDate}
+        // endDate={endDate}
         minDate={new Date()}
         nextMonthButtonLabel=">"
         previousMonthButtonLabel="<"
+        className={className}
       />
     </div>
   )

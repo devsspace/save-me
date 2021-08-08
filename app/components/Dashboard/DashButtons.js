@@ -37,6 +37,7 @@ export default function DashButtons({ sideBarIsOpen }) {
           sideBarIsOpen={sideBarIsOpen}
           boxIcon="bxs-droplet"
           text="Donations"
+          onClick={() => router.push("/dashboard/donations")}
         />
       </AppLink>
       <AppLink href="/">

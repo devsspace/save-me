@@ -14,9 +14,9 @@ const DonorInfo = () => {
   const [editable, setEditable] = useState(false);
   const [donorInfo, setDonorInfo] = useState({
     name: "",
-    bloodGroup: "A+",
+    bloodGroup: "",
     phoneNumber: "",
-    location: "Dhaka",
+    location: "",
   })
   const {
     register,
@@ -61,7 +61,7 @@ console.log(donorInfo)
   }
 
   return (
-    <div className="mx-auto max-w-6xl p-12">
+    <div className="mx-auto max-w-6xl">
       <div className="flex flex-col md:flex-row justify-center">
         <div className="md:w-1/2 max-w-md flex flex-col justify-center">
           <img
@@ -70,14 +70,15 @@ console.log(donorInfo)
             alt=""
           />
         </div>
-        <div className="md:w-1/2 flex justify-start mt-5 md:justify-end w-full md:w-1/2 ">
-          <form>
-            <div className="shadow-md flex-auto max-w-sm p-10 pb-20">
+        <div className="md:w-1/2 flex justify-center mt-5 md:justify-end w-full md:w-1/2 ">
+          <form className="w-4/5">
+            <div className="shadow-md flex-auto max-w-sm p-5 sm:p-10 pb-20">
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                   <span className="text-red-400 mr-1">*</span> Full Name
                 </div>
                 <FormInput
+                  className="w-full"
                   name="name"
                   required
                   placeholder="Your name"
@@ -105,6 +106,7 @@ console.log(donorInfo)
                   <span className="text-red-400 mr-1">*</span> Phone Number
                 </div>
                 <FormInput
+                  className="w-full"
                   name="phoneNumber"
                   type="number"
                   required
@@ -137,7 +139,11 @@ console.log(donorInfo)
                 <AppButton
                   className="justify-center"
                   disabled={!editable}
-                  onClick={editable ? handleSubmit(handleSave) : (e) => e.preventDefault()}
+                  onClick={
+                    editable
+                      ? handleSubmit(handleSave)
+                      : (e) => e.preventDefault()
+                  }
                 >
                   Save
                 </AppButton>

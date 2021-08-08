@@ -1,6 +1,7 @@
 import withAuth from "@components/auth/withAuth"
 import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
+import AppDatePicker from "@components/others/AppDatePicker"
 import FormInput from "@components/others/FormInput"
 import LoadingSpinner from "@components/others/LoadingSpinner"
 import { askDonation, getDonor } from "app/api"
@@ -17,6 +18,8 @@ const DonorDetail = () => {
   const [donor, setDonor] = useState({})
   const { currentUser } = useUserContext()
   const detailsRef = useRef()
+  const [date, setDate] = useState({date: new Date()})
+  const OK = currentUser.name && currentUser.phoneNumber
 
   useEffect(() => {
     const get = async () => {
@@ -43,6 +46,7 @@ const DonorDetail = () => {
     const donationInfo = {
       askedBy: currentUser,
       askedTo: donor,
+      date: date.date,
       details: detailsRef.current.value,
     }
 
@@ -102,7 +106,9 @@ const DonorDetail = () => {
             <FormInput
               name="name"
               value={currentUser.name}
+              readOnly
               Icon={AiOutlineUser}
+              className="w-full"
             />
           </div>
           <div className="mt-5">
@@ -113,6 +119,7 @@ const DonorDetail = () => {
               value={currentUser.email}
               readOnly
               Icon={AiOutlineMail}
+              className="w-full"
             />
           </div>
           <div className="mt-5">
@@ -120,9 +127,21 @@ const DonorDetail = () => {
               Phone
             </span>
             <FormInput
-              value={`+${currentUser.phoneNumber}`}
+              value={currentUser.phoneNumber || ""}
               readOnly
               Icon={AiFillPhone}
+              className="w-full"
+            />
+          </div>
+          <div className="mt-5">
+            <span className="uppercase text-sm text-gray-600 font-bold block">
+              When
+            </span>
+            <AppDatePicker
+              name="date"
+              state={date}
+              setState={setDate}
+              className="!w-full"
             />
           </div>
           <div className="mt-5">
@@ -131,14 +150,20 @@ const DonorDetail = () => {
             </span>
             <textarea
               ref={detailsRef}
-              className="placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-4"
+              className="w-full min-h-120 placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-4"
               placeholder="Why do you need it? Detail location, extra phone number if needed..."
             />
           </div>
           <div className="mt-5">
-            <AppButton className="justify-center" onClick={handleSubmit}>
-              Ask for donation
-            </AppButton>
+            {OK ? (
+              <AppButton className="justify-center" onClick={handleSubmit}>
+                Ask for donation
+              </AppButton>
+            ) : (
+              <AppButton className="justify-center !bg-error" disabled>
+                Please complete your profile <br /> to ask for donation
+              </AppButton>
+            )}
           </div>
         </div>
       </div>

@@ -10,6 +10,9 @@ module.exports = {
       poppins: ["Poppins", "sans-serif"],
       recursive: ["Recursive", "sans-serif"],
     },
+    minHeight: {
+      "120": "120px",
+    },
     extend: {
       colors: {
         dark: "#141414",
