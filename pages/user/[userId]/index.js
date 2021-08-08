@@ -141,7 +141,7 @@ const DonorDetail = () => {
             </span>
             <textarea
               ref={detailsRef}
-              className="placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-4"
+              className="w-full min-h-120 placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-4"
               placeholder="Why do you need it? Detail location, extra phone number if needed..."
             />
           </div>
