@@ -10,19 +10,20 @@ import { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const DonorInfo = () => {
-  const {currentUser} = useUserContext()
-  const [editable, setEditable] = useState(false);
+  const { currentUser } = useUserContext()
+  const [editable, setEditable] = useState(false)
   const [donorInfo, setDonorInfo] = useState({
     name: "",
     bloodGroup: "",
     phoneNumber: "",
     location: "",
+    profilePic: "",
   })
   const {
     register,
     formState: { errors },
     handleSubmit,
-    setValue
+    setValue,
   } = useForm()
   const nameRef = useRef()
 
@@ -30,31 +31,31 @@ const DonorInfo = () => {
     const getInfo = async () => {
       try {
         const { data } = await getDonor(currentUser._id)
-        if(data?.donor) setDonorInfo(data.donor)
+        if (data?.donor) setDonorInfo(data.donor)
       } catch (error) {}
     }
     getInfo()
-
   }, [])
-console.log(donorInfo)
+  console.log(donorInfo)
 
   const handleEdit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setValue("name", donorInfo.name)
     setValue("phoneNumber", donorInfo.phoneNumber)
+    setValue("profilePic", donorInfo.uploadImage)
     setEditable(true)
     nameRef.current.focus()
   }
 
   const handleSave = async (data) => {
+    console.log(data)
     setEditable(false)
-    const donorProfile = {...currentUser, ...donorInfo, ...data}
+    const donorProfile = { ...currentUser, ...donorInfo, ...data }
     try {
       const { data } = await saveProfile(donorProfile)
       console.log(data)
-      if(data?.user) successAlert("Successfully saved your profile")
+      if (data?.user) successAlert("Successfully saved your profile")
       else errorAlert(data.message)
-      
     } catch (error) {
       errorAlert(error.message)
     }
@@ -113,6 +114,20 @@ console.log(donorInfo)
                   placeholder="+880"
                   readOnly={!editable}
                   defaultValue={donorInfo.phoneNumber}
+                  register={register}
+                  errors={errors}
+                />
+              </div>
+              <div className="w-full">
+                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                  <span className="text-red-400 mr-1">*</span> Upload Image
+                </div>
+                <FormInput
+                  className="w-full"
+                  name="profilePic"
+                  type="file"
+                  required
+                  disabled={!editable}
                   register={register}
                   errors={errors}
                 />
