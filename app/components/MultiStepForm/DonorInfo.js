@@ -25,6 +25,7 @@ const DonorInfo = () => {
     setValue
   } = useForm()
   const nameRef = useRef()
+  const phoneNumberRef = useRef()
 
   useEffect(() => {
     const getInfo = async () => {
@@ -40,9 +41,10 @@ console.log(donorInfo)
 
   const handleEdit = (e) => {
     e.preventDefault();
-    setValue("name", donorInfo.name)
-    setValue("phoneNumber", donorInfo.phoneNumber)
+    // setValue("name", donorInfo.name)
+    // setValue("phoneNumber", donorInfo.phoneNumber)
     setEditable(true)
+    phoneNumberRef.current.focus()
     nameRef.current.focus()
   }
 
@@ -115,6 +117,7 @@ console.log(donorInfo)
                   defaultValue={donorInfo.phoneNumber}
                   register={register}
                   errors={errors}
+                  refnc={phoneNumberRef}
                 />
               </div>
               <div className="w-full mb-5">
