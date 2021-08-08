@@ -19,6 +19,7 @@ const DonorDetail = () => {
   const { currentUser } = useUserContext()
   const detailsRef = useRef()
   const [date, setDate] = useState({date: new Date()})
+  const OK = currentUser.name && currentUser.phoneNumber
 
   useEffect(() => {
     const get = async () => {
@@ -107,6 +108,7 @@ const DonorDetail = () => {
               value={currentUser.name}
               readOnly
               Icon={AiOutlineUser}
+              className="w-full"
             />
           </div>
           <div className="mt-5">
@@ -117,6 +119,7 @@ const DonorDetail = () => {
               value={currentUser.email}
               readOnly
               Icon={AiOutlineMail}
+              className="w-full"
             />
           </div>
           <div className="mt-5">
@@ -124,16 +127,22 @@ const DonorDetail = () => {
               Phone
             </span>
             <FormInput
-              value={`+${currentUser.phoneNumber}`}
+              value={currentUser.phoneNumber || ""}
               readOnly
               Icon={AiFillPhone}
+              className="w-full"
             />
           </div>
           <div className="mt-5">
             <span className="uppercase text-sm text-gray-600 font-bold block">
               When
             </span>
-            <AppDatePicker name="date" state={date} setState={setDate} className="!w-full" />
+            <AppDatePicker
+              name="date"
+              state={date}
+              setState={setDate}
+              className="!w-full"
+            />
           </div>
           <div className="mt-5">
             <span className="uppercase text-sm text-gray-600 font-bold block">
@@ -146,9 +155,15 @@ const DonorDetail = () => {
             />
           </div>
           <div className="mt-5">
-            <AppButton className="justify-center" onClick={handleSubmit}>
-              Ask for donation
-            </AppButton>
+            {OK ? (
+              <AppButton className="justify-center" onClick={handleSubmit}>
+                Ask for donation
+              </AppButton>
+            ) : (
+              <AppButton className="justify-center !bg-error" disabled>
+                Please complete your profile <br /> to ask for donation
+              </AppButton>
+            )}
           </div>
         </div>
       </div>
