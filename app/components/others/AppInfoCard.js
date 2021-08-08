@@ -16,7 +16,7 @@ export default function AppInfoCard({ data }) {
   } = data
   const specializationsInString = specializations.join(", ")
   const { ratingIcons } = useRatingClient(rating)
-console.log(specializationsInString)
+  console.log(specializationsInString)
   return (
     <div className="rounded-md overflow-hidden shadow-md relative bg-light dark:bg-gray-600 cursor-pointer">
       <img className="w-full h-32 sm:h-48 object-cover" src={photoURL} alt="" />
@@ -27,13 +27,11 @@ console.log(specializationsInString)
           Dr. {firstName} {lastName}
         </p>
 
-        <p className="text-xs">
-          {useLineClamp(specializationsInString)}
-        </p>
+        <p className="text-xs">{useLineClamp(specializationsInString)}</p>
 
         <div className="mt-1 text-sm flex items-center gap-0.5 text-yellow-400">
-          {ratingIcons.map((RatingIcon) => (
-            <RatingIcon />
+          {ratingIcons.map((RatingIcon, index) => (
+            <RatingIcon key={index} />
           ))}
           <p className="font-bold ml-1">{rating}</p>
         </div>
