@@ -1,5 +1,6 @@
 import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
+import AppDatePicker from "@components/others/AppDatePicker"
 import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
 import { signUp } from "app/api"
@@ -39,15 +40,20 @@ const Signup = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [showPass, setShowPass] = useState(false)
-    const [isDonor, setIsDonor] = useState(false)
+    const [donatedBefore, setDonatedBefore] = useState(false)
+    const [donationDate, setDonationDate] = useState({
+      lastDonationDate: new Date(),
+    })
 
     async function handleSignup(userInfo) {
-      
-      setLoading(true)
-      const newUser = { ...userInfo, role: isDonor ? "donor" : "user" }
 
+      setLoading(true)
+      // const newUser = { ...userInfo, role: isDonor ? "donor" : "user" }
+      
       try {
-        const { data } = await signUp(newUser)
+        if(donatedBefore) userInfo.lastDonationDate = donationDate.lastDonationDate
+
+        const { data } = await signUp(userInfo)
         if (!data.user) {
           setError(data.message)
           setLoading(false)
@@ -57,7 +63,6 @@ const Signup = () => {
         localStorage.setItem("profile", JSON.stringify(data))
         setCurrentUser(data.user)
         // router.push("/dashboard/add-donor-info")
-
       } catch (err) {
         setError(err.message)
         setLoading(false)
@@ -108,16 +113,26 @@ const Signup = () => {
           className="my-2"
         />
 
-        <AppSwitch label="I am a donor" enabled={isDonor} setEnabled={setIsDonor} />
-        {/* <span className="my-3 flex items-center">
-          <input
-            name="isDonor"
-            type="checkbox"
-            {...register("isDonor")}
-            className="mr-2 rounded"
-          />
-          <span>I am a Donor</span>
-        </span> */}
+        <AppSwitch
+          label="I already donated"
+          enabled={donatedBefore}
+          setEnabled={setDonatedBefore}
+        />
+
+        {donatedBefore ? (
+          <div className="mt-2 mb-5 text-left">
+          <small className="text-gray-400">Last donation date(Approximate)</small>
+            <AppDatePicker
+              name="lastDonationDate"
+              state={donationDate}
+              setState={setDonationDate}
+              canGoBack
+              canNotGoForward
+            />
+          </div>
+        ) : (
+          ""
+        )}
 
         <AppButton className="m-auto">Sign Up</AppButton>
       </form>
