@@ -160,7 +160,11 @@ const DonorDetail = () => {
                 Ask for donation
               </AppButton>
             ) : (
-              <AppButton className="justify-center !bg-error" disabled>
+              <AppButton
+                className="justify-center"
+                textClassName="cursor-not-allowed"
+                disabled
+              >
                 Please complete your profile <br /> to ask for donation
               </AppButton>
             )}

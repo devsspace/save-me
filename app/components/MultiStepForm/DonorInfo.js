@@ -138,7 +138,6 @@ const DonorInfo = () => {
                       className="w-full hidden"
                       name="profilePic"
                       type="file"
-                      required
                       disabled={!editable}
                       register={register}
                       errors={errors}
