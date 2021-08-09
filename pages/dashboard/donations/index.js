@@ -27,7 +27,7 @@ const Donations = () => {
   }
 
   const getDonationsData = async (s = 0) => {
-    
+    // FIXME: When filtering from 2nd or other page of the pagination, data updates but pagination info doesn't update!
     try {
       const { data } = await getDonations(
         limit,

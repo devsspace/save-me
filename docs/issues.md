@@ -10,3 +10,6 @@ Where                                   What
 [x] Search donor                      No date
 [x] Search donor                      If user hasn't completed his profile he can't req
 [] Date picker                        Styling bug!
+[] Dashboard Donations                When filtering from 2nd or other page of the pagination, 
+                                      data updates but pagination info doesn't update!
+                                      
