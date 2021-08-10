@@ -51,3 +51,5 @@ export const getDonations = (
       bloodGroup
     )}&location=${encodeURIComponent(location)}`
   )
+
+export const updateDonation = (donationId, status) => API.put(`/donation/${donationId}?status=${status}`)

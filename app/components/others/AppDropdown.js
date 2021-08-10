@@ -9,6 +9,7 @@ export default function AppDropdown({
   state = {},
   setState = () => null,
   optionsClassName = "",
+  optionClassName = "",
   ...others
 }) {
   useEffect(
@@ -48,7 +49,7 @@ export default function AppDropdown({
                       ? "text-dark bg-primaryLight dark:bg-dark"
                       : "text-dark"
                   }
-cursor-default select-none relative py-2 pl-8 pr-4`}
+cursor-default select-none relative py-2 pl-8 pr-4 ${optionClassName}`}
                   value={person}
                 >
                   {({ selected, active }) => (
