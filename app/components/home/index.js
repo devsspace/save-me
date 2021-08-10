@@ -1,13 +1,12 @@
 import AvailableForConsultation from "@components/consultation/AvailableForConsultation"
 import ConsultationSpecialities from "@components/consultation/ConsultationSpecialities"
 import FAQs from "@components/consultation/FAQs"
-import DarkMode from "@components/DarkMode"
 import MainHeader from "@components/Headers/MainHeader"
 
 export default function HomePage() {
   return (
     <section>
-      <DarkMode />
+      {/* <DarkMode /> */}
       <MainHeader />
       <AvailableForConsultation />
       <ConsultationSpecialities />
