@@ -34,4 +34,34 @@
   .title {
     @apply text-3xl text-center text-green-400 my-5 mx-auto;
   }
+
+  .tab{
+    position: relative;
+    background: rgb(249, 250, 251);
+    border-top: 4px solid green;
+    height: 40px;
+    border-radius: 5px 5px 0 0;
+  }
+  .tab::before{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: -33.5px;
+    height: 36px;
+    width: 35px;
+    border-right: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    border-radius: 0 0 15px 0;
+  }
+  .tab::after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    right: -33.5px;
+    height: 36px;
+    width: 35px;
+    border-left: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    border-radius: 0 0 0px 15px;
+  }
 }

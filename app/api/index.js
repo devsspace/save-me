@@ -40,13 +40,14 @@ export const requestBlood = (bloodReqInfo) =>
   API.post(`/request-blood`, bloodReqInfo)
 
 export const getDonations = (
+  type = "",
   limit = 5,
   skip = 0,
   bloodGroup = "All",
   location = "All"
 ) =>
   API.get(
-    `/donation?limit=${limit}&skip=${skip}&bloodGroup=${encodeURIComponent(
+    `/donation?type=${type}&limit=${limit}&skip=${skip}&bloodGroup=${encodeURIComponent(
       bloodGroup
     )}&location=${encodeURIComponent(location)}`
   )

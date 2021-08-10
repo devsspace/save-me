@@ -1,7 +1,22 @@
-export const Table = ({ children }) => {
+export const Table = ({ children, tabs, activeTab, setActiveTab }) => {
   return (
     <div className="flex flex-col">
-      <div className="-my-2 overflow-x-auto">{/*sm:-mx-6 lg:-mx-8*/}
+      <div className="flex justify-center items-end">
+        {tabs &&
+          tabs.map((tab) => (
+            <div
+              className={`text-center p-3 pt-2 hover:bg-gray-50 transition cursor-pointer ${
+                activeTab === tab.id && "tab"
+              }`}
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.name}
+            </div>
+          ))}
+      </div>
+      <div className="-my-2 overflow-x-auto">
+        {/*sm:-mx-6 lg:-mx-8*/}
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
@@ -22,6 +37,7 @@ export const TableHead = ({ headItems }) => {
           <th
             scope="col"
             className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-light uppercase tracking-wider"
+            key={item}
           >
             {item}
           </th>
@@ -31,7 +47,7 @@ export const TableHead = ({ headItems }) => {
   )
 }
 
-export const TableBody = ({children}) => {
+export const TableBody = ({ children }) => {
   return (
     <tbody className="bg-white dark:bg-dark divide-y divide-gray-200">
       {children}
@@ -39,7 +55,7 @@ export const TableBody = ({children}) => {
   )
 }
 
-export const TD = ({children}) => {
+export const TD = ({ children }) => {
   return (
     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-light">
       {children}
@@ -47,7 +63,7 @@ export const TD = ({children}) => {
   )
 }
 
-export const TD2 = ({image, line1, line2}) => {
+export const TD2 = ({ image, line1, line2 }) => {
   return (
     <td className="px-6 py-4 whitespace-nowrap">
       <div className="flex items-center">
