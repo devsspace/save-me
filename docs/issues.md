@@ -9,13 +9,15 @@ Where                                   What
 [x] App drop down                     No default value  
 [x] Search donor                      No date
 [x] Search donor                      If user hasn't completed his profile he can't req
+[x] Filter                            Unexpected result for A+!
+[x] profile cancel button
+[x] Dashboard profile dynamic
 [] Date picker                        Styling bug!
 [] Dashboard Donations                When filtering from 2nd or other page of the pagination, 
                                       data updates but pagination info doesn't update!
-[x] Filter                            Unexpected result for A+!
-[x] profile cancel button
 [] table dark mode
 [] donation status
+[] different donation list for donor and requester
 [] clean footer
 [] Dashboard request list
 
