@@ -5,8 +5,16 @@ const DonationCard = ({ donation }) => {
 
   return (
     <tr key={_id}>
-      <TD2 image={askedBy.profilePic} line1={askedBy.name} line2={askedBy.phoneNumber} />
-      <TD2 image={askedTo.profilePic} line1={askedTo.name} line2={askedTo.phoneNumber} />
+      <TD2
+        image={askedBy.profilePic}
+        line1={askedBy.name}
+        line2={askedBy.phoneNumber}
+      />
+      <TD2
+        image={askedTo.profilePic}
+        line1={askedTo.name}
+        line2={askedTo.phoneNumber}
+      />
       <TD>{askedTo.location}</TD>
       <TD>{askedTo.bloodGroup}</TD>
       <TD>{date?.slice(0, 10)}</TD>
@@ -15,8 +23,8 @@ const DonationCard = ({ donation }) => {
         <span
           className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
             isCompleted
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
+              ? "bg-green-100 text-green-800 dark:bg-green-700"
+              : "bg-red-100 text-red-800 dark:bg-red-700"
           }`}
         >
           {isCompleted || "Pending"}

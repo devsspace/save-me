@@ -12,10 +12,9 @@ Where                                   What
 [x] Filter                            Unexpected result for A+!
 [x] profile cancel button
 [x] Dashboard profile dynamic
-[] Date picker                        Styling bug!
 [] Dashboard Donations                When filtering from 2nd or other page of the pagination, 
                                       data updates but pagination info doesn't update!
-[] table dark mode
+[x] table, pagination, filter dark mode
 [] donation status
 [] different donation list for donor and requester
 [] clean footer
@@ -28,3 +27,4 @@ Where                                   What
 
 [] FAQ transition
 [] Donor search eligible remove
+[] Date picker                        Styling bug!
