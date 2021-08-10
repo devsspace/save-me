@@ -1,4 +1,5 @@
 import { ErrorMessage } from "@hookform/error-message"
+
 export default function FormInput({
   Icon,
   name,
@@ -9,16 +10,17 @@ export default function FormInput({
   placeholder = "",
   register = () => null,
   errors = "",
-  refnc=null,
+  refnc = null,
   ...otherInputProps
 }) {
   const check = {}
-  if(required) check.required = `You must specify ${name}`
-  if(name === "password") check.minLength = {
-    value: 6,
-    message: "Password must contain at least 6 characters",
-  }
-  
+  if (required) check.required = `You must specify ${name}`
+  if (name === "password")
+    check.minLength = {
+      value: 6,
+      message: "Password must contain at least 6 characters",
+    }
+
   return (
     <>
       {Icon ? (

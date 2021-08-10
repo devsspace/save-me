@@ -1,4 +1,8 @@
+import { useUserContext } from "app/contexts/UserContext"
+
 export default function DashBoardProfile() {
+  const { currentUser } = useUserContext()
+  console.log(currentUser)
   return (
     <li className="profile">
       <div className="profile-details">
@@ -11,10 +15,14 @@ export default function DashBoardProfile() {
           <div className="job">PokPok Pokak</div>
         </div>
       </div>
-      <i className="bx bx-log-out cursor-pointer" id="log_out" onClick={() => {
-        localStorage.removeItem("profile")
-        window.location.reload()
-      }} />
+      <i
+        className="bx bx-log-out cursor-pointer"
+        id="log_out"
+        onClick={() => {
+          localStorage.removeItem("profile")
+          window.location.reload()
+        }}
+      />
     </li>
   )
 }
