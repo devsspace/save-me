@@ -13,8 +13,8 @@ const DonorCard = ({ donor }) => {
         <span
           className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
             eligibility == "eligible"
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
+              ? "bg-green-100 text-green-800 dark:bg-green-700"
+              : "bg-red-100 text-red-800 dark:bg-red-700"
           }`}
         >
           {eligibility === "eligible" ? "Eligible" : "Not eligible"}
