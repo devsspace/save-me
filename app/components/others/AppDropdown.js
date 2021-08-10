@@ -8,8 +8,10 @@ export default function AppDropdown({
   data = null,
   state = {},
   setState = () => null,
+  className = "",
   optionsClassName = "",
   optionClassName = "",
+  disabled = false,
   ...others
 }) {
   useEffect(
@@ -22,17 +24,22 @@ export default function AppDropdown({
       <Listbox
         value={state[name]}
         onChange={(data) => setState({ ...state, [name]: data.name })}
+        disabled={disabled}
         {...others}
       >
         <div className="relative">
-          <Listbox.Button className="relative w-full focus:ring-2 focus:ring-primary py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-pointer">
+          <Listbox.Button
+            className={`relative w-full focus:ring-2 focus:ring-primary py-2 pl-3 pr-10 text-left bg-white dark:bg-gray-600 rounded-md shadow-md cursor-pointer ${className}`}
+          >
             <span className="block truncate text-dark">{state[name]}</span>
-            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <HiSelector
-                className="w-5 h-5 text-gray-600 dark:text-light"
-                aria-hidden="true"
-              />
-            </span>
+            {!disabled && (
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <HiSelector
+                  className="w-5 h-5 text-gray-600 dark:text-light"
+                  aria-hidden="true"
+                />
+              </span>
+            )}
           </Listbox.Button>
           <Transition
             as={Fragment}
@@ -40,7 +47,9 @@ export default function AppDropdown({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className={`absolute w-full py-1 mt-1 overflow-auto bg-white dark:bg-gray-600 rounded-md shadow-md max-h-60 ring-1 ring-dark ring-opacity-5 focus:outline-none z-10 ${optionsClassName}`}>
+            <Listbox.Options
+              className={`absolute w-full py-1 mt-1 overflow-auto bg-white dark:bg-gray-600 rounded-md shadow-md max-h-60 ring-1 ring-dark ring-opacity-5 focus:outline-none z-10 ${optionsClassName}`}
+            >
               {data.map((person) => (
                 <Listbox.Option
                   key={person.id}

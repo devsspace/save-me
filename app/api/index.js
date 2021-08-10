@@ -52,4 +52,5 @@ export const getDonations = (
     )}&location=${encodeURIComponent(location)}`
   )
 
-export const updateDonation = (donationId, status) => API.put(`/donation/${donationId}?status=${status}`)
+export const updateDonation = (donationId, donationInfo) =>
+  API.put(`/donation/${donationId}`, donationInfo)
