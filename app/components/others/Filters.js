@@ -8,6 +8,7 @@ const Filters = ({
   setFilter = () => null,
   onSubmit = () => null,
 }) => {
+  console.log(filter)
   return (
     <div className="w-full lg:w-1/2 mr-auto px-4 py-3 flex items-center border-t border-gray-200 sm:px-6">
       <div className="mr-3 w-40">

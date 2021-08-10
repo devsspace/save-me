@@ -158,12 +158,22 @@ const DonorInfo = () => {
                 />
               </div>
               <div className="flex justify-center">
-                <AppButton
-                  className="justify-center bg-error mr-2"
-                  onClick={handleEdit}
-                >
-                  Edit
-                </AppButton>
+                {editable ? (
+                  <AppButton
+                    className="justify-center !bg-error mr-2"
+                    type="reset"
+                    onClick={(e) => {e.preventDefault(); setEditable(false)}}
+                  >
+                    Cancel
+                  </AppButton>
+                ) : (
+                  <AppButton
+                    className="justify-center bg-error mr-2"
+                    onClick={handleEdit}
+                  >
+                    Edit
+                  </AppButton>
+                )}
                 <AppButton
                   className="justify-center"
                   disabled={!editable}
