@@ -3,6 +3,7 @@ export default function AppButton({
   disabled = false,
   children,
   Icon,
+  type = "submit",
   className = "",
   iconClassName = "",
   textClassName = "",
@@ -16,6 +17,7 @@ export default function AppButton({
       )}
       <button
         className={`uppercase text-white font-bold ${textClassName}`}
+        type={type}
         onClick={onClick}
         disabled={disabled}
       >
