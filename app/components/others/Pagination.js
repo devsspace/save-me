@@ -5,9 +5,9 @@ export default function Pagination({previous, next, skip, setSkip, limit, total}
   const from = skip + 1
   const to = skip + limit < total ? skip + limit : total
   const current = Math.ceil(to/limit);
-  console.log(n, current)
+  
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div className="bg-white dark:bg-dark px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
       <div className="flex-1 flex justify-between sm:hidden">
         <a
           onClick={previous}
@@ -37,7 +37,7 @@ export default function Pagination({previous, next, skip, setSkip, limit, total}
           >
             <span
               onClick={previous}
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-200 cursor-pointer"
+              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-dark text-sm font-medium text-gray-500 hover:!bg-primaryLight dark:hover:text-dark cursor-pointer"
             >
               <span className="sr-only">Previous</span>
               <BsChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -52,8 +52,8 @@ export default function Pagination({previous, next, skip, setSkip, limit, total}
                     aria-current="page"
                     className={`z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
                       i + 1 === current
-                        ? "bg-indigo-50 border-indigo-500 text-indigo-600 z-20"
-                        : "bg-white border-gray-300 text-gray-500 hover:bg-gray-200"
+                        ? "bg-indigo-50 dark:bg-primaryLight border-indigo-500 text-indigo-600 z-20"
+                        : "bg-white dark:bg-dark border-gray-300 text-gray-500 hover:!bg-primaryLight dark:hover:text-dark"
                     }`}
                   >
                     {i + 1}
@@ -63,7 +63,7 @@ export default function Pagination({previous, next, skip, setSkip, limit, total}
 
             <span
               onClick={next}
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-200 cursor-pointer"
+              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-dark text-sm font-medium text-gray-500 hover:!bg-primaryLight dark:hover:text-dark cursor-pointer"
             >
               <span className="sr-only">Next</span>
               <BsChevronRight className="h-5 w-5" aria-hidden="true" />

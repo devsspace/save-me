@@ -8,6 +8,8 @@ import { getDonations } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import { useEffect, useState } from "react"
 
+let numberOfRefresh = 0
+
 const Donations = () => {
   const [donations, setDonations] = useState([])
   const [loading, setLoading] = useState(true)
@@ -16,7 +18,17 @@ const Donations = () => {
   const [limit] = useState(5)
   const [skip, setSkip] = useState(0)
   const [total, setTotal] = useState(0)
-  const [filter, setFilter] = useState({bloodGroup: "All", location: "All"})
+  const [filter, setFilter] = useState({ bloodGroup: "All", location: "All" })
+  const [tabs, setTabs] = useState([
+    { id: "requestedByMe", name: "Requested By Me" },
+    { id: "requestedToMe", name: "Requested To Me" },
+  ])
+  const [activeTab, setActiveTab] = useState(tabs[0]?.id)
+
+  // If admin, no tabs needed
+  useEffect(() => {
+    currentUser?.role === "admin" && setTabs("")
+  }, [currentUser])
 
   const nextPage = () => {
     skip + limit < total && setSkip(skip + limit)
@@ -28,15 +40,18 @@ const Donations = () => {
 
   const getDonationsData = async (s = 0) => {
     // FIXME: When filtering from 2nd or other page of the pagination, data updates but pagination info doesn't update!
+    setLoading(true)
+    
     try {
       const { data } = await getDonations(
+        activeTab,
         limit,
         s,
         filter.bloodGroup,
         filter.location
       )
-      
-      if (data.donors) setDonations(data.donors)
+
+      if (data.donations) setDonations(data.donations)
       setTotal(data.total)
       setLoading(false)
     } catch (error) {
@@ -46,8 +61,12 @@ const Donations = () => {
   }
 
   useEffect(() => {
+    setSkip(0)
+  }, [activeTab])
+
+  useEffect(() => {
     getDonationsData(skip)
-  }, [skip, limit, currentUser])
+  }, [skip, limit, activeTab, currentUser])
 
   const heads = [
     "Asked By",
@@ -59,26 +78,38 @@ const Donations = () => {
     "Status",
   ]
 
-  if (loading) return <LoadingSpinner />
+  console.log(numberOfRefresh++)
+
+  if (loading && !donations.length) return <LoadingSpinner />
 
   return (
     <DashboardWrapper>
       <div>
         <h1 className="title">Donations</h1>
-        <Filters filter={filter} setFilter={setFilter} onSubmit={getDonationsData} />
+        <Filters
+          filter={filter}
+          setFilter={setFilter}
+          onSubmit={getDonationsData}
+        />
 
-        <Table>
+        <Table tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab}>
           <TableHead headItems={heads}></TableHead>
-          <TableBody>
-            {donations.length ? (
-              donations.map((donation) => <DonationCard donation={donation} />)
-            ) : (
-              <p className="text-gray-400 m-5">No data found</p>
-            )}
-          </TableBody>
+          {loading ? (
+            <LoadingSpinner />
+          ) : (
+            <TableBody>
+              {donations?.length ? (
+                donations.map((donation) => (
+                  <DonationCard donation={donation} />
+                ))
+              ) : (
+                <p className="text-gray-400 m-5">No data found</p>
+              )}
+            </TableBody>
+          )}
         </Table>
 
-        {donations.length ? (
+        {donations?.length ? (
           <Pagination
             previous={previousPage}
             next={nextPage}
