@@ -18,7 +18,7 @@ const DonorDetail = () => {
   const [donor, setDonor] = useState({})
   const { currentUser } = useUserContext()
   const detailsRef = useRef()
-  const [date, setDate] = useState({date: new Date()})
+  const [date, setDate] = useState({ date: new Date() })
   const OK = currentUser.name && currentUser.phoneNumber
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const DonorDetail = () => {
             <h1 className="text-red-500 px-5">{donor.bloodGroup}</h1>
             <span
               className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                donor.eligibility == "eligible"
+                donor.eligibility === "eligible"
                   ? "bg-green-300 text-green-800"
                   : "bg-red-300 text-red-800"
               }`}

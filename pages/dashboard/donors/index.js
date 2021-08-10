@@ -34,7 +34,7 @@ const Donors = () => {
       <div>
         <h1 className="title">Donors List</h1>
         <Table>
-          <TableHead headItems={heads}></TableHead>
+          <TableHead headItems={heads} />
           <TableBody>
             {donors.map((donor) => (
               <DonorCard donor={donor} />
