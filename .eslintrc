@@ -30,7 +30,6 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": ["warn"],
-    "no-unused-expressions": "warn",
     "react/button-has-type": "off",
     "import/no-unresolved": "off",
     "react/jsx-one-expression-per-line": "off",
@@ -45,6 +44,8 @@
     "linebreak-style": "off",
     "arrow-body-style": "off",
     "jsx-a11y/label-has-associated-control": 0,
-    "no-console": "off"
+    "no-console": "off",
+    "no-plusplus": "off",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

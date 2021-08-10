@@ -27,21 +27,21 @@ const Donations = () => {
 
   // If admin, no tabs needed
   useEffect(() => {
-    currentUser?.role === "admin" && setTabs("")
+    if (currentUser?.role === "admin") setTabs("")
   }, [currentUser])
 
   const nextPage = () => {
-    skip + limit < total && setSkip(skip + limit)
+    if (skip + limit < total) setSkip(skip + limit)
   }
 
   const previousPage = () => {
-    skip > 0 && setSkip(skip - limit)
+    if (skip > 0) setSkip(skip - limit)
   }
 
   const getDonationsData = async (s = 0) => {
     // FIXME: When filtering from 2nd or other page of the pagination, data updates but pagination info doesn't update!
     setLoading(true)
-    
+
     try {
       const { data } = await getDonations(
         activeTab,
@@ -93,7 +93,7 @@ const Donations = () => {
         />
 
         <Table tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab}>
-          <TableHead headItems={heads}></TableHead>
+          <TableHead headItems={heads} />
           {loading ? (
             <LoadingSpinner />
           ) : (
