@@ -1,10 +1,10 @@
 import { TD, TD2 } from "@components/others/Table"
 
 const DonationCard = ({ donation }) => {
-  const { askedBy, askedTo, details, date, isCompleted } = donation
+  const { _id, askedBy, askedTo, details, date, isCompleted } = donation
 
   return (
-    <tr>
+    <tr key={_id}>
       <TD2 image={askedBy.profilePic} line1={askedBy.name} line2={askedBy.phoneNumber} />
       <TD2 image={askedTo.profilePic} line1={askedTo.name} line2={askedTo.phoneNumber} />
       <TD>{askedTo.location}</TD>

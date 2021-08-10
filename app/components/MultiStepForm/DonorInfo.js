@@ -10,51 +10,53 @@ import { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const DonorInfo = () => {
-  const {currentUser} = useUserContext()
-  const [editable, setEditable] = useState(false);
+  const { currentUser } = useUserContext()
+  const [editable, setEditable] = useState(false)
   const [donorInfo, setDonorInfo] = useState({
     name: "",
     bloodGroup: "",
     phoneNumber: "",
     location: "",
+    profilePic: "",
   })
   const {
     register,
     formState: { errors },
     handleSubmit,
-    setValue
+    setValue,
   } = useForm()
   const nameRef = useRef()
+  const phoneNumberRef = useRef()
 
   useEffect(() => {
     const getInfo = async () => {
       try {
         const { data } = await getDonor(currentUser._id)
-        if(data?.donor) setDonorInfo(data.donor)
+        if (data?.donor) setDonorInfo(data.donor)
       } catch (error) {}
     }
     getInfo()
-
   }, [])
-console.log(donorInfo)
+  console.log(donorInfo)
 
   const handleEdit = (e) => {
-    e.preventDefault();
-    setValue("name", donorInfo.name)
-    setValue("phoneNumber", donorInfo.phoneNumber)
+    e.preventDefault()
+    // setValue("name", donorInfo.name)
+    // setValue("phoneNumber", donorInfo.phoneNumber)
     setEditable(true)
+    phoneNumberRef.current.focus()
     nameRef.current.focus()
   }
 
   const handleSave = async (data) => {
+    console.log(data)
     setEditable(false)
-    const donorProfile = {...currentUser, ...donorInfo, ...data}
+    const donorProfile = { ...currentUser, ...donorInfo, ...data }
     try {
       const { data } = await saveProfile(donorProfile)
       console.log(data)
-      if(data?.user) successAlert("Successfully saved your profile")
+      if (data?.user) successAlert("Successfully saved your profile")
       else errorAlert(data.message)
-      
     } catch (error) {
       errorAlert(error.message)
     }
@@ -115,7 +117,33 @@ console.log(donorInfo)
                   defaultValue={donorInfo.phoneNumber}
                   register={register}
                   errors={errors}
+                  refnc={phoneNumberRef}
                 />
+              </div>
+              <div className="w-full">
+                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                  <span className="text-red-400 mr-1">*</span> Upload Image
+                </div>
+                <div className="w-full items-center justify-center bg-grey-lighter">
+                  <label className="flex flex-col items-center px-2 py-1 bg-white text-primary rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-green-500 hover:text-white">
+                    <svg
+                      className="w-8 h-8"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                    </svg>
+                    <FormInput
+                      className="w-full hidden"
+                      name="profilePic"
+                      type="file"
+                      disabled={!editable}
+                      register={register}
+                      errors={errors}
+                    />
+                  </label>
+                </div>
               </div>
               <div className="w-full mb-5">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">

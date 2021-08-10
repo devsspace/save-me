@@ -21,9 +21,8 @@ export const signUp = (user) => API.post("/user/signup", user)
 export const getUser = () => API.get("/user")
 export const saveProfile = (profileInfo) => API.put(`/user`, profileInfo)
 
-
 export const searchDonor = (searchInfo) => {
-  if(!searchInfo) return API.get('/donors')
+  if (!searchInfo) return API.get("/donors")
   return API.get(
     `/donors?bloodGroup=${encodeURIComponent(
       searchInfo.bloodGroup
@@ -35,8 +34,19 @@ export const searchDonor = (searchInfo) => {
 
 export const getDonor = (donorId) => API.get(`/donors/${donorId}`)
 
-export const askDonation = (info) => API.post('/donation', info)
+export const askDonation = (info) => API.post("/donation", info)
 
-export const requestBlood = (bloodReqInfo) => API.post(`/request-blood`, bloodReqInfo)
+export const requestBlood = (bloodReqInfo) =>
+  API.post(`/request-blood`, bloodReqInfo)
 
-export const getDonations = () => API.get(`/donation`)
+export const getDonations = (
+  limit = 5,
+  skip = 0,
+  bloodGroup = "All",
+  location = "All"
+) =>
+  API.get(
+    `/donation?limit=${limit}&skip=${skip}&bloodGroup=${encodeURIComponent(
+      bloodGroup
+    )}&location=${encodeURIComponent(location)}`
+  )

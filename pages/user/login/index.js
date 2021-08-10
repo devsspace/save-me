@@ -34,7 +34,7 @@ const Login = () => {
     <div className="bg-light dark:bg-dark text-center">
       <DarkMode />
       <h1 className="dark:text-light">Welcome Back</h1>
-      {from && <WarningMessage message="You need to log in first" />}
+      {(from || !router.pathname.includes("login")) && <WarningMessage message="You need to log in first" />}
 
       <LoginForm />
 

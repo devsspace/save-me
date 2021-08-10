@@ -6,8 +6,10 @@ export default function AppDatePicker({
   className = "",
   state = {},
   setState = () => null,
+  canGoBack,
+  canNotGoForward,
 }) {
-  const [startDate, setDate] = useState(Date.parse(state?.date))
+  const [startDate, setDate] = useState(Date.parse(state[name]))
   // const [endDate, setEndDate] = useState(new Date())
   // useEffect(() => {
   //   setEndDate(Date.parse(new Date().setMonth(startDate.getMonth() + 1)))
@@ -25,7 +27,8 @@ export default function AppDatePicker({
         selectsStart
         startDate={startDate}
         // endDate={endDate}
-        minDate={new Date()}
+        minDate={canGoBack ? "" : new Date()}
+        maxDate={canNotGoForward ? new Date() : ""}
         nextMonthButtonLabel=">"
         previousMonthButtonLabel="<"
         className={className}

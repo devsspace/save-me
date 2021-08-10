@@ -17,7 +17,7 @@ const DonorCard = ({ donor }) => {
               : "bg-red-100 text-red-800"
           }`}
         >
-          {eligibility || "Not eligible"}
+          {eligibility === "eligible" ? "Eligible" : "Not eligible"}
         </span>
       </TD>
       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
