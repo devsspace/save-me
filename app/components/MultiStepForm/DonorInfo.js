@@ -20,7 +20,7 @@ const DonorInfo = () => {
     bloodGroup: "",
     phoneNumber: "",
     location: "",
-    eligible: "",
+    eligibility: "",
     profilePic: imgURL,
   })
   const {
@@ -132,7 +132,7 @@ const DonorInfo = () => {
                 </div>
                 <AppDropdown
                   data={donorEligibility}
-                  name="eligible"
+                  name="eligibility"
                   disabled={!editable}
                   state={donorInfo}
                   setState={setDonorInfo}
@@ -155,9 +155,10 @@ const DonorInfo = () => {
                   refnc={phoneNumberRef}
                 />
               </div>
+
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                  <span className="text-red-400 mr-1">*</span> Upload Image
+                  Upload Image
                 </div>
                 <div className="w-full items-center justify-center bg-grey-lighter">
                   <label className="flex flex-col items-center px-2 py-1 bg-white text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-green-500 hover:text-white">
