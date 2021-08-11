@@ -27,5 +27,5 @@ data updates but pagination info doesn't update!
 [x] Dark mode icon in navbar
 
 [] FAQ transition
-[] Donor search eligible remove
+[X] Donor search eligible remove
 [] Date picker Styling bug!

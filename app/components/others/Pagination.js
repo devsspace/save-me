@@ -7,7 +7,7 @@ export default function Pagination({previous, next, skip, setSkip, limit, total}
   const current = Math.ceil(to/limit);
   
   return (
-    <div className="bg-white dark:bg-dark px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div className="bg-white dark:bg-dark px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mb-12">
       <div className="flex-1 flex justify-between sm:hidden">
         <a
           onClick={previous}

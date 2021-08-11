@@ -11,7 +11,7 @@ module.exports = {
       recursive: ["Recursive", "sans-serif"],
     },
     minHeight: {
-      "120": "120px",
+      120: "120px",
     },
     extend: {
       colors: {

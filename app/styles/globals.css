@@ -38,6 +38,7 @@
   .tab{
     position: relative;
     background: rgb(249, 250, 251);
+    @apply dark:bg-dark;
     border-top: 4px solid green;
     height: 40px;
     border-radius: 5px 5px 0 0;
@@ -51,6 +52,7 @@
     width: 35px;
     border-right: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
+    @apply dark:border-none;
     border-radius: 0 0 15px 0;
   }
   .tab::after{
@@ -62,6 +64,7 @@
     width: 35px;
     border-left: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
+    @apply dark:border-none;
     border-radius: 0 0 0px 15px;
   }
 }

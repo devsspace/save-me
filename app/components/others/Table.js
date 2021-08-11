@@ -5,7 +5,7 @@ export const Table = ({ children, tabs, activeTab, setActiveTab }) => {
         {tabs &&
           tabs.map((tab) => (
             <div
-              className={`text-center p-3 pt-2 hover:bg-gray-50 transition cursor-pointer ${
+              className={`text-center p-3 pt-2 hover:bg-gray-50 dark:hover:bg-green-700 transition cursor-pointer ${
                 activeTab === tab.id && "tab"
               }`}
               key={tab.id}
