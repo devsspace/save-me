@@ -5,34 +5,29 @@ import { TiInputChecked } from "react-icons/ti"
 
 const SaveLives = () => {
   return (
-    <>
-      <div className="container mx-auto">
-        <h1 className="text-red-500 md:text-5xl text-center md:my-5">
-          We Save Lives
-        </h1>
-        <p className="text-center text-sm sm:text-xl mt-5">
-          Find blood donors near your location and make a blood
-        </p>
-        <p className="text-center text-xl">request in less than 5 minutes.</p>
-        <div className="grid md:grid-cols-3 sm:grid-cols-2 my-10">
-          <div className="text-center grid justify-items-center">
-            <BiDonateBlood className="text-7xl text-red-500" />
-            <h1 className="text-xl">Find Blood</h1>
-            <p className="">Find blood donors near your location</p>
-          </div>
-          <div className="text-center grid justify-items-center">
-            <AiFillNotification className="text-7xl text-green-500" />
-            <h1 className="text-xl">Get Instant notified</h1>
-            <p>Get notified about requests instantly</p>
-          </div>
-          <div className="text-center grid justify-items-center">
-            <TiInputChecked className="text-7xl text-blue-500" />
-            <h1 className="text-xl">Forever Access</h1>
-            <p>Foreever access, Save Life Connect is forever Free!</p>
-          </div>
+    <div className="mt-16">
+      <h1 className="text-green-400 text-center text-4xl">We Save Lives</h1>
+      <p className="text-center mt-5 text-xl text-primary">
+        Find blood donors request in less than 5 minutes
+      </p>
+      <div className="flex flex-col md:flex-row items-center justify-evenly mt-10">
+        <div className="text-center justify-items-center">
+          <BiDonateBlood className="text-5xl text-error mx-auto" />
+          <h1 className="text-xl text-error">Find Blood</h1>
+          <p className="text-primary">Find blood donors near your location</p>
+        </div>
+        <div className="text-center justify-items-center">
+          <AiFillNotification className="text-5xl text-green-500 mx-auto" />
+          <h1 className="text-xl text-error">Get Instant notified</h1>
+          <p className="text-primary">Get notified about requests instantly</p>
+        </div>
+        <div className="text-center justify-items-center">
+          <TiInputChecked className="text-5xl text-primary mx-auto" />
+          <h1 className="text-xl text-error">Forever Access</h1>
+          <p className="text-primary">Foreever access, Save Life Connect</p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
