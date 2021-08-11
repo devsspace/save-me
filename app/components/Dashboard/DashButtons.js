@@ -45,6 +45,7 @@ export default function DashButtons({ sideBarIsOpen }) {
           sideBarIsOpen={sideBarIsOpen}
           boxIcon="bxs-help-circle"
           text="Requests"
+          onClick={() => router.push("/dashboard/requests")}
         />
       </AppLink>
       <AppLink href="/">

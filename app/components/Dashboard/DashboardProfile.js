@@ -7,6 +7,7 @@ export default function DashBoardProfile() {
     <li className="profile">
       <div className="profile-details">
         <img
+          className="!rounded-full !w-12 !h-12"
           src={
             currentUser.profilePic?.includes("http")
               ? currentUser.profilePic

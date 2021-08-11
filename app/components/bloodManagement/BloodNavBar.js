@@ -1,6 +1,8 @@
+import DashButton from "@components/Dashboard/DashButton"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { getUser } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
+import { useTheme } from "next-themes"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { Fragment, useEffect } from "react"
@@ -20,6 +22,12 @@ function classNames(...classes) {
 }
 
 const BloodNavBar = () => {
+  const { theme, setTheme } = useTheme()
+
+  // dark mode theme change
+  const handleChangeTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
   const { currentUser, setCurrentUser } = useUserContext()
   const router = useRouter()
 
@@ -83,6 +91,16 @@ const BloodNavBar = () => {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                {/* dark mode */}
+                <DashButton
+                  className={`list-none ${
+                    theme === "light"
+                      ? "text-black"
+                      : "text-white md:text-yellow-400"
+                  } text-2xl`}
+                  onClick={handleChangeTheme}
+                  boxIcon={theme === "light" ? "bxs-moon" : "bxs-sun"}
+                />
                 {/* Profile dropdown */}
                 {currentUser ? (
                   <Menu as="div" className="ml-3 relative z-50">
@@ -121,7 +139,7 @@ const BloodNavBar = () => {
                                 </Link>
                               )}
                             </Menu.Item>
-                            
+
                             <Menu.Item>
                               {({ active }) => (
                                 <a

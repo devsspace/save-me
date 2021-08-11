@@ -4,12 +4,15 @@ import AppDropdown from "@components/others/AppDropdown"
 import FormInput from "@components/others/FormInput"
 import bloodGroups from "@configs/fakeData/bloodGroups"
 import districts from "@configs/fakeData/districts"
+import donorEligibility from "@configs/fakeData/donorEligibility"
 import { getDonor, saveProfile } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
+import axios from "axios"
 import { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const DonorInfo = () => {
+  const [imgURL, setImgURL] = useState(null)
   const { currentUser } = useUserContext()
   const [editable, setEditable] = useState(false)
   const [donorInfo, setDonorInfo] = useState({
@@ -17,7 +20,8 @@ const DonorInfo = () => {
     bloodGroup: "",
     phoneNumber: "",
     location: "",
-    profilePic: "",
+    eligibility: "",
+    profilePic: imgURL,
   })
   const {
     register,
@@ -37,7 +41,7 @@ const DonorInfo = () => {
     }
     getInfo()
   }, [])
-  console.log(donorInfo)
+  // console.log(donorInfo)
 
   const handleEdit = (e) => {
     e.preventDefault()
@@ -49,19 +53,38 @@ const DonorInfo = () => {
   }
 
   const handleSave = async (data) => {
-    console.log(data)
     setEditable(false)
-    const donorProfile = { ...currentUser, ...donorInfo, ...data }
+    const donorProfile = {
+      ...currentUser,
+      ...donorInfo,
+      ...data,
+      profilePic: imgURL,
+    }
     try {
       const { data } = await saveProfile(donorProfile)
-      console.log(data)
+
       if (data?.user) successAlert("Successfully saved your profile")
       else errorAlert(data.message)
+      console.log(data.user)
     } catch (error) {
       errorAlert(error.message)
     }
   }
 
+  // upload images
+  const handleImageUpload = async (e) => {
+    const imgData = new FormData()
+    imgData.set("key", "681354ee434466a79bb386e524a1ce29")
+    imgData.append("image", e.target.files[0])
+
+    try {
+      const res = await axios.post("https://api.imgbb.com/1/upload", imgData)
+      setImgURL(res.data.data.display_url)
+      successAlert("Successfully upload image")
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-col md:flex-row justify-center">
@@ -105,6 +128,18 @@ const DonorInfo = () => {
               </div>
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                  <span className="text-red-400 mr-1">*</span> Eligibility
+                </div>
+                <AppDropdown
+                  data={donorEligibility}
+                  name="eligibility"
+                  disabled={!editable}
+                  state={donorInfo}
+                  setState={setDonorInfo}
+                />
+              </div>
+              <div className="w-full">
+                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                   <span className="text-red-400 mr-1">*</span> Phone Number
                 </div>
                 <FormInput
@@ -120,12 +155,13 @@ const DonorInfo = () => {
                   refnc={phoneNumberRef}
                 />
               </div>
+
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                  <span className="text-red-400 mr-1">*</span> Upload Image
+                  Upload Image
                 </div>
                 <div className="w-full items-center justify-center bg-grey-lighter">
-                  <label className="flex flex-col items-center px-2 py-1 bg-white text-primary rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-green-500 hover:text-white">
+                  <label className="flex flex-col items-center px-2 py-1 bg-white text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-green-500 hover:text-white">
                     <svg
                       className="w-8 h-8"
                       fill="currentColor"
@@ -141,6 +177,8 @@ const DonorInfo = () => {
                       disabled={!editable}
                       register={register}
                       errors={errors}
+                      required={false}
+                      onChange={handleImageUpload}
                     />
                   </label>
                 </div>
@@ -162,7 +200,10 @@ const DonorInfo = () => {
                   <AppButton
                     className="justify-center !bg-error mr-2"
                     type="reset"
-                    onClick={(e) => {e.preventDefault(); setEditable(false)}}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setEditable(false)
+                    }}
                   >
                     Cancel
                   </AppButton>

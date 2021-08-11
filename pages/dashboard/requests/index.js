@@ -1,20 +1,20 @@
-import DonorCard from "@components/bloodManagement/DonorCard"
+import BloodRequestCard from "@components/bloodManagement/BloodRequestCard"
 import DashboardWrapper from "@components/Dashboard/DashboardWrapper"
 import LoadingSpinner from "@components/others/LoadingSpinner"
 import { Table, TableBody, TableHead } from "@components/others/Table"
-import { searchDonor } from "app/api"
-import { useDonorContext } from "app/contexts/DonorContext"
+import { getRequests } from "app/api"
 import { useEffect, useState } from "react"
 
-const Donors = () => {
-  const { donors, setDonors } = useDonorContext()
+const Requests = () => {
+  const [requests, setRequests] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const get = async () => {
       try {
-        const { data } = await searchDonor()
-        setDonors(data)
+        const { data } = await getRequests()
+        console.log(data)
+        setRequests(data)
         setLoading(false)
         
       } catch (error) {
@@ -24,19 +24,19 @@ const Donors = () => {
     }
     get()
   }, [])
-  console.log(donors)
-  const heads = ["Name", "Blood Group", "Location", "Phone", "Eligibility"]
+  console.log(requests)
+  const heads = ["Name", "Blood Group", "Location", "Phone", "Date", "Status", "Edit"]
 
   if (loading) return <LoadingSpinner />
   return (
-    <DashboardWrapper adminOnly>
+    <DashboardWrapper>
       <div>
-        <h1 className="title">Donors List</h1>
+        <h1 className="title">Blood Requests</h1>
         <Table>
           <TableHead headItems={heads} />
           <TableBody>
-            {donors.map((donor) => (
-              <DonorCard donor={donor} />
+            {requests.length && requests.map((req) => (
+              <BloodRequestCard request={req} />
             ))}
           </TableBody>
         </Table>
@@ -45,4 +45,4 @@ const Donors = () => {
   )
 }
 
-export default Donors
+export default Requests

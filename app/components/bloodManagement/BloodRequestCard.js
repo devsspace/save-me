@@ -1,15 +1,16 @@
 import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppDropdown from "@components/others/AppDropdown"
 import { TD, TD2 } from "@components/others/Table"
-import useLineClamp from "@hooks/useLineClamp"
-import { updateDonation } from "app/api"
+import { updateRequest } from "app/api"
 import { useState } from "react"
 import { AiFillEdit } from "react-icons/ai"
 import { MdCancel } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
 
-const DonationCard = ({ donation }) => {
-  const { _id, askedBy, askedTo, details, date, status } = donation
+const BloodRequestCard = ({ request }) => {
+  const { bloodGroup, location, requestedAt, date, numberOfBags, requestedBy, status } = request
+  const {name, phoneNumber, profilePic, email } = requestedBy
+
   const [editable, setEditable] = useState(false)
 
   const statuses = [
@@ -17,23 +18,22 @@ const DonationCard = ({ donation }) => {
     { id: 2, name: "Confirmed" },
     { id: 3, name: "Completed" },
   ]
-  const [donationStatus, setDonationStatus] = useState({ status })
+  const [requestStatus, setRequestStatus] = useState({ status })
 
   const handleStatusChange = async () => {
-    console.log(donationStatus)
     const confirm = window.confirm("Are you sure?")
+
     if (confirm) {
       try {
-        console.log(donationStatus)
-        const { data } = await updateDonation(donation._id, {
-          ...donation,
-          status: donationStatus.status,
+        const { data } = await updateRequest({
+          ...request,
+          status: requestStatus.status,
         })
         if (data._id) {
           setEditable(false)
           return successAlert("Success")
         }
-        setDonationStatus({ status })
+        setRequestStatus({ status })
         errorAlert(data?.message)
       } catch (error) {
         errorAlert(error.message)
@@ -42,31 +42,22 @@ const DonationCard = ({ donation }) => {
   }
 
   return (
-    <tr key={_id}>
-      <TD2
-        image={askedBy.profilePic}
-        line1={askedBy.name}
-        line2={askedBy.phoneNumber}
-      />
-      <TD2
-        image={askedTo.profilePic}
-        line1={askedTo.name}
-        line2={askedTo.phoneNumber}
-      />
-      <TD>{askedTo.location}</TD>
-      <TD>{askedTo.bloodGroup}</TD>
-      <TD>{date?.slice(0, 10)}</TD>
-      <TD>{useLineClamp(details, 30)}</TD>
+    <tr>
+      <TD2 image={profilePic} line1={name} line2={email} />
+      <TD>{bloodGroup}</TD>
+      <TD>{location}</TD>
+      <TD>{phoneNumber}</TD>
+      <TD>{date.slice(0, 10)}</TD>
       <TD>
         <AppDropdown
           name="status"
           data={statuses}
-          state={donationStatus}
-          setState={setDonationStatus}
+          state={requestStatus}
+          setState={setRequestStatus}
           className={`text-center ${
-            donationStatus.status === "Pending"
+            requestStatus.status === "Pending"
               ? "bg-red-500 dark:bg-red-700"
-              : donationStatus.status === "Confirmed"
+              : requestStatus.status === "Confirmed"
               ? "bg-yellow-500 dark:bg-yellow-600"
               : "bg-green-500 dark:bg-green-700"
           }`}
@@ -104,4 +95,4 @@ const DonationCard = ({ donation }) => {
   )
 }
 
-export default DonationCard
+export default BloodRequestCard

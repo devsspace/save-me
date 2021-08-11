@@ -26,6 +26,7 @@ const Login = () => {
   const {from} = router.query
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  const [remember, setRemember] = useState(true)
 
   
   if(currentUser) router.replace(from || "/dashboard/add-donor-info")
@@ -110,7 +111,7 @@ const Login = () => {
             )}
           </span>
         </div>
-        <AppSwitch label="Remember me" />
+        <AppSwitch label="Remember me" enabled={remember} setEnabled={setRemember} />
         <AppButton className="m-auto">Log in</AppButton>
       </form>
     )

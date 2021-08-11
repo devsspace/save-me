@@ -38,15 +38,22 @@ export const askDonation = (info) => API.post("/donation", info)
 
 export const requestBlood = (bloodReqInfo) =>
   API.post(`/request-blood`, bloodReqInfo)
+export const getRequests = () => API.get(`/request-blood`)
+export const updateRequest = (requestInfo) => API.put(`/request-blood/${requestInfo._id}`, requestInfo)
+
 
 export const getDonations = (
+  type = "",
   limit = 5,
   skip = 0,
   bloodGroup = "All",
   location = "All"
 ) =>
   API.get(
-    `/donation?limit=${limit}&skip=${skip}&bloodGroup=${encodeURIComponent(
+    `/donation?type=${type}&limit=${limit}&skip=${skip}&bloodGroup=${encodeURIComponent(
       bloodGroup
     )}&location=${encodeURIComponent(location)}`
   )
+
+export const updateDonation = (donationId, donationInfo) =>
+  API.put(`/donation/${donationId}`, donationInfo)

@@ -12,11 +12,11 @@ import { useEffect, useState } from "react"
 import { HiHeart, HiReply } from "react-icons/hi"
 
 const RequestBlood = () => {
-  let {currentUser} = useUserContext()
+  let { currentUser } = useUserContext()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  
-  let initialRequestInfo = {
+
+  const initialRequestInfo = {
     bloodGroup: "A+",
     location: "Dhaka",
     date: new Date(),
@@ -27,44 +27,41 @@ const RequestBlood = () => {
   useEffect(() => {
     try {
       const previousInfo = JSON.parse(localStorage.getItem("reqInfo"))
-      if(previousInfo.bloodGroup) setBloodReqInfo(previousInfo)
-    } catch (error) {}
+      if (previousInfo.bloodGroup) setBloodReqInfo(previousInfo)
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
   const handleRequest = async () => {
     setLoading(true)
     localStorage.setItem("reqInfo", JSON.stringify(bloodReqInfo))
-    if(!currentUser?._id){
+    if (!currentUser?._id) {
       try {
         const { data } = await getUser()
         currentUser = data?.user || null
       } catch (error) {
-        
+        console.log(error)
       }
     }
-    if(!currentUser?._id){
+    if (!currentUser?._id) {
       router.push(`/user/login?from=${router.pathname}`)
-    }
-    else{
+    } else {
       try {
-        const {data} = await requestBlood(bloodReqInfo)
+        const { data } = await requestBlood({...bloodReqInfo, requestedBy: currentUser})
         console.log(data)
-        if(data?.bloodGroup){
+        if (data?.bloodGroup) {
           const message = `${data.numberOfBags} bag(s) ${data.bloodGroup} blood on ${data.date} request added`
           successAlert(message)
-        }
-        else
-        errorAlert(data?.message)
-        
+        } else errorAlert(data?.message)
       } catch (error) {
-        errorAlert(data?.message)  
+        errorAlert(error.message)
       }
       setLoading(false)
-
     }
   }
 
-  if(loading) return <LoadingSpinner />
+  if (loading) return <LoadingSpinner />
 
   return (
     <div className="flex flex-col justify-center space-y-4 w-1/2 m-auto text-center">
@@ -96,7 +93,9 @@ const RequestBlood = () => {
         />
       </div>
       <div className="flex justify-center">
-        <AppButton Icon={HiReply} onClick={handleRequest}>Request</AppButton>
+        <AppButton Icon={HiReply} onClick={handleRequest}>
+          Request
+        </AppButton>
       </div>
     </div>
   )
