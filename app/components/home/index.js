@@ -3,6 +3,7 @@ import SaveLives from "@components/bloodManagement/SaveLives"
 import AvailableForConsultation from "@components/consultation/AvailableForConsultation"
 import ConsultationSpecialities from "@components/consultation/ConsultationSpecialities"
 import FAQs from "@components/consultation/FAQs"
+import Footer from "@components/Footer/Footer"
 import MainHeader from "@components/Headers/MainHeader"
 
 export default function HomePage() {
@@ -14,9 +15,7 @@ export default function HomePage() {
       <AvailableForConsultation />
       <ConsultationSpecialities />
       <FAQs />
-      {/* <div className="flex flex-col space-y-2 items-center h-[90vh] justify-center">
-        <SaveLives />
-      </div> */}
+      <Footer />
     </section>
   )
 }

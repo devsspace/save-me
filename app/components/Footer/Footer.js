@@ -37,12 +37,12 @@ export default function Footer() {
         </div>
       </section>
 
-      <section className="mt-5 flex justify-center items-center flex-wrap gap-3 text-xs">
-        <FaFacebook className="w-6 h-6 text-[#4267B2]" />
-        <FaTwitterSquare className="w-6 h-6 text-[#1DA1F2]" />
-        <FaLinkedin className="w-6 h-6 text-[#0077b5]" />
+      <section className="mt-8 flex justify-center items-center flex-wrap gap-3 text-xs">
+        <FaFacebook className="w-8 h-8 text-[#4267B2] cursor-pointer" />
+        <FaTwitterSquare className="w-8 h-8 text-[#1DA1F2] cursor-pointer" />
+        <FaLinkedin className="w-8 h-8 text-[#0077b5] cursor-pointer" />
       </section>
-      <section className="mt-5 flex flex-col justify-center items-center flex-wrap gap-3 text-xs">
+      <section className="mt-3 flex flex-col justify-center items-center flex-wrap gap-3 text-xs">
         <div className="text-center">
           <p>&copy; 2021 All Rights Reserved By Save Me</p>
           <p>Mirpur, Dhaka 1216, Hoza Street, Bangladesh</p>
