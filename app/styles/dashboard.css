@@ -139,7 +139,7 @@
     @apply bg-gray-600 dark:bg-transparent;
   }
   .sidebar li a:hover {
-    @apply bg-primary;
+    @apply bg-primaryDark;
   }
   .sidebar li a .links_name {
     color: #fff;

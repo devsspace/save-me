@@ -7,9 +7,9 @@ export default function DashButton({
   tooltip = text,
 }) {
   return (
-    <li onClick={onClick} className={`cursor-pointer ${className}`}>
+    <li onClick={onClick} className={`cursor-pointer`}>
       <a
-        className={sideBarIsOpen || "!rounded-full"}
+        className={`${sideBarIsOpen || "!rounded-full"} ${className}`}
         onClick={(e) => e.preventDefault()}
       >
         <i className={`bx ${boxIcon}`} />

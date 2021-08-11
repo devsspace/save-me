@@ -3,6 +3,7 @@ import AppLink from "@components/others/AppLink"
 import { useUserContext } from "app/contexts/UserContext"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/router"
+import { useState } from "react"
 
 export default function DashButtons({ sideBarIsOpen }) {
   const { theme, setTheme } = useTheme()
@@ -11,7 +12,8 @@ export default function DashButtons({ sideBarIsOpen }) {
   }
   const router = useRouter()
   const { currentUser } = useUserContext()
-
+  const [active, setActive] = useState(router.pathname)
+  console.log(active)
   return (
     <>
       <AppLink href="/">
@@ -20,6 +22,9 @@ export default function DashButtons({ sideBarIsOpen }) {
           boxIcon="bx-grid-alt"
           text="Profile"
           onClick={() => router.push("/dashboard/add-donor-info")}
+          className={
+            active === "/dashboard/add-donor-info" ? "!bg-primaryDark" : ""
+          }
         />
       </AppLink>
       {currentUser.role === "admin" && (
@@ -29,6 +34,9 @@ export default function DashButtons({ sideBarIsOpen }) {
             boxIcon="bxs-donate-blood"
             text="Donors"
             onClick={() => router.push("/dashboard/donors")}
+            className={
+              active === "/dashboard/donors" ? "!bg-primaryDark" : ""
+            }
           />
         </AppLink>
       )}
@@ -38,6 +46,7 @@ export default function DashButtons({ sideBarIsOpen }) {
           boxIcon="bxs-droplet"
           text="Donations"
           onClick={() => router.push("/dashboard/donations")}
+          className={active === "/dashboard/donations" ? "!bg-primaryDark" : ""}
         />
       </AppLink>
       <AppLink href="/">
@@ -46,6 +55,7 @@ export default function DashButtons({ sideBarIsOpen }) {
           boxIcon="bxs-help-circle"
           text="Requests"
           onClick={() => router.push("/dashboard/requests")}
+          className={active === "/dashboard/requests" ? "!bg-primaryDark" : ""}
         />
       </AppLink>
       <AppLink href="/">
