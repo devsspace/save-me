@@ -5,7 +5,7 @@ import bloodGroups from "@configs/fakeData/bloodGroups"
 import districts from "@configs/fakeData/districts"
 import { searchDonor } from "app/api"
 import { useDonorContext } from "app/contexts/DonorContext"
-import { HiHeart, HiSearch } from "react-icons/hi"
+import { HiHeart } from "react-icons/hi"
 
 export default function SearchDonorsInputs() {
   const { searchInfo, setSearchInfo, setDonors, setLoading } = useDonorContext()
@@ -54,9 +54,9 @@ export default function SearchDonorsInputs() {
           setState={setSearchInfo}
         />
         <AppButton
+          className="w-36 flex justify-center"
           searchInfo={searchInfo}
           setSearchInfo={setSearchInfo}
-          Icon={HiSearch}
           onClick={handleSearch}
         >
           Search
