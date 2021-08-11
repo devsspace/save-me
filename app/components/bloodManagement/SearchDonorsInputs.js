@@ -49,7 +49,7 @@ export default function SearchDonorsInputs() {
       <div className="flex space-x-3">
         <AppDatePicker
           name="date"
-          className="!w-full"
+          className="!w-full md:!w-64"
           state={searchInfo}
           setState={setSearchInfo}
         />
