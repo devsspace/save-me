@@ -3,14 +3,12 @@ import AppDatePicker from "@components/others/AppDatePicker"
 import AppDropdown from "@components/others/AppDropdown"
 import bloodGroups from "@configs/fakeData/bloodGroups"
 import districts from "@configs/fakeData/districts"
-import donorEligibility from "@configs/fakeData/donorEligibility"
 import { searchDonor } from "app/api"
 import { useDonorContext } from "app/contexts/DonorContext"
-import { HiHeart, HiSearch } from "react-icons/hi"
+import { HiHeart } from "react-icons/hi"
 
 export default function SearchDonorsInputs() {
-  const { searchInfo, setSearchInfo, setDonors, loading, setLoading } =
-    useDonorContext()
+  const { searchInfo, setSearchInfo, setDonors, setLoading } = useDonorContext()
 
   const handleSearch = async () => {
     try {
@@ -51,21 +49,14 @@ export default function SearchDonorsInputs() {
       <div className="flex space-x-3">
         <AppDatePicker
           name="date"
+          className="!w-full md:!w-64"
           state={searchInfo}
           setState={setSearchInfo}
         />
-        <AppDropdown
-          state={searchInfo}
-          setState={setSearchInfo}
-          name="eligibility"
-          data={donorEligibility}
-        />
-      </div>
-      <div className="flex justify-center">
         <AppButton
+          className="w-36 flex justify-center"
           searchInfo={searchInfo}
           setSearchInfo={setSearchInfo}
-          Icon={HiSearch}
           onClick={handleSearch}
         >
           Search

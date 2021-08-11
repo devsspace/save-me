@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "react",
+    "module": "es2020",
     "paths": {
       "@components/*": ["app/components/*"],
       "@hooks/*": ["app/hooks/*"],
