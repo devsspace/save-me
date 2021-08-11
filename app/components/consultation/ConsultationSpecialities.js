@@ -12,7 +12,7 @@ export default function ConsultationSpecialities() {
         Ask a Doctor Online & Get Quick Medical Advice For Your Health Queries.
         Our Medical Panel Consists Of Over 3500+ Doctors From 80+ Specialities
       </p>
-      <section className="flex justify-center md:justify-start gap-5 flex-wrap mt-5">
+      <section className="flex justify-center gap-5 flex-wrap mt-5">
         {consultingSpecialities.map((speciality) => (
           <AppSpecialityCard key={speciality.id} speciality={speciality} />
         ))}

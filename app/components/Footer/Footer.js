@@ -1,9 +1,6 @@
-import {
-  FaFacebook,
-  FaHeart,
-  FaLinkedin,
-  FaTwitterSquare,
-} from "react-icons/fa"
+import FooterInfo from "@components/Footer/FooterInfo"
+import FooterLinks from "@components/Footer/FooterLinks"
+import FooterSocials from "@components/Footer/FooterSocials"
 
 export default function Footer() {
   return (
@@ -16,78 +13,10 @@ export default function Footer() {
         </p>
       </div>
 
-      <section className="mt-10 flex justify-center items-center flex-wrap gap-10 text-xs">
-        <div>
-          <p className="text-sm font-bold">Services</p>
-          <p>Book Appointment</p>
-          <p>Video Consultation</p>
-          <p>Online COVID-19 Care</p>
-        </div>
-        <div className="hidden sm:block">
-          <p className="text-sm font-bold">Products</p>
-          <p>Ongoing Offers</p>
-          <p>Search By Category</p>
-          <p>Most Popular Products</p>
-        </div>
-        <div>
-          <p className="text-sm font-bold">Contact</p>
-          <p>WhatsApp</p>
-          <p>+88019507489</p>
-          <p>bidaiPitibi@mail.com</p>
-        </div>
-      </section>
+      <FooterLinks />
+      <FooterSocials />
+      <FooterInfo />
 
-      <section className="mt-8 flex justify-center items-center flex-wrap gap-3 text-xs">
-        <FaFacebook className="w-8 h-8 text-[#4267B2] cursor-pointer" />
-        <FaTwitterSquare className="w-8 h-8 text-[#1DA1F2] cursor-pointer" />
-        <FaLinkedin className="w-8 h-8 text-[#0077b5] cursor-pointer" />
-      </section>
-      <section className="mt-3 flex flex-col justify-center items-center flex-wrap gap-3 text-xs">
-        <div className="text-center">
-          <p>&copy; 2021 All Rights Reserved By Save Me</p>
-          <p>Mirpur, Dhaka 1216, Hoza Street, Bangladesh</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-            velit.
-          </p>
-        </div>
-
-        <div className="flex flex-col text-center sm:text-left space-y-3 sm:space-y-0 sm:flex-row gap-3">
-          <div className="space-y-3">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it Lorem ipsum dolor sit amet.
-            </p>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it Lorem ipsum dolor sit amet.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it Lorem ipsum dolor sit amet.
-            </p>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it Lorem ipsum dolor sit amet.
-            </p>
-          </div>
-        </div>
-
-        <p className="text-xs font-bold md:text-sm">
-          Appreciate Every Doctor Out There Who Saves Us{" "}
-          <FaHeart className="inline text-red-500" />
-        </p>
-      </section>
       <div className="hidden md:block w-80 h-80 rounded-full border-[60px] border-primary absolute -right-40 -top-40" />
       <div className="hidden md:block w-80 h-80 rounded-full border-[60px] border-gray-600 absolute -left-40 -bottom-44" />
     </section>
