@@ -18,7 +18,7 @@ data updates but pagination info doesn't update!
 [x] donation status
 [x] different donation list for donor and requester and admin
 [x] clean footer
-[] Dashboard request list
+[x] Dashboard request list
 [] Dropdown options not visible at bottom
 
 [x] Button clickable

@@ -72,8 +72,12 @@ const Login = () => {
         setCurrentUser(data.user)
         // if(from) router.push(from)
       } catch (err) {
-        setError(err.message)
         setLoading(false)
+        if (err.response.status === 429) {
+          console.log(err.response)
+          return setError(err.response.data)
+        }
+        setError(err.message)
       }
     }
 
