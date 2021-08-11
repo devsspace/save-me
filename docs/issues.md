@@ -26,5 +26,5 @@ Where                                   What
 [] Dark mode icon in navbar
 
 [] FAQ transition
-[] Donor search eligible remove
+[X] Donor search eligible remove (shohaul)
 [] Date picker                        Styling bug!
