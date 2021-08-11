@@ -48,7 +48,7 @@ const RequestBlood = () => {
       router.push(`/user/login?from=${router.pathname}`)
     } else {
       try {
-        const { data } = await requestBlood(bloodReqInfo)
+        const { data } = await requestBlood({...bloodReqInfo, requestedBy: currentUser})
         console.log(data)
         if (data?.bloodGroup) {
           const message = `${data.numberOfBags} bag(s) ${data.bloodGroup} blood on ${data.date} request added`

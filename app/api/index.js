@@ -38,6 +38,9 @@ export const askDonation = (info) => API.post("/donation", info)
 
 export const requestBlood = (bloodReqInfo) =>
   API.post(`/request-blood`, bloodReqInfo)
+export const getRequests = () => API.get(`/request-blood`)
+export const updateRequest = (requestInfo) => API.put(`/request-blood/${requestInfo._id}`, requestInfo)
+
 
 export const getDonations = (
   type = "",
