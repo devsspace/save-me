@@ -83,13 +83,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-sm font-bold">
-          Let's Appreciate Every Doctor Out There Who Saves Us{" "}
+        <p className="text-xs font-bold md:text-sm">
+          Appreciate Every Doctor Out There Who Saves Us{" "}
           <FaHeart className="inline text-red-500" />
         </p>
       </section>
-      <div className="w-80 h-80 rounded-full border-[60px] border-primary absolute -right-40 -top-40" />
-      <div className="w-80 h-80 rounded-full border-[60px] border-gray-600 absolute -left-40 -bottom-44" />
+      <div className="hidden md:block w-80 h-80 rounded-full border-[60px] border-primary absolute -right-40 -top-40" />
+      <div className="hidden md:block w-80 h-80 rounded-full border-[60px] border-gray-600 absolute -left-40 -bottom-44" />
     </section>
   )
 }
