@@ -5,7 +5,7 @@ import { BsFillHeartFill } from "react-icons/bs"
 
 export default function FAQs() {
   return (
-    <AppContainer>
+    <AppContainer className="mb-0">
       <p className="text-xl font-bold text-center">
         Frequently Asked Questions
       </p>
