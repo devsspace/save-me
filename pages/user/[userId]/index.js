@@ -58,10 +58,10 @@ const DonorDetail = () => {
         detailsRef.current.value = ""
       } else errorAlert()
     } catch (error) {
-      if (err.response.status === 429) {
-        setError(err.response.data)
+      if (error.response.status === 429) {
+        errorAlert(error.response.data)
       } else {
-        setError(err.message)
+        errorAlert(error.message)
       }
     }
   }
