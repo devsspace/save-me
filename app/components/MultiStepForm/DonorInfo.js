@@ -91,13 +91,11 @@ const DonorInfo = () => {
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-col md:flex-row justify-center">
         <div className="md:w-1/2 max-w-md flex flex-col justify-center">
-          <a onClick={() => router.push(`/user/${currentUser._id}`)}>
-            <img
-              className=""
-              src="https://res.cloudinary.com/dxvzhnyuo/image/upload/v1627829528/blood-donor-removebg-preview_snnwvx.png"
-              alt=""
-            />
-          </a>
+          <img
+            className=""
+            src="https://res.cloudinary.com/dxvzhnyuo/image/upload/v1627829528/blood-donor-removebg-preview_snnwvx.png"
+            alt=""
+          />
         </div>
         <div className="md:w-1/2 flex justify-center mt-5 md:justify-end w-full md:w-1/2 ">
           <form className="w-4/5">
@@ -232,6 +230,12 @@ const DonorInfo = () => {
                 </AppButton>
               </div>
             </div>
+            <small
+              onClick={() => router.push(`/user/${currentUser._id}`)}
+              className="block text-center w-4/5 my-5  cursor-pointer text-primaryDark hover:text-green-700"
+            >
+              View your public profile
+            </small>
           </form>
         </div>
       </div>

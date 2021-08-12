@@ -16,7 +16,8 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from "react-icons/ai"
+import { FiFacebook } from "react-icons/fi"
 import classes from "./login.module.css"
 
 const Login = () => {
@@ -75,9 +76,11 @@ const Login = () => {
         setLoading(false)
         if (err.response.status === 429) {
           console.log(err.response)
-          return setError(err.response.data)
+          setError(err.response.data)
         }
-        setError(err.message)
+        else {
+          setError(err.message)
+        }
       }
     }
 
@@ -168,16 +171,16 @@ const Login = () => {
       <>
         <button
           onClick={handleGoogleSignIn}
-          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2 my-3"
+          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2 my-3 flex items-center"
         >
-          {/* <FontAwesomeIcon icon={faGoogle} size="1x" />  */}
+          <AiOutlineGoogle className="text-3xl mr-3" />
           Continue with Google
         </button>
         <button
           onClick={handleFbSignIn}
-          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2 mb-3"
+          className="mx-auto block border-2 border-primaryDark rounded-full px-3 py-2 mb-3 flex items-center"
         >
-          {/* <FontAwesomeIcon icon={faFacebook} size="1x" />  */}
+          <FiFacebook className="text-3xl mr-1" />
           Continue with Facebook
         </button>
       </>
