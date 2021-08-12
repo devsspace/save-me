@@ -2,6 +2,7 @@ import AppButton from "@components/others/AppButton"
 import AppDatePicker from "@components/others/AppDatePicker"
 import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
+import LoadingSpinner from "@components/others/LoadingSpinner"
 import { signUp } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import Link from "next/link"
@@ -18,7 +19,11 @@ const Signup = () => {
   if (currentUser) router.replace("/dashboard/add-donor-info")
 
   return (
+<<<<<<< HEAD
     <div className="bg-light dark:bg-dark text-center">
+=======
+    <div className="bg-light dark:bg-dark text-center mt-8">
+>>>>>>> ac63f717fcf5573533225ff3cb96e23add2d1feb
       <h1>Join Now</h1>
       <SignupForm />
       <small className="text-blue-400">
@@ -69,9 +74,10 @@ const Signup = () => {
     return (
       <form onSubmit={handleSubmit(handleSignup)} className={classes.loginForm}>
         {loading && (
-          <div className="loading">
-            <h1>Loading...</h1>
-          </div>
+          <LoadingSpinner />
+          // <div className="loading">
+          //   <h1>Loading...</h1>
+          // </div>
         )}
         {error && <p className="error-text">{error}</p>}
 

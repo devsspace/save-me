@@ -5,10 +5,10 @@
 // import { useHistory, useLocation } from "react-router-dom"
 // import { userContext } from "../../App"
 // import "./Login.css"
-import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
 import AppSwitch from "@components/others/AppSwitch"
 import FormInput from "@components/others/FormInput"
+import LoadingSpinner from "@components/others/LoadingSpinner"
 import { ErrorMessage, WarningMessage } from "@components/others/Messages"
 import { logIn } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
@@ -16,7 +16,11 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from "react-icons/ai"
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineGoogle,
+} from "react-icons/ai"
 import { FiFacebook } from "react-icons/fi"
 import classes from "./login.module.css"
 
@@ -24,19 +28,19 @@ const Login = () => {
   const { currentUser, setCurrentUser } = useUserContext()
 
   const router = useRouter()
-  const {from} = router.query
+  const { from } = router.query
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [remember, setRemember] = useState(true)
 
-  
-  if(currentUser) router.replace(from || "/dashboard/add-donor-info")
+  if (currentUser) router.replace(from || "/dashboard/add-donor-info")
 
   return (
-    <div className="bg-light dark:bg-dark text-center">
-      <DarkMode />
+    <div className="bg-light dark:bg-dark text-center mt-8">
       <h1 className="dark:text-light">Welcome Back</h1>
-      {(from || !router.pathname.includes("login")) && <WarningMessage message="You need to log in first" />}
+      {(from || !router.pathname.includes("login")) && (
+        <WarningMessage message="You need to log in first" />
+      )}
 
       <LoginForm />
 
@@ -77,8 +81,7 @@ const Login = () => {
         if (err.response.status === 429) {
           console.log(err.response)
           setError(err.response.data)
-        }
-        else {
+        } else {
           setError(err.message)
         }
       }
@@ -87,9 +90,10 @@ const Login = () => {
     return (
       <form onSubmit={handleSubmit(handleLogin)} className={classes.loginForm}>
         {loading && (
-          <div className="loading">
-            <h1>Loading...</h1>
-          </div>
+          <LoadingSpinner />
+          // <div className="loading">
+          //   <h1>Loading...</h1>
+          // </div>
         )}
         {error && <ErrorMessage message={error} />}
 
@@ -118,7 +122,11 @@ const Login = () => {
             )}
           </span>
         </div>
-        <AppSwitch label="Remember me" enabled={remember} setEnabled={setRemember} />
+        <AppSwitch
+          label="Remember me"
+          enabled={remember}
+          setEnabled={setRemember}
+        />
         <AppButton className="m-auto">Log in</AppButton>
       </form>
     )

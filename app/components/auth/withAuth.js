@@ -1,3 +1,4 @@
+import LoadingSpinner from "@components/others/LoadingSpinner"
 import { getUser } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import Login from "pages/user/login"
@@ -28,7 +29,7 @@ export default function withAuth(Component) {
     }, [])
 
     if (loading) {
-      return <h1>Loadingggg...</h1>
+      return <LoadingSpinner />
     }
 
     // If user is not logged in
