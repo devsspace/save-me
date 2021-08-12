@@ -19,11 +19,7 @@ const Signup = () => {
   if (currentUser) router.replace("/dashboard/add-donor-info")
 
   return (
-<<<<<<< HEAD
     <div className="bg-light dark:bg-dark text-center">
-=======
-    <div className="bg-light dark:bg-dark text-center mt-8">
->>>>>>> ac63f717fcf5573533225ff3cb96e23add2d1feb
       <h1>Join Now</h1>
       <SignupForm />
       <small className="text-blue-400">
