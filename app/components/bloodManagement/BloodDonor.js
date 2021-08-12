@@ -1,7 +1,7 @@
 import AppText from "@components/bloodManagement/AppText"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
+import { AiFillHeart, AiOutlineHeart, AiOutlineUser } from "react-icons/ai"
 import { BsHeartHalf } from "react-icons/bs"
 import { FaCheckCircle, FaHeartbeat, FaTimesCircle } from "react-icons/fa"
 import { HiLocationMarker } from "react-icons/hi"
@@ -9,8 +9,8 @@ import { HiLocationMarker } from "react-icons/hi"
 export default function BloodDonor({ donorInfo }) {
   const router = useRouter()
   const isActive = Math.floor(Math.random() * 2) + 1
-  const { eligibility, bloodGroup, location, donated = 10, _id } = donorInfo
-
+  const { name, profilePic, eligibility, bloodGroup, location, donated = 10, _id } = donorInfo
+console.log(donorInfo.profilePic)
   let AppHeartIcon
   if (donated >= 10) {
     AppHeartIcon = FaHeartbeat
@@ -29,11 +29,12 @@ export default function BloodDonor({ donorInfo }) {
       onClick={() => router.push(`user/${_id}`)}
     >
       <Image
-        src="/images/bloodDonorProfile.svg"
+        src={profilePic || "/images/bloodDonorProfile.svg"}
         width={50}
         height={50}
-        objectFit="contain"
+        objectFit="cover"
         alt="Blood Donor"
+        className="rounded-full"
       />
       <div>
         <AppText
@@ -55,8 +56,8 @@ export default function BloodDonor({ donorInfo }) {
           />
         )}
         <AppText
-          text={`Donation: ${donated}`}
-          Icon={AppHeartIcon}
+          text={`${name}`}
+          Icon={AiOutlineUser}
           className="-mt-9"
           iconClassName="text-red-500 dark:text-red-400"
         />

@@ -17,8 +17,8 @@ data updates but pagination info doesn't update!
 [x] table, pagination, filter dark mode
 [x] donation status
 [x] different donation list for donor and requester and admin
-[] clean footer
-[] Dashboard request list
+[x] clean footer
+[x] Dashboard request list
 [] Dropdown options not visible at bottom
 
 [x] Button clickable
@@ -29,3 +29,12 @@ data updates but pagination info doesn't update!
 [] FAQ transition
 [X] Donor search eligible remove
 [] Date picker Styling bug!
+
+
+
+[] dashboard wrapper
+[] dashboard loading
+[] 
+
+## SERVER
+[] get donors!

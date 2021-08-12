@@ -8,10 +8,12 @@ import donorEligibility from "@configs/fakeData/donorEligibility"
 import { getDonor, saveProfile } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import axios from "axios"
+import { useRouter } from "node_modules/next/dist/client/router"
 import { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const DonorInfo = () => {
+  const router = useRouter()
   const [imgURL, setImgURL] = useState(null)
   const { currentUser } = useUserContext()
   const [editable, setEditable] = useState(false)
@@ -76,7 +78,7 @@ const DonorInfo = () => {
     const imgData = new FormData()
     imgData.set("key", "681354ee434466a79bb386e524a1ce29")
     imgData.append("image", e.target.files[0])
-
+    console.log(e.target.files)
     try {
       const res = await axios.post("https://api.imgbb.com/1/upload", imgData)
       setImgURL(res.data.data.display_url)
@@ -161,7 +163,7 @@ const DonorInfo = () => {
                   Upload Image
                 </div>
                 <div className="w-full items-center justify-center bg-grey-lighter">
-                  <label className="flex flex-col items-center px-2 py-1 bg-white text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-green-500 hover:text-white">
+                  <label className="flex flex-col items-center px-2 py-1 bg-white dark:bg-gray-600 text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue dark:border-none cursor-pointer hover:bg-green-500 hover:text-white">
                     <svg
                       className="w-8 h-8"
                       fill="currentColor"
@@ -178,7 +180,7 @@ const DonorInfo = () => {
                       register={register}
                       errors={errors}
                       required={false}
-                      onChange={handleImageUpload}
+                      onchange={handleImageUpload}
                     />
                   </label>
                 </div>
@@ -228,6 +230,12 @@ const DonorInfo = () => {
                 </AppButton>
               </div>
             </div>
+            <small
+              onClick={() => router.push(`/user/${currentUser._id}`)}
+              className="block text-center w-4/5 my-5  cursor-pointer text-primaryDark hover:text-green-700"
+            >
+              View your public profile
+            </small>
           </form>
         </div>
       </div>

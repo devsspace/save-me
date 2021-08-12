@@ -46,7 +46,7 @@ const BloodNavBar = () => {
   }, [])
 
   return (
-    <Disclosure as="nav" className="bg-primary-100 md:bg-primaryLight ">
+    <Disclosure as="nav" className="100 md:bg-primaryLight dark:bg-transparent">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -185,7 +185,7 @@ const BloodNavBar = () => {
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      : "text-green-700 hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
                   aria-current={item.current ? "page" : undefined}
