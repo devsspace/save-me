@@ -93,7 +93,7 @@ const BloodNavBar = () => {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* dark mode */}
                 <DashButton
-                  className={`list-none ${
+                  className={`${
                     theme === "light"
                       ? "text-black"
                       : "text-white md:text-yellow-400"

@@ -78,7 +78,7 @@ const DonorInfo = () => {
     const imgData = new FormData()
     imgData.set("key", "681354ee434466a79bb386e524a1ce29")
     imgData.append("image", e.target.files[0])
-
+    console.log(e.target.files)
     try {
       const res = await axios.post("https://api.imgbb.com/1/upload", imgData)
       setImgURL(res.data.data.display_url)
@@ -163,7 +163,7 @@ const DonorInfo = () => {
                   Upload Image
                 </div>
                 <div className="w-full items-center justify-center bg-grey-lighter">
-                  <label className="flex flex-col items-center px-2 py-1 bg-white text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-green-500 hover:text-white">
+                  <label className="flex flex-col items-center px-2 py-1 bg-white dark:bg-gray-600 text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue dark:border-none cursor-pointer hover:bg-green-500 hover:text-white">
                     <svg
                       className="w-8 h-8"
                       fill="currentColor"
@@ -180,7 +180,7 @@ const DonorInfo = () => {
                       register={register}
                       errors={errors}
                       required={false}
-                      onChange={handleImageUpload}
+                      onchange={handleImageUpload}
                     />
                   </label>
                 </div>
