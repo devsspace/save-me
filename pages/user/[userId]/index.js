@@ -66,7 +66,7 @@ const DonorDetail = () => {
   return (
     <div>
       {donor && (
-        <div className="h-52 bg-gray-300 w-full p-10 flex justify-evenly items-center">
+        <div className="h-52 bg-gray-400 dark:bg-gray-700 w-full p-10 flex justify-evenly items-center">
           <div className="flex items-center flex-wrap justify-center">
             <img
               className="w-32 h-32 rounded-full mr-5"
@@ -78,11 +78,11 @@ const DonorDetail = () => {
             />
             <div>
               <h1 className="text-xl">{donor.name}</h1>
-              <h1 className="text-gray-500">{donor.location}</h1>
+              <h1 className="text-gray-600">{donor.location}</h1>
             </div>
           </div>
           <div className="text-xl">
-            <h1 className="text-red-500 px-5">{donor.bloodGroup}</h1>
+            <h1 className="text-red-600 px-5">{donor.bloodGroup}</h1>
             <span
               className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                 donor.eligibility.toLowerCase() === "eligible"

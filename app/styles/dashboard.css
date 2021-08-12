@@ -242,6 +242,7 @@
       padding: 5px;
       display: flex;
       align-items: center;
+      justify-content: center;
     }
     .sidebar .nav-list{
       
@@ -264,6 +265,7 @@
     .sidebar li a{
       display: inline;
       background: transparent;
+      padding-top: 5px;
     }
     .sidebar li a:hover{
       background: transparent;
