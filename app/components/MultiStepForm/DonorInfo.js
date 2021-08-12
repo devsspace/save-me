@@ -8,10 +8,12 @@ import donorEligibility from "@configs/fakeData/donorEligibility"
 import { getDonor, saveProfile } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import axios from "axios"
+import { useRouter } from "node_modules/next/dist/client/router"
 import { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const DonorInfo = () => {
+  const router = useRouter()
   const [imgURL, setImgURL] = useState(null)
   const { currentUser } = useUserContext()
   const [editable, setEditable] = useState(false)
@@ -89,11 +91,13 @@ const DonorInfo = () => {
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-col md:flex-row justify-center">
         <div className="md:w-1/2 max-w-md flex flex-col justify-center">
-          <img
-            className=""
-            src="https://res.cloudinary.com/dxvzhnyuo/image/upload/v1627829528/blood-donor-removebg-preview_snnwvx.png"
-            alt=""
-          />
+          <a onClick={() => router.push(`/user/${currentUser._id}`)}>
+            <img
+              className=""
+              src="https://res.cloudinary.com/dxvzhnyuo/image/upload/v1627829528/blood-donor-removebg-preview_snnwvx.png"
+              alt=""
+            />
+          </a>
         </div>
         <div className="md:w-1/2 flex justify-center mt-5 md:justify-end w-full md:w-1/2 ">
           <form className="w-4/5">

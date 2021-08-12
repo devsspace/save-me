@@ -85,12 +85,14 @@ const DonorDetail = () => {
             <h1 className="text-red-500 px-5">{donor.bloodGroup}</h1>
             <span
               className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                donor.eligibility === "eligible"
+                donor.eligibility.toLowerCase() === "eligible"
                   ? "bg-green-300 text-green-800"
                   : "bg-red-300 text-red-800"
               }`}
             >
-              {donor.eligibility || "Not eligible"}
+              {donor.eligibility.toLowerCase() === "eligible"
+                ? "Eligible"
+                : "Not eligible"}
             </span>
           </div>
         </div>
