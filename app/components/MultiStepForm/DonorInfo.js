@@ -163,7 +163,7 @@ const DonorInfo = () => {
                   Upload Image
                 </div>
                 <div className="w-full items-center justify-center bg-grey-lighter">
-                  <label className="flex flex-col items-center px-2 py-1 bg-white dark:bg-gray-600 text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue dark:border-none cursor-pointer hover:bg-green-500 hover:text-white">
+                  <label className="flex flex-col items-center px-2 py-1 bg-white dark:bg-gray-600 text-primary rounded-lg shadow-md tracking-wide uppercase border border-blue dark:border-none cursor-pointer">
                     <svg
                       className="w-8 h-8"
                       fill="currentColor"
@@ -218,7 +218,9 @@ const DonorInfo = () => {
                   </AppButton>
                 )}
                 <AppButton
-                  className="justify-center"
+                  className={`justify-center ${
+                    !editable ? "cursor-not-allowed" : "cursor-pointer"
+                  }`}
                   disabled={!editable}
                   onClick={
                     editable

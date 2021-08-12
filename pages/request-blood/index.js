@@ -48,7 +48,10 @@ const RequestBlood = () => {
       router.push(`/user/login?from=${router.pathname}`)
     } else {
       try {
-        const { data } = await requestBlood({...bloodReqInfo, requestedBy: currentUser})
+        const { data } = await requestBlood({
+          ...bloodReqInfo,
+          requestedBy: currentUser,
+        })
         console.log(data)
         if (data?.bloodGroup) {
           const message = `${data.numberOfBags} bag(s) ${data.bloodGroup} blood on ${data.date} request added`
@@ -64,7 +67,7 @@ const RequestBlood = () => {
   if (loading) return <LoadingSpinner />
 
   return (
-    <div className="flex flex-col justify-center space-y-4 w-1/2 m-auto text-center">
+    <div className="flex flex-col justify-center space-y-4 w-1/2 m-auto text-center mt-12">
       <div>
         <h1 className="text-3xl font-bold">Request Blood</h1>
         <p className="text-xs sm:text-base">
