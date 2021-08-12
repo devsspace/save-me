@@ -6,38 +6,41 @@ export default function FooterInfo() {
       <div className="text-center">
         <p>&copy; 2021 All Rights Reserved By Save Me</p>
         <p>Mirpur, Dhaka 1216, Hoza Street, Bangladesh</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus velit.
-        </p>
+        <p>"Save Me" is a Open Source WebApp Providing Medical Services</p>
       </div>
 
       <div className="flex flex-col text-center sm:text-left space-y-3 sm:space-y-0 sm:flex-row gap-3">
         <div className="space-y-3">
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it Lorem ipsum dolor sit amet.
+            Our Goal is To Create & Maintain an Open Source Blood Management
+            System which connects thousands of blood donors & making Profitable
+            Growth by Online Pharmacy (E-Commerce) & Other Facilities.
           </p>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it Lorem ipsum dolor sit amet.
+            We Provide Medical Services Like Video Consultation, Online COVID_19
+            Care & Blood Management System. You Can Contact Us Through WhatsApp
+            or Our Email Provided On About Section. Thank You!
           </p>
         </div>
         <div className="space-y-3">
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it Lorem ipsum dolor sit amet.
+            We're a Team of 5 Passionate Developers Working Hard Maintaining
+            This Project. Our Work "SAVE ME" is fully Open Sourced & You can
+            checkout source codes on{" "}
+            <a
+              target="_blank"
+              href="https://github.com/devsspace/save-me"
+              rel="noreferrer"
+              className="underline"
+            >
+              github
+            </a>
+            . We hope you'll check it out.
           </p>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it Lorem ipsum dolor sit amet.
+            Appointments with doctors, expanding customer reach, establishing
+            trust and creating awesome convenient user experience for doctors,
+            blood donors & ecommerce customers.
           </p>
         </div>
       </div>
