@@ -1,4 +1,4 @@
-import BloodNavBar from "@components/bloodManagement/BloodNavBar"
+import MainNav from "@components/bloodManagement/MainNav"
 import { DonorWrapper } from "app/contexts/DonorContext"
 import { UserWrapper } from "app/contexts/UserContext"
 import { ThemeProvider } from "next-themes"
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps, router }) {
     <ThemeProvider attribute="class">
       <DonorWrapper>
         <UserWrapper>
-          <BloodNavBar />
+          <MainNav />
           <Component {...pageProps} />
         </UserWrapper>
       </DonorWrapper>

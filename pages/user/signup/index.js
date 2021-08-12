@@ -1,4 +1,3 @@
-import DarkMode from "@components/DarkMode"
 import AppButton from "@components/others/AppButton"
 import AppDatePicker from "@components/others/AppDatePicker"
 import AppSwitch from "@components/others/AppSwitch"
@@ -16,12 +15,10 @@ const Signup = () => {
   const { currentUser, setCurrentUser } = useUserContext()
   const router = useRouter()
 
-
-  if(currentUser) router.replace("/dashboard/add-donor-info")
+  if (currentUser) router.replace("/dashboard/add-donor-info")
 
   return (
     <div className="bg-light dark:bg-dark text-center">
-      <DarkMode />
       <h1>Join Now</h1>
       <SignupForm />
       <small className="text-blue-400">
@@ -46,12 +43,12 @@ const Signup = () => {
     })
 
     async function handleSignup(userInfo) {
-
       setLoading(true)
       // const newUser = { ...userInfo, role: isDonor ? "donor" : "user" }
-      
+
       try {
-        if(donatedBefore) userInfo.lastDonationDate = donationDate.lastDonationDate
+        if (donatedBefore)
+          userInfo.lastDonationDate = donationDate.lastDonationDate
 
         const { data } = await signUp(userInfo)
         if (!data.user) {
@@ -121,7 +118,9 @@ const Signup = () => {
 
         {donatedBefore ? (
           <div className="mt-2 mb-5 text-left">
-          <small className="text-gray-400">Last donation date(Approximate)</small>
+            <small className="text-gray-400">
+              Last donation date(Approximate)
+            </small>
             <AppDatePicker
               name="lastDonationDate"
               state={donationDate}
