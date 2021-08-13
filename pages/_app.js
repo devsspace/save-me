@@ -6,6 +6,7 @@ import "../app/styles/coming-soon.css"
 import "../app/styles/dashboard.css"
 import "../app/styles/datepickers.css"
 import "../app/styles/globals.css"
+import "../app/styles/login.css"
 
 function MyApp({ Component, pageProps, router }) {
   if (router.pathname.startsWith("/dashboard")) {
