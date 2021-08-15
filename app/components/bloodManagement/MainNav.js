@@ -23,6 +23,9 @@ export default function MainNav() {
             span2Text={theme === "dark" ? "On Lights" : "Off Lights"}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           />
+          <AppLink href="/doctors">
+            <NavButton span1Text="Doctors" />
+          </AppLink>
           <AppLink href="/search-donors">
             <NavButton span1Text="Search" span2Text="Donors" />
           </AppLink>

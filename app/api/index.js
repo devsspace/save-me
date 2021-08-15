@@ -60,4 +60,6 @@ export const updateDonation = (donationId, donationInfo) =>
   API.put(`/donation/${donationId}`, donationInfo)
 
 
-export const getWaitingList = () => API.get('/consult')
+  export const getWaitingList = () => API.get('/consult')
+  export const getDoctors = () => API.get(`/doctors`)
+  export const getDoctor = (doctorId) => API.get(`/doctors/${doctorId}`)
