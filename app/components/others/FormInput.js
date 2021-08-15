@@ -11,7 +11,6 @@ export default function FormInput({
   register = () => null,
   errors = "",
   refnc = null,
-  onchange,
   ...otherInputProps
 }) {
   const check = {}
@@ -37,7 +36,6 @@ export default function FormInput({
             placeholder={placeholder}
             {...register(name, check)}
             ref={refnc}
-            onChange={onchange}
             {...otherInputProps}
           />
         </div>
@@ -48,7 +46,6 @@ export default function FormInput({
           placeholder={placeholder}
           {...register(name, check)}
           ref={refnc}
-          onChange={onchange}
           {...otherInputProps}
         />
       )}
