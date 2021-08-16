@@ -19,7 +19,7 @@ const waitingList = () => {
   useEffect(() => {
     const get = async () => {
       try {
-        const { data } = await getWaitingList()
+        const { data } = await getWaitingList(doctorId)
         setPatients(data)
         console.log(data.find((p) => p.patientId === currentUser._id))
         if (data.find((p) => p.patientId === currentUser._id)) setJoined(true)
@@ -47,7 +47,7 @@ const waitingList = () => {
     <div className="">
       <h1 className="title">Waiting List</h1>
       <Table>
-        {patients.length &&
+        {patients.length ?
           patients.map((patient) => (
             <TableBody>
               <TD>
@@ -55,7 +55,7 @@ const waitingList = () => {
               </TD>
               <TD>{patient.patientId === currentUser._id && "Estimated: 1 min"}</TD>
             </TableBody>
-          ))}
+          )) : <TD>No patients in the waiting list, consult now!</TD>}
       </Table>
       <AppButton
         className="w-56 my-5 mx-auto"
