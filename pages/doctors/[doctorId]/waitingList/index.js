@@ -1,4 +1,5 @@
 import withAuth from "@components/auth/withAuth"
+import { Table, TableBody, TD } from "@components/others/Table"
 import { getWaitingList } from "app/api/index"
 import AppButton from "app/components/others/AppButton"
 import { useUserContext } from "app/contexts/UserContext"
@@ -13,12 +14,15 @@ const waitingList = () => {
   const { currentUser } = useUserContext()
   const router = useRouter()
   const { doctorId } = router.query
+  const [joined, setJoined] = useState(false)
 
   useEffect(() => {
     const get = async () => {
       try {
         const { data } = await getWaitingList()
         setPatients(data)
+        console.log(data.find((p) => p.patientId === currentUser._id))
+        if (data.find((p) => p.patientId === currentUser._id)) setJoined(true)
       } catch (error) {}
     }
     get()
@@ -36,19 +40,30 @@ const waitingList = () => {
       name: currentUser.name,
       phoneNumber: currentUser.phoneNumber,
     })
+    setJoined(true)
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="">
+      <h1 className="title">Waiting List</h1>
+      <Table>
         {patients.length &&
           patients.map((patient) => (
-            <li className="p-3">
-              {patient.serial}. {patient.name}
-            </li>
+            <TableBody>
+              <TD>
+                {patient.serial}. {patient.name}
+              </TD>
+              <TD>{patient.patientId === currentUser._id && "Estimated: 1 min"}</TD>
+            </TableBody>
           ))}
-        <AppButton className="w-56">Join the waiting list</AppButton>
-      </form>
+      </Table>
+      <AppButton
+        className="w-56 my-5 mx-auto"
+        onClick={handleSubmit}
+        disabled={joined}
+      >
+        Join the waiting list
+      </AppButton>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import AppButton from "@components/others/AppButton"
+import useRatingClient from "@hooks/useRatingClient"
 import { getDoctor } from "app/api/index"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -18,6 +19,8 @@ const DoctorProfile = () => {
     get()
   }, [doctorId])
 
+  const { ratingIcons } = useRatingClient(4.5)
+
   return (
     <div>
       {doctor && (
@@ -33,11 +36,15 @@ const DoctorProfile = () => {
             />
             <div>
               <h1 className="text-xl">{doctor.name}</h1>
-              <h1 className="text-gray-600">{doctor.specialization || "Dentist"}</h1>
+              <h1 className="text-gray-600">
+                {doctor.degrees || "MS(medicine), FCPS, MBBS"}
+              </h1>
             </div>
           </div>
           <div className="text-xl text-center">
-            <h1 className="text-green-700 px-5">{doctor.rating || "Specialist"}</h1>
+            <h1 className="text-green-700 px-5">
+              {doctor.specializations || "Surgery Neurology"}
+            </h1>
             <span
               className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                 !doctor.active
@@ -45,10 +52,14 @@ const DoctorProfile = () => {
                   : "bg-red-300 text-red-800"
               }`}
             >
-              {!doctor.active
-                ? "Active"
-                : "Inactive"}
+              {!doctor.active ? "Active" : "Inactive"}
             </span>
+          </div>
+          <div className="mt-1 text-sm flex items-center gap-0.5 text-yellow-400">
+            {ratingIcons.map((RatingIcon) => (
+              <RatingIcon key={Math.random()} />
+            ))}
+            <p className="font-bold ml-1">{4.5}</p>
           </div>
         </div>
       )}

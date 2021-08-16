@@ -10,7 +10,9 @@ export default function AppButton({
 }) {
   return (
     <div
-      className={`py-2 px-4 bg-primary flex rounded-md items-center ${className}`}
+      className={`py-2 px-4 ${
+        disabled ? "bg-gray-300" : "bg-primary"
+      } flex rounded-md items-center ${className}`}
     >
       {Icon && (
         <Icon
