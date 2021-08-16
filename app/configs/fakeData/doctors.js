@@ -9,7 +9,7 @@ export default [
     mobile: "01950743855",
     dob: "1976-12-15",
     bio: "ENT, General Physician, Covid Unit",
-    photoURL:
+    profilePic:
       "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGRvY3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     profileDesc:
       "Dr Mahububul Alam Kulkarni belives that once you start being more aware of your thoughts and actions, you will start appreciating life in a new way. This is why he specializes in depression, mood disorders, sexual disorders and anxiety disorders, because he feels that every person is capable of bringing about a change from within. His process is supportive, but aimed at direct interaction to help the patient bring about a visible change in himself or herself.",
@@ -69,7 +69,7 @@ export default [
     mobile: "01950743855",
     dob: "1976-12-15",
     bio: "GNT, Ophthalmologist, Unit 44",
-    photoURL:
+    profilePic:
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZG9jdG9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     profileDesc:
       "Dr Mahububul Alam Kulkarni belives that once you start being more aware of your thoughts and actions, you will start appreciating life in a new way. This is why he specializes in depression, mood disorders, sexual disorders and anxiety disorders, because he feels that every person is capable of bringing about a change from within. His process is supportive, but aimed at direct interaction to help the patient bring about a visible change in himself or herself.",
@@ -129,7 +129,7 @@ export default [
     mobile: "01950743855",
     dob: "1976-12-15",
     bio: "CNN, GizGizLogist, Unit 96",
-    photoURL:
+    profilePic:
       "https://images.unsplash.com/photo-1622475442837-ab958c6a1c64?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzZ8fGRvY3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     profileDesc:
       "Dr Mahububul Alam Kulkarni belives that once you start being more aware of your thoughts and actions, you will start appreciating life in a new way. This is why he specializes in depression, mood disorders, sexual disorders and anxiety disorders, because he feels that every person is capable of bringing about a change from within. His process is supportive, but aimed at direct interaction to help the patient bring about a visible change in himself or herself.",
@@ -189,7 +189,7 @@ export default [
     mobile: "01950743855",
     dob: "1976-12-15",
     bio: "CNN, DhurobaiLogist, Unit 25",
-    photoURL:
+    profilePic:
       "https://lits.me/wp-content/uploads/2021/04/Ali-Abdaal-300x300.png",
     profileDesc:
       "Dr Mahububul Alam Kulkarni belives that once you start being more aware of your thoughts and actions, you will start appreciating life in a new way. This is why he specializes in depression, mood disorders, sexual disorders and anxiety disorders, because he feels that every person is capable of bringing about a change from within. His process is supportive, but aimed at direct interaction to help the patient bring about a visible change in himself or herself.",

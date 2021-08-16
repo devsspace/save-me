@@ -1,4 +1,5 @@
 import AppContainer from "@components/others/AppContainer"
+import AppLink from "@components/others/AppLink"
 import AppSpecialityCard from "@components/others/AppSpecialityCard"
 import consultingSpecialities from "@configs/fakeData/consultingSpecialities"
 
@@ -14,7 +15,9 @@ export default function ConsultationSpecialities() {
       </p>
       <section className="flex justify-center gap-5 flex-wrap mt-5">
         {consultingSpecialities.map((speciality) => (
-          <AppSpecialityCard key={speciality.id} speciality={speciality} />
+          <AppLink key={speciality.id} href="/coming-soon">
+            <AppSpecialityCard speciality={speciality} />
+          </AppLink>
         ))}
       </section>
     </AppContainer>

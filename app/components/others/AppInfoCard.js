@@ -2,28 +2,29 @@ import useLineClamp from "@hooks/useLineClamp"
 import useRatingClient from "@hooks/useRatingClient"
 import { AiOutlineArrowRight } from "react-icons/ai"
 
-export default function AppInfoCard({ data }) {
+export default function AppInfoCard({ data, className }) {
   const {
     firstName,
     lastName,
+    name,
     isOnline,
-    photoURL,
+    profilePic,
     bio,
-    specializations,
-    rating,
+    specializations = [],
+    rating = 4.5,
     conversations,
-    communication,
+    communication = [{cost: 0}],
   } = data
   const specializationsInString = specializations.join(", ")
   const { ratingIcons } = useRatingClient(rating)
   return (
-    <div className="rounded-md overflow-hidden shadow-md relative bg-light dark:bg-gray-600 cursor-pointer">
-      <img className="w-full h-32 sm:h-48 object-cover" src={photoURL} alt="" />
+    <div className={`rounded-md overflow-hidden shadow-md relative bg-light dark:bg-gray-600 cursor-pointer ${className}`}>
+      <img className="w-full h-32 sm:h-48 w-full object-cover" src={profilePic} alt="" />
 
       <div className="m-3">
         <p className="text-xs">{bio}</p>
         <p className="font-bold">
-          Dr. {firstName} {lastName}
+          Dr. {firstName ? `${firstName} ${lastName}` : name}
         </p>
 
         <p className="text-xs">{useLineClamp(specializationsInString)}</p>

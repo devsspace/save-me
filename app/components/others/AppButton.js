@@ -9,20 +9,24 @@ export default function AppButton({
   textClassName = "",
 }) {
   return (
-    <>
+    <div
+      className={`py-2 px-4 ${
+        disabled ? "bg-gray-300" : "bg-primary"
+      } flex rounded-md items-center ${className}`}
+    >
       {Icon && (
-        <Icon className={`w-5 h-5 mr-0.5 text-white ${iconClassName}`} />
+        <Icon
+          className={`w-5 h-5 mr-0.5 text-white bg-primary ${iconClassName}`}
+        />
       )}
       <button
-        className={`py-2 px-4 text-white transition-all duration-150 ease-linear rounded-md shadow-md outline-none bg-primary flex items-center uppercase text-white font-bold ${textClassName} ${
-          disabled ? "!bg-gray-300" : "hover:bg-green-500"
-        } ${className}`}
+        className={`text-white flex items-center uppercase font-bold ${textClassName}`}
         type={type}
         onClick={onClick}
         disabled={disabled}
       >
         {children}
       </button>
-    </>
+    </div>
   )
 }
