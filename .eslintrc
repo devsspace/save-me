@@ -40,6 +40,7 @@
     "react/no-unescaped-entities": 0,
     "@next/next/no-img-element": 0,
     "react/jsx-filename-extension": 0,
+    "react-hooks/rules-of-hooks": 0,
     "react/jsx-props-no-spreading": 0,
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
