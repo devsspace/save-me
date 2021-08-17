@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form"
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
-  AiOutlineGoogle,
+  AiOutlineGoogle
 } from "react-icons/ai"
 import { FiFacebook } from "react-icons/fi"
 import classes from "./login.module.css"
@@ -78,7 +78,7 @@ const Login = () => {
         // if(from) router.push(from)
       } catch (err) {
         setLoading(false)
-        if (err.response.status === 429) {
+        if (err?.response?.status === 429) {
           console.log(err.response)
           setError(err.response.data)
         } else {
