@@ -1,14 +1,40 @@
 import AppButton from "@components/others/AppButton"
 import FormInput from "@components/others/FormInput"
+import useErrorToast from "@hooks/useErrorToast"
+import { logIn } from "app/api/index"
+import { useUserContext } from "app/contexts/UserContext"
+import { useForm } from "react-hook-form"
 import { AiFillMail, AiOutlineLogin } from "react-icons/ai"
 import { BsLockFill } from "react-icons/bs"
 
-export default function SignInForm({
-  handleSubmit,
-  handleLogin,
-  register,
-  errors,
-}) {
+export default function SignInForm({ setLoading }) {
+  const { setCurrentUser } = useUserContext()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  async function handleLogin(userInfo) {
+    setLoading(true)
+    try {
+      const { data } = await logIn(userInfo)
+      if (!data.user) {
+        useErrorToast(data.message)
+        setLoading(false)
+      }
+      localStorage.setItem("profile", JSON.stringify(data))
+      return setCurrentUser(data.user)
+    } catch (err) {
+      setLoading(false)
+      if (err.response.status === 429) {
+        return useErrorToast(err.response.data)
+      }
+      return useErrorToast(err.message)
+    }
+  }
+
   return (
     <form
       onSubmit={handleSubmit(handleLogin)}
