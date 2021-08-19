@@ -10,39 +10,41 @@ import { AiFillMail } from "react-icons/ai"
 import { BsLockFill } from "react-icons/bs"
 import { TiTick } from "react-icons/ti"
 
+export default function SignupForm({ setLoading }) {
+  const { setCurrentUser } = useUserContext()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
-export default function SignupForm({setLoading}) {
-    const { setCurrentUser } = useUserContext()
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm()
+  const [donatedBefore, setDonatedBefore] = useState(false)
+  const [enabled, setEnabled] = useState(false)
+  const [doctor, setDoctor] = useState(false)
+  const [donationDate, setDonationDate] = useState({
+    lastDonationDate: new Date(),
+  })
 
-    const [donatedBefore, setDonatedBefore] = useState(false)
-    const [enabled, setEnabled] = useState(false)
-    const [donationDate, setDonationDate] = useState({
-      lastDonationDate: new Date(),
-    })
+  async function handleSignup(userInfo) {
+    setLoading(true)
+    try {
+      if (donatedBefore)
+        userInfo.lastDonationDate = donationDate.lastDonationDate
+      if(doctor)
+        userInfo.role = "doctor"
 
-    async function handleSignup(userInfo) {
-      setLoading(true)
-      try {
-        if (donatedBefore)
-          userInfo.lastDonationDate = donationDate.lastDonationDate
-
-        const { data } = await signUp(userInfo)
-        if (!data.user) {
-          useErrorToast(data.message)
-          return setLoading(false)
-        }
-        localStorage.setItem("profile", JSON.stringify(data))
-        return setCurrentUser(data.user)
-      } catch (err) {
-        useErrorToast(err.message)
+      const { data } = await signUp(userInfo)
+      if (!data.user) {
+        useErrorToast(data.message)
         return setLoading(false)
       }
+      localStorage.setItem("profile", JSON.stringify(data))
+      return setCurrentUser(data.user)
+    } catch (err) {
+      useErrorToast(err.message)
+      return setLoading(false)
     }
+  }
   return (
     <form
       onSubmit={handleSubmit(handleSignup)}
@@ -114,6 +116,28 @@ export default function SignupForm({setLoading}) {
               className="ml-2 block text-sm text-dark dark:text-light"
             >
               I've Donated Before
+            </label>
+          </div>
+        </div>
+      </div>
+
+      {/* doctor */}
+      <div>
+        <div>
+          <div className="mt-3 flex items-center">
+            <input
+              id="donatedBefore"
+              name="donatedBefore"
+              type="checkbox"
+              value={doctor}
+              onChange={() => setDoctor(!doctor)}
+              className="form-checkbox rounded border-gray-300 text-primary outline-none focus:!ring-0"
+            />
+            <label
+              htmlFor="donatedBefore"
+              className="ml-2 block text-sm text-dark dark:text-light"
+            >
+              I'm a doctor
             </label>
           </div>
         </div>

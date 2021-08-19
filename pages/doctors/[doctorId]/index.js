@@ -14,7 +14,9 @@ const DoctorProfile = () => {
       try {
         const { data } = await getDoctor(doctorId)
         setDoctor(data)
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     }
     get()
   }, [doctorId])

@@ -23,7 +23,9 @@ const waitingList = () => {
         setPatients(data)
         console.log(data.find((p) => p.patientId === currentUser._id))
         if (data.find((p) => p.patientId === currentUser._id)) setJoined(true)
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     }
     get()
   }, [])
@@ -32,7 +34,7 @@ const waitingList = () => {
     if(!patient){
       return setPatients(patients.filter(p => p.patientId !== currentUser._id))
     }
-    setPatients([...patients, patient])
+    return setPatients([...patients, patient])
   })
 
   const handleJoin = () => {
