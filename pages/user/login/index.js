@@ -1,31 +1,41 @@
 import AuthForm from "@components/auth/AuthForm"
 import AppButtonV2 from "@components/others/AppButtonV2"
+import LoadingSpinner from "@components/others/LoadingSpinner"
 import { useUserContext } from "app/contexts/UserContext"
 import { useRouter } from "next/router"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { MdOpenInNew } from "react-icons/md"
 
 export default function LoginPage() {
   const signInButtonRef = useRef()
   const signUpButtonRef = useRef()
   const containerRef = useRef()
+  const [loading, setLoading] = useState(false)
+  
   const handleRegister = () => {
     containerRef.current.classList.add("sign-up-mode")
   }
+
   const handleLogin = () => {
     containerRef.current.classList.remove("sign-up-mode")
   }
+  
   const { currentUser } = useUserContext()
   const router = useRouter()
   const { from } = router.query
+  
   useEffect(() => {
     if (currentUser) router.replace(from || "/dashboard/add-donor-info")
   }, [currentUser, from, router])
+
+  if(loading) return <LoadingSpinner />
+
   return (
     <div className="authContainer" ref={containerRef}>
       <div className="forms-container">
-        <AuthForm />
+        <AuthForm setLoading={setLoading} />
       </div>
+      
       <div className="panels-container">
         <div className="panel left-panel">
           <div className="content">
