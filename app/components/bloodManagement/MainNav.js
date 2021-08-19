@@ -39,7 +39,7 @@ export default function MainNav() {
               <NavButton span1Text={currentUser?.name} span2Text="My Account" />
             </AppLink>
           ) : (
-            <AppLink href="/user/signup">
+            <AppLink href="/user/login">
               <NavButton
                 buttonClassName="animate-pulse"
                 span1Text="Hey Anonymous!"

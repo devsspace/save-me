@@ -1,18 +1,18 @@
+
 import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
 import AppDropdown from "@components/others/AppDropdown"
 import FormInput from "@components/others/FormInput"
-import bloodGroups from "@configs/fakeData/bloodGroups"
 import districts from "@configs/fakeData/districts"
-import donorEligibility from "@configs/fakeData/donorEligibility"
 import { getDonor, saveProfile } from "app/api"
 import { useUserContext } from "app/contexts/UserContext"
 import axios from "axios"
+import Image from "next/image"
 import { useRouter } from "node_modules/next/dist/client/router"
 import { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
-const DonorInfo = () => {
+const DoctorInfo = () => {
   const router = useRouter()
   const [imgURL, setImgURL] = useState(null)
   const { currentUser } = useUserContext()
@@ -91,11 +91,14 @@ const DonorInfo = () => {
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-col md:flex-row justify-center">
         <div className="md:w-1/2 max-w-md flex flex-col justify-center">
-          <img
-            className=""
-            src="https://res.cloudinary.com/dxvzhnyuo/image/upload/v1627829528/blood-donor-removebg-preview_snnwvx.png"
-            alt=""
+          <Image
+            height={300}
+            width={300}
+            src="/images/doctorInfo.svg"
+
           />
+
+
         </div>
         <div className="md:w-1/2 flex justify-center mt-5 md:justify-end w-full md:w-1/2 ">
           <form className="w-4/5">
@@ -116,30 +119,43 @@ const DonorInfo = () => {
                   refnc={nameRef}
                 />
               </div>
+              {/* FIXME Issue:default value */}
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                  <span className="text-red-400 mr-1">*</span> Blood Group
+                  <span className="text-red-400 mr-1">*</span> Designation
                 </div>
-                <AppDropdown
-                  data={bloodGroups}
-                  name="bloodGroup"
-                  disabled={!editable}
-                  state={donorInfo}
-                  setState={setDonorInfo}
+                <FormInput
+                  className="w-full"
+                  name="name"
+                  required
+                  placeholder="Your Designation"
+                  readOnly={!editable}
+                  defaultValue={donorInfo.name}
+                  register={register}
+                  errors={errors}
+                  refnc={nameRef}
                 />
+
               </div>
-              <div className="w-full">
-                <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-                  <span className="text-red-400 mr-1">*</span> Eligibility
-                </div>
-                <AppDropdown
-                  data={donorEligibility}
-                  name="eligibility"
-                  disabled={!editable}
-                  state={donorInfo}
-                  setState={setDonorInfo}
-                />
+              {/* FIXME Issue:default value */}
+              <div className="w-full" />
+              <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
+                <span className="text-red-400 mr-1">*</span> BM&DC Number
               </div>
+              <FormInput
+                className="w-full"
+                name="phoneNumber"
+                type="number"
+                required
+                placeholder="169-8689654"
+                readOnly={!editable}
+                defaultValue={donorInfo.phoneNumber}
+                register={register}
+                errors={errors}
+                refnc={phoneNumberRef}
+              />
+
+
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                   <span className="text-red-400 mr-1">*</span> Phone Number
@@ -244,4 +260,4 @@ const DonorInfo = () => {
   )
 }
 
-export default DonorInfo
+export default DoctorInfo

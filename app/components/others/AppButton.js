@@ -3,21 +3,17 @@ export default function AppButton({
   disabled = false,
   children,
   Icon,
-  type = "submit",
+  type = "",
   className = "",
   iconClassName = "",
   textClassName = "",
 }) {
   return (
     <div
-      className={`py-2 px-4 ${
-        disabled ? "bg-gray-300" : "bg-primary"
-      } flex rounded-md items-center ${className}`}
+      className={`py-2 px-4 flex bg-primary rounded-md items-center cursor-pointer ${className}`}
     >
       {Icon && (
-        <Icon
-          className={`w-5 h-5 mr-0.5 text-white bg-primary ${iconClassName}`}
-        />
+        <Icon className={`w-5 h-5 mr-0.5 text-white ${iconClassName}`} />
       )}
       <button
         className={`text-white flex items-center uppercase font-bold ${textClassName}`}
