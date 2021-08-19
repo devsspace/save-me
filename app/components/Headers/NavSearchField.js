@@ -1,4 +1,4 @@
-import FormInput from "@components/Others/FormInput"
+import FormInput from "@components/others/FormInput"
 
 export default function NavSearchField({ className }) {
   return (

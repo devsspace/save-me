@@ -2,7 +2,7 @@ import BrandLogo from "@components/Headers/BrandLogo"
 import LeadNavButton from "@components/Headers/LeadNavButton"
 import NavButton from "@components/Headers/NavButton"
 import NavSearchField from "@components/Headers/NavSearchField"
-import AppLink from "@components/Others/AppLink"
+import AppLink from "@components/others/AppLink"
 import { useUserContext } from "app/contexts/UserContext"
 import { useTheme } from "next-themes"
 
