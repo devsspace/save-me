@@ -29,11 +29,13 @@ const waitingList = () => {
   }, [])
 
   socket.on("update-patient", (patient) => {
+    if(!patient){
+      return setPatients(patients.filter(p => p.patientId !== currentUser._id))
+    }
     setPatients([...patients, patient])
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleJoin = () => {
     socket.emit("add-patient", {
       patientId: currentUser._id,
       doctorId,
@@ -41,6 +43,10 @@ const waitingList = () => {
       phoneNumber: currentUser.phoneNumber,
     })
     setJoined(true)
+  }
+  const handleCancel = () => {
+    socket.emit("remove-patient", {patientId: currentUser._id})
+    setJoined(false)
   }
 
   return (
@@ -54,12 +60,13 @@ const waitingList = () => {
                 {patient.serial}. {patient.name}
               </TD>
               <TD>{patient.patientId === currentUser._id && "Estimated: 1 min"}</TD>
+              <TD>{patient.patientId === currentUser._id && <AppButton onClick={handleCancel} className="justify-center" >Cancel</AppButton>}</TD>
             </TableBody>
           )) : <TD>No patients in the waiting list, consult now!</TD>}
       </Table>
       <AppButton
         className="w-56 my-5 mx-auto"
-        onClick={handleSubmit}
+        onClick={handleJoin}
         disabled={joined}
       >
         Join the waiting list
