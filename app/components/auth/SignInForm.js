@@ -28,7 +28,7 @@ export default function SignInForm({ setLoading }) {
       return setCurrentUser(data.user)
     } catch (err) {
       setLoading(false)
-      if (err.response.status === 429) {
+      if (err?.response?.status === 429) {
         return useErrorToast(err.response.data)
       }
       return useErrorToast(err.message)
