@@ -1,5 +1,5 @@
 import AppButton from "@components/others/AppButton"
-import FormInput from "@components/Others/FormInput"
+import FormInput from "@components/others/FormInput"
 import { AiFillMail, AiOutlineLogin } from "react-icons/ai"
 import { BsLockFill } from "react-icons/bs"
 

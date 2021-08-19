@@ -1,6 +1,6 @@
 import AppButton from "@components/others/AppButton"
 import AppDatePicker from "@components/others/AppDatePicker"
-import FormInput from "@components/Others/FormInput"
+import FormInput from "@components/others/FormInput"
 import { AiFillMail } from "react-icons/ai"
 import { BsLockFill } from "react-icons/bs"
 import { TiTick } from "react-icons/ti"
