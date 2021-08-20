@@ -16,29 +16,34 @@ export default function DashButtons({ sideBarIsOpen }) {
   console.log(active)
   return (
     <>
-      <AppLink href="/">
-        <DashButton
-          sideBarIsOpen={sideBarIsOpen}
-          boxIcon="bx-grid-alt"
-          text="Donor's Profile"
-          onClick={() => router.push("/dashboard/add-donor-info")}
-          className={
-            active === "/dashboard/add-donor-info" ? "!bg-primaryDark" : ""
-          }
-        />
-      </AppLink>
+      {(currentUser.role === "admin" || currentUser.role === "donor") && (
+        <AppLink href="/">
+          <DashButton
+            sideBarIsOpen={sideBarIsOpen}
+            boxIcon="bx-grid-alt"
+            text="Donor's Profile"
+            onClick={() => router.push("/dashboard/add-donor-info")}
+            className={
+              active === "/dashboard/add-donor-info" ? "!bg-primaryDark" : ""
+            }
+          />
+        </AppLink>)
 
-      <AppLink href="/">
-        <DashButton
-          sideBarIsOpen={sideBarIsOpen}
-          boxIcon="bx-grid-alt"
-          text="Doctor's Profile"
-          onClick={() => router.push("/dashboard/add-doctor-info")}
-          className={
-            active === "/dashboard/add-doctor-info" ? "!bg-primaryDark" : ""
-          }
-        />
-      </AppLink>
+      }
+      {(currentUser.role === "admin" || currentUser.role === "doctor") && (
+        <AppLink href="/">
+          <DashButton
+            sideBarIsOpen={sideBarIsOpen}
+            boxIcon="bx-grid-alt"
+            text="Doctor's Profile"
+            onClick={() => router.push("/dashboard/add-doctor-info")}
+            className={
+              active === "/dashboard/add-doctor-info" ? "!bg-primaryDark" : ""
+            }
+          />
+        </AppLink>
+      )}
+
 
 
       {currentUser.role.includes("admin") && (
