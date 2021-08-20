@@ -54,7 +54,7 @@ function DashboardWrapper({ children, adminOnly, forDoctor }) {
         </ul>
       </div>
       <section className="home-section">{
-        permissible ? children : <h1 className="text-center text-5xl text-red-700">
+        permissible ? children : <h1 className="text-center mt-10 text-5xl text-red-700">
       Increase your ability first!
     </h1>
       }</section>

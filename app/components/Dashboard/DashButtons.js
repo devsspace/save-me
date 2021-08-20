@@ -13,10 +13,14 @@ export default function DashButtons({ sideBarIsOpen }) {
   const router = useRouter()
   const { currentUser } = useUserContext()
   const [active, setActive] = useState(router.pathname)
-  console.log(active)
+
+  const admin = currentUser?.role.includes("admin")
+  const doctor = currentUser?.role.includes("doctor")
+  const donor = currentUser?.role.includes("donor")
+
   return (
     <>
-      {(currentUser.role === "admin" || currentUser.role === "donor") && (
+      {donor && (
         <AppLink href="/">
           <DashButton
             sideBarIsOpen={sideBarIsOpen}
@@ -27,10 +31,10 @@ export default function DashButtons({ sideBarIsOpen }) {
               active === "/dashboard/add-donor-info" ? "!bg-primaryDark" : ""
             }
           />
-        </AppLink>)
+        </AppLink>
+      )}
 
-      }
-      {(currentUser.role === "admin" || currentUser.role === "doctor") && (
+      {doctor && (
         <AppLink href="/">
           <DashButton
             sideBarIsOpen={sideBarIsOpen}
@@ -44,21 +48,18 @@ export default function DashButtons({ sideBarIsOpen }) {
         </AppLink>
       )}
 
-
-
-      {currentUser.role.includes("admin") && (
+      {admin && (
         <AppLink href="/">
           <DashButton
             sideBarIsOpen={sideBarIsOpen}
             boxIcon="bxs-donate-blood"
             text="Donors"
             onClick={() => router.push("/dashboard/donors")}
-            className={
-              active === "/dashboard/donors" ? "!bg-primaryDark" : ""
-            }
+            className={active === "/dashboard/donors" ? "!bg-primaryDark" : ""}
           />
         </AppLink>
       )}
+
       <AppLink href="/">
         <DashButton
           sideBarIsOpen={sideBarIsOpen}
@@ -68,6 +69,7 @@ export default function DashButtons({ sideBarIsOpen }) {
           className={active === "/dashboard/donations" ? "!bg-primaryDark" : ""}
         />
       </AppLink>
+
       <AppLink href="/">
         <DashButton
           sideBarIsOpen={sideBarIsOpen}
@@ -77,6 +79,7 @@ export default function DashButtons({ sideBarIsOpen }) {
           className={active === "/dashboard/requests" ? "!bg-primaryDark" : ""}
         />
       </AppLink>
+
       <AppLink href="/">
         <DashButton
           sideBarIsOpen={sideBarIsOpen}
@@ -84,6 +87,7 @@ export default function DashButtons({ sideBarIsOpen }) {
           text="Ranking"
         />
       </AppLink>
+
       <DashButton
         sideBarIsOpen={sideBarIsOpen}
         onClick={handleChangeTheme}
