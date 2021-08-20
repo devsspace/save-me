@@ -3,13 +3,14 @@ import DashBoardProfile from "@components/Dashboard/DashboardProfile"
 import DashButtons from "@components/Dashboard/DashButtons"
 import DashLogo from "@components/Dashboard/DashLogo"
 import { useUserContext } from "app/contexts/UserContext"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
-function DashboardWrapper({ children, adminOnly }) {
+function DashboardWrapper({ children, adminOnly, forDoctor }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false)
   const closeBtnRef = useRef()
   const sideBarRef = useRef()
   const { currentUser } = useUserContext()
+  const [permissible, setPermissible] = useState(true)
 
   const menuBtnChange = () => {
     if (sideBarRef.current.classList.contains("open")) {
@@ -25,6 +26,15 @@ function DashboardWrapper({ children, adminOnly }) {
     sideBarRef.current.classList.toggle("open")
     menuBtnChange()
   }
+
+  useEffect(() => {
+    const admin = currentUser?.role.includes("admin")
+    const doctor = currentUser?.role.includes("doctor")
+    
+    if (adminOnly && !admin) setPermissible(false)
+    if (forDoctor && !(doctor || admin)) setPermissible(false)
+
+  }, [currentUser, adminOnly, forDoctor])
 
   return (
     <>
@@ -43,13 +53,11 @@ function DashboardWrapper({ children, adminOnly }) {
           <DashBoardProfile />
         </ul>
       </div>
-      <section className="home-section">
-        {
-          adminOnly ? currentUser.role === "admin" ?
-          children : <h1 className="text-center text-5xl text-red-700">Increase your ability first!</h1>
-          : children
-          }
-      </section>
+      <section className="home-section">{
+        permissible ? children : <h1 className="text-center text-5xl text-red-700">
+      Increase your ability first!
+    </h1>
+      }</section>
     </>
   )
 }

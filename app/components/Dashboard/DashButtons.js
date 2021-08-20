@@ -41,7 +41,7 @@ export default function DashButtons({ sideBarIsOpen }) {
       </AppLink>
 
 
-      {currentUser.role === "admin" && (
+      {currentUser.role.includes("admin") && (
         <AppLink href="/">
           <DashButton
             sideBarIsOpen={sideBarIsOpen}

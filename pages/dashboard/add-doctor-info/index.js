@@ -5,7 +5,7 @@ import DoctorInfo from "@components/MultiStepForm/DoctorInfo"
 
 const DoctorProfile = () => {
   return (
-    <DashboardWrapper>
+    <DashboardWrapper forDoctor>
       <div className="h-24 min-h-0 md:min-h-full flex items-center">
         <h1 className="title">Doctor Profile</h1>
       </div>

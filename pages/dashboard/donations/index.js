@@ -27,7 +27,7 @@ const Donations = () => {
 
   // If admin, no tabs needed
   useEffect(() => {
-    if (currentUser?.role === "admin") setTabs("")
+    if (currentUser?.role.includes("admin")) setTabs("")
   }, [currentUser])
 
   const nextPage = () => {

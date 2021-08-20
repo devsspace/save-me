@@ -17,7 +17,10 @@ export default function DashBoardProfile() {
         />
         <div className="name_job">
           <div className="name">{currentUser.name}</div>
-          <div className="job">{currentUser.role}</div>
+          <div className="job">
+            {currentUser.role[0]}
+            {currentUser.role[1] && ` & ${currentUser.role[1]}`}
+          </div>
         </div>
       </div>
       <i
