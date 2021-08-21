@@ -91,7 +91,7 @@ export default function VideoChatPage() {
                         A
                       </div>
                       <div className="relative ml-3 text-sm bg-white dark:bg-gray-500 dark:text-white rounded-md shadow py-2 px-4">
-                        <div>Hey How are you today?</div>
+                        <div>Hai Apu Kamon acan?</div>
                       </div>
                     </div>
                   </div>
@@ -102,9 +102,8 @@ export default function VideoChatPage() {
                       </div>
                       <div className="relative ml-3 text-sm bg-white dark:bg-gray-500 dark:text-white rounded-md shadow py-2 px-4">
                         <div>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Vel ipsa commodi illum saepe numquam maxime
-                          asperiores voluptate sit, minima perspiciatis.
+                          Bari Kotai? Ki Koran? Bat Khaisan? Bap ki kora? ar ma
+                          housewipe to?
                         </div>
                       </div>
                     </div>
@@ -115,7 +114,7 @@ export default function VideoChatPage() {
                         B
                       </div>
                       <div className="relative mr-3 text-sm bg-primaryLight rounded-md shadow py-2 px-4">
-                        <div>I'm ok what about you?</div>
+                        <div>Apnar Somossa Ki?</div>
                       </div>
                     </div>
                   </div>
@@ -126,8 +125,7 @@ export default function VideoChatPage() {
                       </div>
                       <div className="relative ml-3 text-sm bg-white dark:bg-gray-500 dark:text-white rounded-md shadow py-2 px-4">
                         <div>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Perspiciatis, in.
+                          Apner BF Acha? Amer GF Hoban? AiLaBiu (Gulabi Dil 💗)
                         </div>
                       </div>
                     </div>
@@ -224,7 +222,7 @@ export default function VideoChatPage() {
                 <div className="relative w-full">
                   <input
                     type="text"
-                    className="flex w-full border rounded-md focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                    className="flex w-full border-2 border-gray-300 focus:border-none dark:border-none rounded-md outline-none focus:ring-2 focus:ring-primary pl-4 h-10"
                   />
                   <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
                     <svg
