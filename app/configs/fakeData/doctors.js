@@ -1,6 +1,6 @@
 export default [
   {
-    id: "1",
+    _id: "1",
     gender: "male",
     firstName: "Abdullah",
     lastName: "Al Fahim",
@@ -57,10 +57,10 @@ export default [
       },
     ],
     conversations: 946,
-    rating: 2.5,
+    rating: 5,
   },
   {
-    id: "2",
+    _id: "2",
     gender: "female",
     firstName: "Chang",
     lastName: "Chung",
@@ -120,7 +120,7 @@ export default [
     rating: 4.8,
   },
   {
-    id: "3",
+    _id: "3",
     gender: "male",
     firstName: "MD Miyad",
     lastName: "Hossain",
@@ -180,7 +180,7 @@ export default [
     rating: 4.0,
   },
   {
-    id: "4",
+    _id: "4",
     gender: "male",
     firstName: "Ali",
     lastName: "Abdaal",
@@ -240,7 +240,7 @@ export default [
     rating: 3.5,
   },
   {
-    id: "5",
+    _id: "5",
     gender: "male",
     firstName: "Minhaj Rahat",
     lastName: "Abdaal",
@@ -300,7 +300,7 @@ export default [
     rating: 3.5,
   },
   {
-    id: "6",
+    _id: "6",
     gender: "male",
     firstName: "Ali",
     lastName: "Abdaal",
@@ -360,7 +360,7 @@ export default [
     rating: 3.5,
   },
   {
-    id: "7",
+    _id: "7",
     gender: "female",
     firstName: "Chang",
     lastName: "Chung",
@@ -420,7 +420,7 @@ export default [
     rating: 4.8,
   },
   {
-    id: "8",
+    _id: "8",
     gender: "male",
     firstName: "MD Miyad",
     lastName: "Hossain",
