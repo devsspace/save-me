@@ -3,21 +3,24 @@ import AppContainer from "@components/others/AppContainer"
 import AppInfoCard from "@components/others/AppInfoCard"
 import AppLink from "@components/others/AppLink"
 import doctors from "@configs/fakeData/doctors"
-import { useState } from "react"
+import { getDoctors } from "app/api/index"
+import { useEffect, useState } from "react"
 import { TiArrowRightThick } from "react-icons/ti"
 
 const Doctors = () => {
   const [doctorsList, setDoctorsList] = useState(doctors)
 
-  // useEffect(() => {
-  //   const get = async () => {
-  //     try {
-  //       const { data } = await getDoctors()
-  //       setDoctors(data)
-  //     } catch (error) {}
-  //   }
-  //   get()
-  // }, [])
+  useEffect(() => {
+    const get = async () => {
+      try {
+        const { data } = await getDoctors()
+        setDoctorsList(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    get()
+  }, [])
 
   return (
     <AppContainer>

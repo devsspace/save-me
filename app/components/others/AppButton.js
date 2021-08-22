@@ -10,13 +10,17 @@ export default function AppButton({
 }) {
   return (
     <div
-      className={`py-2 px-4 flex bg-primary rounded-md items-center cursor-pointer ${className}`}
+      className={`py-2 px-4 flex bg-primary rounded-md items-center cursor-pointer ${
+        disabled && "!bg-gray-400 !cursor-not-allowed"
+      } ${className}`}
     >
       {Icon && (
         <Icon className={`w-5 h-5 mr-0.5 text-white ${iconClassName}`} />
       )}
       <button
-        className={`text-white flex items-center uppercase font-bold ${textClassName}`}
+        className={`text-white flex items-center uppercase font-bold ${
+          disabled && "!cursor-not-allowed"
+        } ${textClassName}`}
         type={type}
         onClick={onClick}
         disabled={disabled}

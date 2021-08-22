@@ -35,7 +35,7 @@
     @apply text-3xl text-center text-green-400 my-5 mx-auto;
   }
 
-  .tab{
+  .tab {
     position: relative;
     background: rgb(249, 250, 251);
     @apply dark:bg-dark;
@@ -43,7 +43,7 @@
     height: 40px;
     border-radius: 5px 5px 0 0;
   }
-  .tab::before{
+  .tab::before {
     content: "";
     position: absolute;
     bottom: 0px;
@@ -55,7 +55,7 @@
     @apply dark:border-none;
     border-radius: 0 0 15px 0;
   }
-  .tab::after{
+  .tab::after {
     content: "";
     position: absolute;
     bottom: 0px;
@@ -67,4 +67,8 @@
     @apply dark:border-none;
     border-radius: 0 0 0px 15px;
   }
+}
+
+.video-chat-page {
+  height: calc(100vh - 68px);
 }
