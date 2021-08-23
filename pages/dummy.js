@@ -1,7 +1,11 @@
+import withAuth from "@components/auth/withAuth"
 import AppButton from "@components/others/AppButton"
+import { useUserContext } from "app/contexts/UserContext"
 import { AiOutlineSend } from "react-icons/ai"
 
-export default function VideoChatPage() {
+function VideoChatPage() {
+  const { currentUser } = useUserContext()
+
   return (
     <div className="flex video-chat-page antialiased text-gray-800">
       <div className="flex flex-row h-full w-full overflow-x-hidden">
@@ -36,7 +40,7 @@ export default function VideoChatPage() {
               />
             </div>
             <div className="text-sm font-semibold mt-2 dark:text-light">
-              Shihab Al Miyad
+              {currentUser.name}
             </div>
             <div className="text-xs text-gray-500 dark:text-light">
               MBBS, ABCDE
@@ -252,3 +256,5 @@ export default function VideoChatPage() {
     </div>
   )
 }
+
+export default withAuth(VideoChatPage)

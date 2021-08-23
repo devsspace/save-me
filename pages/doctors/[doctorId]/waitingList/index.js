@@ -5,6 +5,7 @@ import AppButton from "app/components/others/AppButton"
 import { useUserContext } from "app/contexts/UserContext"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { AiOutlineAim } from "react-icons/ai/"
 import { io } from "socket.io-client"
 
 const socket = io("http://localhost:5000")
@@ -78,12 +79,12 @@ const waitingList = () => {
   return (
     <div className="">
       <h1 className="title">Waiting List</h1>
-      <h2 className="my-10 text-center">{patient.patientId === currentUser._id ? `Your serial is ${serial}` : `${waiting} people waiting`}</h2>
+      <h2 className="my-10 mx-auto flex items-center text-shine"><AiOutlineAim className="mr-2 text-red-700" /> {patient.patientId === currentUser._id ? `Your serial is ${serial}` : `${waiting} people waiting`}</h2>
       <Table>
         {patient._id ?
             <TableBody>
               <TD>{patient.name}</TD>
-              <TD>Estimated: 1 min</TD>
+              <TD>Estimated: {(serial - 1) * 3} min</TD>
               <TD><AppButton onClick={handleCancel} className="justify-center" >Cancel</AppButton></TD>
             </TableBody>
            : <TD>You haven't joined the waiting list yet, join now!</TD>}

@@ -67,6 +67,30 @@
     @apply dark:border-none;
     border-radius: 0 0 0px 15px;
   }
+  .text-shine{
+    width: fit-content;
+    font-weight: 600;
+    padding: 12px 48px;
+    background: linear-gradient(to right, #4d4d4d 0, white 10%, #4d4d4d 20%);
+    background-position: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2s infinite linear;
+    animation-fill-mode: forwards;
+  }
+      
+  @keyframes shine{
+    0%{
+      background-position: 0;
+    }
+    60%{
+      background-position: 180px;
+    }
+    100%{
+      background-position: 180px;
+    }
+
+  }
 }
 
 .video-chat-page {
