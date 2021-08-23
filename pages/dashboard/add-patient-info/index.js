@@ -1,5 +1,5 @@
 import DashboardWrapper from "@components/Dashboard/DashboardWrapper"
-import DonorInfo from "@components/MultiStepForm/DonorInfo"
+import DonorInfo from "@components/DoctorProfileMultiStepForm/DonorInfo"
 import React from "react"
 
 const DonorProfile = () => (
