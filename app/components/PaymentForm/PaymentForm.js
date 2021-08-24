@@ -6,6 +6,9 @@ import {
     useElements,
     useStripe
 } from "@stripe/react-stripe-js"
+import design from "./PaymentForm.module.css"
+
+
 
 
 const CARD_OPTIONS = {
@@ -13,7 +16,7 @@ const CARD_OPTIONS = {
     style: {
         base: {
             iconColor: "#c4f0ff",
-            color: "black",
+            color: "#fff",
             fontWeight: 500,
             fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
             fontSize: "16px",
@@ -48,12 +51,12 @@ const Field = ({
     value,
     onChange
 }) => (
-    <div className="FormRow">
-        <label htmlFor={id} className="FormRowLabel">
+    <div className={design.FormRow}>
+        <label htmlFor={id} className={design.FormRowLabel}>
             {label}
         </label>
         <input
-            className="FormRowInput"
+            className={design.FormRowInput}
             id={id}
             type={type}
             placeholder={placeholder}
@@ -67,7 +70,7 @@ const Field = ({
 
 const SubmitButton = ({ processing, error, children, disabled }) => (
     <button
-        className={`SubmitButton ${error ? "SubmitButton--error" : ""}`}
+        className={`${design.SubmitButton} ${error ? (design.SubmitButtonError) : ""}`}
         type="submit"
         disabled={processing || disabled}
     >
@@ -76,7 +79,7 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
 )
 
 const ErrorMessage = ({ children }) => (
-    <div className="ErrorMessage" role="alert">
+    <div className={design.ErrorMessage} role="alert">
         <svg width="16" height="16" viewBox="0 0 17 17">
             <path
                 fill="#FFF"
@@ -92,7 +95,7 @@ const ErrorMessage = ({ children }) => (
 )
 
 const ResetButton = ({ onClick }) => (
-    <button type="button" className="ResetButton" onClick={onClick}>
+    <button type="button" className={design.ResetButton} onClick={onClick}>
         <svg width="32px" height="32px" viewBox="0 0 32 32">
             <path
                 fill="#FFF"
@@ -115,8 +118,8 @@ const PaymentForm = () => {
         name: ""
     })
 
-    console.log("Billing Details",billingDetails)
-    console.log("PaymentMethod",paymentMethod)
+
+    console.log("PaymentMethod", paymentMethod)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -163,69 +166,77 @@ const PaymentForm = () => {
     }
 
     return paymentMethod ? (
-        <div className="Result">
-            <div className="ResultTitle" role="alert">
+        <div className={design.Result}>
+            <div className={design.ResultTitle} role="alert">
                 Payment successful
             </div>
-            <div className="ResultMessage">
+            <div className={design.ResultMessage}>
                 Thanks for trying Stripe Elements. No money was charged, but we
                 generated a PaymentMethod: {paymentMethod.id}
             </div>
             <ResetButton onClick={reset} />
         </div>
     ) : (
-        <form className="Form" onSubmit={handleSubmit}>
-            <fieldset className="FormGroup">
-                <Field
-                    label="Name"
-                    id="name"
-                    type="text"
-                    placeholder="Jane Doe"
-                    required
-                    autoComplete="name"
-                    value={billingDetails.name}
-                    onChange={(e) => {
-                        setBillingDetails({ ...billingDetails, name: e.target.value })
-                    }}
-                />
-                <Field
-                    label="Email"
-                    id="email"
-                    type="email"
-                    placeholder="janedoe@gmail.com"
-                    required
-                    autoComplete="email"
-                    value={billingDetails.email}
-                    onChange={(e) => {
-                        setBillingDetails({ ...billingDetails, email: e.target.value })
-                    }}
-                />
-                <Field
-                    label="Phone"
-                    id="phone"
-                    type="tel"
-                    placeholder="(941) 555-0123"
-                    required
-                    autoComplete="tel"
-                    value={billingDetails.phone}
-                    onChange={(e) => {
-                        setBillingDetails({ ...billingDetails, phone: e.target.value })
-                    }}
-                />
-            </fieldset>
-            <fieldset className="FormGroup">
-                <CardField
-                    onChange={(e) => {
-                        setError(e.error)
-                        setCardComplete(e.complete)
-                    }}
-                />
-            </fieldset>
-            {error && <ErrorMessage>{error.message}</ErrorMessage>}
-            <SubmitButton processing={processing} error={error} disabled={!stripe}>
-                Pay $25
-            </SubmitButton>
-        </form>
+        <div>
+            <h1 className="pb-10 text-center text-xl text-gray-50">Please Make Your Payment</h1>
+
+            <form className={design.Form} onSubmit={handleSubmit}>
+                <fieldset className={design.FormGroup}>
+
+                    <Field
+
+                        label="Name"
+                        id="name"
+                        type="text"
+                        placeholder="Jane Doe"
+                        required
+                        autoComplete="name"
+                        value={billingDetails.name}
+                        onChange={(e) => {
+                            setBillingDetails({ ...billingDetails, name: e.target.value })
+                        }}
+                    />
+
+                    <Field
+
+                        label="Email"
+                        id="email"
+                        type="email"
+                        placeholder="janedoe@gmail.com"
+                        required
+                        autoComplete="email"
+                        value={billingDetails.email}
+                        onChange={(e) => {
+                            setBillingDetails({ ...billingDetails, email: e.target.value })
+                        }}
+                    />
+                    <Field
+                        label="Phone"
+                        id="phone"
+                        type="tel"
+                        placeholder="(941) 555-0123"
+                        required
+                        autoComplete="tel"
+                        value={billingDetails.phone}
+                        onChange={(e) => {
+                            setBillingDetails({ ...billingDetails, phone: e.target.value })
+                        }}
+                    />
+                </fieldset>
+                <fieldset className={design.FormGroup}>
+                    <CardField
+                        onChange={(e) => {
+                            setError(e.error)
+                            setCardComplete(e.complete)
+                        }}
+                    />
+                </fieldset>
+                {error && <ErrorMessage>{error.message}</ErrorMessage>}
+                <SubmitButton processing={processing} error={error} disabled={!stripe}>
+                    PAY
+                </SubmitButton>
+            </form>
+        </div>
     )
 }
 
