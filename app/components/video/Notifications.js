@@ -18,12 +18,26 @@ const Notifications = () => {
 
   return (
     <>
-      {call.isReceivingCall && !callAccepted && !currentUser?.role.includes("doctor") && (
-        <div style={s} className="flex flex-col items-center justify-center bg-gray-600 rounded-2xl">
-          <div className="text-green-500 mb-3">{call?.docName?.toUpperCase()} is calling:</div>
-          <AppButton onClick={answerCall}>
-            Answer
-          </AppButton>
+      {call.isReceivingCall && !callAccepted && (
+        <div
+          style={s}
+          className="flex flex-col items-center justify-center bg-dark text-white rounded-2xl"
+        >
+          <audio
+            src="https://www.soundjay.com/phone/phone-calling-1.mp3"
+            autoPlay
+            hidden
+          />
+          {!currentUser?.role.includes("doctor") ? (
+            <>
+              <div className="text-green-500 mb-3">
+                {call?.docName?.toUpperCase()} is calling:
+              </div>
+              <AppButton onClick={answerCall}>Answer</AppButton>
+            </>
+          ) : (
+            <>Calling to {call?.patientName?.toUpperCase()}</>
+          )}
         </div>
       )}
     </>

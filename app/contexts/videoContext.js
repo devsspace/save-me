@@ -14,6 +14,7 @@ const VideoContextProvider = ({ children }) => {
   const [name, setName] = useState("")
   const [call, setCall] = useState({})
   const [me, setMe] = useState("")
+  const [camera, setCamera] = useState(false)
 
   const myVideo = useRef()
   const userVideo = useRef()
@@ -24,14 +25,20 @@ const VideoContextProvider = ({ children }) => {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then((currentStream) => {
-          setStream(currentStream)
+            setStream(currentStream)
+            myVideo.current.srcObject = currentStream
+          })
+        }
 
-          myVideo.current.srcObject = currentStream
-        })
+        if(camera) startVideo()
+        else {
+          // myVideo.current.pause()
+          // if(myVideo.current) myVideo.current.src = ""
+          // currentStream.getTracks()[1].stop()
+          setStream(null)
 
-      }
-      startVideo()
-    }, [])
+        }
+    }, [camera])
     
     
     socket.on("callUser", ({ signal, from, docName, patientName }) => {
@@ -113,6 +120,8 @@ const VideoContextProvider = ({ children }) => {
         leaveCall,
         answerCall,
         socket,
+        camera,
+        setCamera,
       }}
     >
       {children}

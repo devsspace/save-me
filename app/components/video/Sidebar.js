@@ -27,6 +27,9 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="w-[90%] lg:w-1/2 my-10 mx-auto">
+      {callAccepted && !callEnded && (
+        <AppButton className="justify-center bg-error my-5" onClick={leaveCall}>End Call</AppButton>
+      )}
       {patients.length ? (
         patients.map((patient) => (
           <Table>
@@ -55,9 +58,6 @@ const Sidebar = ({ children }) => {
         </h1>
       )}
 
-      {callAccepted && !callEnded && (
-        <AppButton className="justify-center bg-error my-5" onClick={leaveCall}>End Call</AppButton>
-      )}
       {children}
     </div>
   )
