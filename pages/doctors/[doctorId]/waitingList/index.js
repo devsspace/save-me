@@ -18,16 +18,28 @@ const waitingList = () => {
   const [joined, setJoined] = useState(false)
   const [serial, setSerial] = useState(0)
   const [waiting, setWaiting] = useState(0)
+  const [videoWindow, setVideoWindow] = useState(null)
 
   useEffect(() => {
     const get = async () => {
       try {
         const { data } = await getWaitingList(doctorId)
-        const currentPatient = data.find((p) => p.patientId === currentUser._id)
+        const currentPatient = data?.find((p) => p.patientId === currentUser._id)
         if(currentPatient) {
           setPatient(currentPatient)
           setSerial(data.indexOf(currentPatient)+1)
           setJoined(true)
+          setWaiting(data.length)
+          if (!videoWindow || videoWindow.closed) {
+            setVideoWindow(
+              window.open(
+                `/call/${doctorId}`,
+                "video",
+                "_blank",
+                "fullscreen=yes,scrollbars=yes,status=yes"
+              )
+            )
+          }
         }
         else{
           setWaiting(data?.length)
@@ -69,11 +81,22 @@ const waitingList = () => {
       phoneNumber: currentUser.phoneNumber,
     }, waiting)
     setJoined(true)
+    
+    setVideoWindow(
+      window.open(
+        `/call/${doctorId}`,
+        "video",
+        "_blank",
+        "fullscreen=yes,scrollbars=yes,status=yes"
+      )
+    )
+    
   }
   
   const handleCancel = () => {
     socket.emit("remove-patient", currentUser._id, waiting)
     setJoined(false)
+    if(videoWindow) videoWindow.close()
   }
 
   return (

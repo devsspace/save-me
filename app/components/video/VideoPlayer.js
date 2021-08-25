@@ -1,6 +1,7 @@
 import AppButton from "@components/others/AppButton"
 import { useUserContext } from "app/contexts/UserContext"
 import { SocketContext } from "app/contexts/videoContext"
+import { useRouter } from "next/router"
 import React, { useContext } from "react"
 import { AiOutlineAudio, AiOutlineAudioMuted } from "react-icons/ai"
 import { FiCamera, FiCameraOff } from "react-icons/fi"
@@ -23,9 +24,9 @@ const VideoPlayer = () => {
     userMic,
   } = useContext(SocketContext)
   const { currentUser } = useUserContext()
-  const doctorId = "611e7e4bfc2eef2380795f97"
+  const router = useRouter()
+  const { doctorId } = router.query
 
-// console.log(userCamera, userMic)
   socket.emit("start-call", currentUser._id, doctorId)
 
   return (

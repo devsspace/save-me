@@ -11,6 +11,8 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi"
 export default function NavButtons() {
   const { theme, setTheme } = useTheme()
   const { currentUser } = useUserContext()
+  const doctor = currentUser?.role.includes("doctor")
+  
   return (
     <>
       <section className="hidden md:block">
@@ -20,6 +22,12 @@ export default function NavButtons() {
             span2Text={theme === "dark" ? "On Lights" : "Off Lights"}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           />
+          {
+            doctor && 
+            <AppLink href={`/call/${currentUser._id}`}>
+              <NavButton span1Text="Start" span2Text="Visiting" />
+            </AppLink>
+          }
           <AppLink href="/doctors">
             <NavButton span1Text="View" span2Text="Doctors" />
           </AppLink>
@@ -79,6 +87,15 @@ export default function NavButtons() {
                       </AppButton>
                     )}
                   </Menu.Item>
+                  {doctor && (
+                    <Menu.Item>
+                      <AppLink href={`/call/${currentUser._id}`}>
+                        <AppButton className="mt-1.5 bg-primary dark:bg-gray-700">
+                          Start visiting
+                        </AppButton>
+                      </AppLink>
+                    </Menu.Item>
+                  )}
                   <Menu.Item>
                     <AppLink href="/doctors">
                       <AppButton className="mt-1.5 bg-primary dark:bg-gray-700">
