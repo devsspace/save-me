@@ -1,5 +1,6 @@
 import { useState } from "react"
 import classes from "./TagsInput.module.css"
+
 const TagsInput = (props) => {
   const [tags, setTags] = useState(props.tags)
   const removeTags = (indexToRemove) => {

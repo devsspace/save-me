@@ -2,9 +2,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "test": "jest",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest --watch"
   },
   "jest": {
     "transform": {
@@ -38,9 +38,6 @@
     "sweetalert2-react-content": "^4.1.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-react": "^7.14.5",
-    "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "autoprefixer": "^10.2.6",
@@ -50,10 +47,11 @@
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.4.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
-    "jest-dom": "^4.0.0",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
+    "react-test-renderer": "^17.0.2",
     "tailwindcss": "^2.2.4"
   }
 }
