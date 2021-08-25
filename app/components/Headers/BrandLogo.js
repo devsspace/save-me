@@ -12,7 +12,7 @@ export default function BrandLogo({ className, textClassName }) {
         alt="Brand Logo"
       />
       <p
-        className={`hidden md:block text-white font-bold px-2 ${textClassName}`}
+        className={`hidden lg:block text-white font-bold px-2 ${textClassName}`}
       >
         Save Me
       </p>
