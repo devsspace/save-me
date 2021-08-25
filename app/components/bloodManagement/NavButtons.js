@@ -21,7 +21,7 @@ export default function NavButtons() {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           />
           <AppLink href="/doctors">
-            <NavButton span1Text="Doctors" />
+            <NavButton span1Text="View" span2Text="Doctors" />
           </AppLink>
           <AppLink href="/search-donors">
             <NavButton span1Text="Search" span2Text="Donors" />
@@ -120,6 +120,15 @@ export default function NavButtons() {
                         </AppLink>
                       )
                     }
+                  </Menu.Item>
+                  <Menu.Item>
+                    {() => (
+                      <AppLink href="/dashboard/add-donor-info">
+                        <AppButton className="mt-1.5 bg-primary dark:bg-gray-700">
+                          DashBoard
+                        </AppButton>
+                      </AppLink>
+                    )}
                   </Menu.Item>
                 </div>
               </Menu.Items>
