@@ -17,24 +17,22 @@ const VideoPlayer = () => {
     socket,
     camera,
     setCamera,
-    audio,
+    mic,
+    setMic,
+    userCamera,
+    userMic,
   } = useContext(SocketContext)
   const { currentUser } = useUserContext()
   const doctorId = "611e7e4bfc2eef2380795f97"
 
-  function vidOff() {
-    // myVideo.current.pause()
-    myVideo.current.src = ""
-    // localstream.getTracks()[0].stop()
-  }
-
+// console.log(userCamera, userMic)
   socket.emit("start-call", currentUser._id, doctorId)
 
   return (
     <div className="flex justify-evenly flex-wrap my-5">
       <div className="relative">
         <h5 className="text-center">{currentUser.name || "Me"}</h5>
-        {stream ? (
+        {camera ? (
           <div>
             <div>
               <video
@@ -48,9 +46,12 @@ const VideoPlayer = () => {
           </div>
         ) : (
           <div className="bg-gray-600 text-white h-[480px] w-[640px] flex flex-col items-center justify-center rounded-2xl">
-            <img src={currentUser.profilePic} alt="" className="h-20 w-20 rounded-full" />
+            <img
+              src={currentUser.profilePic}
+              alt=""
+              className="h-20 w-20 rounded-full"
+            />
             <p className="text-white">Allow permission to start</p>
-            
           </div>
         )}
 
@@ -62,24 +63,34 @@ const VideoPlayer = () => {
             {camera ? <FiCamera /> : <FiCameraOff />}
           </AppButton>
 
-          <AppButton className="justify-center rounded-full h-8 w-8">
-            {audio ? <AiOutlineAudio /> : <AiOutlineAudioMuted />}
+          <AppButton
+            className="justify-center rounded-full h-8 w-8"
+            onClick={() => setMic(!mic)}
+          >
+            {mic ? <AiOutlineAudio /> : <AiOutlineAudioMuted />}
           </AppButton>
         </div>
       </div>
       {callAccepted && !callEnded && (
         <div>
-          <div>
-            <h5 className="text-center">
-              {currentUser._id === doctorId ? call.patientName : call.docName}
-            </h5>
-            <video
-              playsInline
-              ref={userVideo}
-              autoPlay
-              className="rounded-lg"
-            />
-          </div>
+          <h5 className="text-center">
+            {currentUser._id === doctorId ? call.patientName : call.docName}
+          </h5>
+          {userCamera ? (
+            <div>
+              <video
+                playsInline
+                ref={userVideo}
+                autoPlay
+                className="rounded-lg"
+              />
+            </div>
+          ) : (
+            <div className="bg-gray-600 text-white h-[480px] w-[640px] flex flex-col items-center justify-center rounded-2xl">
+              <video ref={userVideo} autoPlay className="hidden" />
+              <p className="text-white">Camera off</p>
+            </div>
+          )}
         </div>
       )}
     </div>
