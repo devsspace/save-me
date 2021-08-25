@@ -79,3 +79,12 @@
 // }
 
 // export default withAuth(waitingList)
+import React from "react"
+
+const index_ = () => {
+  return (
+    <div />
+  )
+}
+
+export default index_

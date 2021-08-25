@@ -178,7 +178,7 @@
   @media (max-width: 900px) {
     .Form {
         animation: fade 200ms ease-out;
-        width:100%
+        width:100%;
       }
 
   }
