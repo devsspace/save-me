@@ -30,7 +30,7 @@ const VideoPlayer = () => {
   socket.emit("start-call", currentUser._id, doctorId)
 
   return (
-    <div className="flex justify-evenly flex-wrap my-5">
+    <div className="flex justify-evenly flex-wrap my-5 max-w-[95%] mx-auto">
       <div className="relative">
         <h5 className="text-center">{currentUser.name || "Me"}</h5>
         {camera ? (
@@ -41,7 +41,7 @@ const VideoPlayer = () => {
                 muted
                 ref={myVideo}
                 autoPlay
-                className="rounded-lg"
+                className="rounded-lg mb-5"
               />
             </div>
           </div>
@@ -56,7 +56,7 @@ const VideoPlayer = () => {
           </div>
         )}
 
-        <div className="flex justify-center space-x-3 absolute bottom-5 left-[45%]">
+        <div className="flex justify-center space-x-3 absolute bottom-5 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <AppButton
             className="justify-center rounded-full h-8 w-8"
             onClick={() => setCamera(!camera)}

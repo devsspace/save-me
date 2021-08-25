@@ -3,14 +3,17 @@ import { Table, TD } from "@components/others/Table"
 import { getWaitingList } from "app/api/index"
 import { useUserContext } from "app/contexts/UserContext"
 import { SocketContext } from "app/contexts/videoContext"
+import { useRouter } from "node_modules/next/dist/client/router"
 import React, { useContext, useEffect, useState } from "react"
 
 const Sidebar = ({ children }) => {
   const { callAccepted, name, setName, callEnded, leaveCall, callUser, socket } =
     useContext(SocketContext)
   const [patients, setPatients] = useState([])
-  const doctorId = "611e7e4bfc2eef2380795f97"
   const { currentUser } = useUserContext()
+  
+  const router = useRouter()
+  const { doctorId } = router.query
   const isDoctor = currentUser._id === doctorId
 
   useEffect(() => {
