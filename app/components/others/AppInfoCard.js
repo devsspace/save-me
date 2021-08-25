@@ -21,7 +21,7 @@ export default function AppInfoCard({ data, className }) {
       className={`rounded-md overflow-hidden shadow-md relative bg-light dark:bg-gray-600 cursor-pointer ${className}`}
     >
       <img
-        className="w-full h-32 sm:h-48 w-full object-cover"
+        className="h-32 sm:h-48 w-full object-cover"
         src={profilePic}
         alt=""
       />
