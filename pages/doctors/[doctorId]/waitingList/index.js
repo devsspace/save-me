@@ -8,7 +8,8 @@ import { useEffect, useState } from "react"
 import { AiOutlineAim } from "react-icons/ai/"
 import { io } from "socket.io-client"
 
-const socket = io("http://localhost:5000")
+// const socket = io("http://localhost:5000")
+const socket = io("https://save-me-dev.herokuapp.com")
 
 const waitingList = () => {
   const [patient, setPatient] = useState({})
