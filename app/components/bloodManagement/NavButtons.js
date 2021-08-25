@@ -3,16 +3,32 @@ import NavButton from "@components/Headers/NavButton"
 import AppButton from "@components/others/AppButton"
 import AppLink from "@components/others/AppLink"
 import { Menu, Transition } from "@headlessui/react"
+import { getUser } from "app/api/index"
 import { useUserContext } from "app/contexts/UserContext"
 import { useTheme } from "next-themes"
-import { Fragment } from "react"
+import { Fragment, useEffect } from "react"
 import { HiOutlineMenuAlt3 } from "react-icons/hi"
 
 export default function NavButtons() {
   const { theme, setTheme } = useTheme()
-  const { currentUser } = useUserContext()
+
+  const { currentUser, setCurrentUser } = useUserContext()
   const doctor = currentUser?.role.includes("doctor")
-  
+
+  useEffect(() => {
+    const checkUserAuthentication = async () => {
+      try {
+        const { data } = await getUser()
+        const user = data?.user || null
+        setCurrentUser(user)
+      } catch (error) {
+        console.warn("No user found from getUser function")
+      }
+    }
+
+    if (!currentUser) checkUserAuthentication()
+  }, [])
+
   return (
     <>
       <section className="hidden md:block">
@@ -22,12 +38,11 @@ export default function NavButtons() {
             span2Text={theme === "dark" ? "On Lights" : "Off Lights"}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           />
-          {
-            doctor && 
+          {doctor && (
             <AppLink href={`/call/${currentUser._id}`}>
               <NavButton span1Text="Start" span2Text="Visiting" />
             </AppLink>
-          }
+          )}
           <AppLink href="/doctors">
             <NavButton span1Text="View" span2Text="Doctors" />
           </AppLink>

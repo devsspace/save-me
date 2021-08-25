@@ -36,5 +36,13 @@ data updates but pagination info doesn't update!
 [] dashboard loading
 [] 
 
+
+
+[x] No user in Navbar after refresh
+[] Video chat responsive + millions of bugs
+
+
+
+
 ## SERVER
 [] get donors!
