@@ -15,10 +15,10 @@ export default function AppButtonV2({
         <Icon className={`mr-1 w-8 h-8 text-primary ${iconClassName}`} />
       )}
       <div>
-        <p className="text-left text-xs text-gray-500 group-hover:text-gray-500">
+        <p className="text-left text-xs text-gray-500 group-hover:text-gray-500 !p-0">
           {textSecondary}
         </p>
-        <p className="text-sm font-bold text-gray-600 group-hover:text-gray-600">
+        <p className="text-sm font-bold text-gray-600 group-hover:text-gray-600 !p-0">
           {textPrimary}
         </p>
       </div>
