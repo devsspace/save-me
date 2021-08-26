@@ -32,7 +32,7 @@ export default function FormInput({
           )}
           <input
             type={type}
-            className={`placeholder-gray-400 rounded-md text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md p-2 pl-10 focus:ring-2 focus:ring-primary outline-none ${className}`}
+            className={`placeholder-gray-400 rounded-md text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md p-2 pl-10 focus:ring-2 focus:ring-primary border-none outline-none ${className}`}
             placeholder={placeholder}
             {...register(name, check)}
             ref={refnc}

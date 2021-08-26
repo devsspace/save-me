@@ -1,80 +1,49 @@
+import AppButton from "@components/others/AppButton"
+import FormInput from "@components/others/FormInput"
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { useUserContext } from "app/contexts/UserContext"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
-import design from "./PaymentForm.module.css"
+import { AiFillCreditCard } from "react-icons/ai"
 
-const CARD_OPTIONS = {
-  iconStyle: "solid",
-  style: {
-    base: {
-      iconColor: "#c4f0ff",
-      color: "#fff",
-      fontWeight: 500,
-      fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-      fontSize: "16px",
-      fontSmoothing: "antialiased",
-      ":-webkit-autofill": {
-        color: "#fce883",
-      },
-      "::placeholder": {
-        color: "#87bbfd",
-      },
-    },
-    invalid: {
-      iconColor: "#ffc7ee",
-      color: "#ffc7ee",
-    },
-  },
-}
+// const CARD_OPTIONS = {
+//   iconStyle: "solid",
+//   style: {
+//     base: {
+//       iconColor: "#00CFFC",
+//       color: "#fff",
+//       fontWeight: 500,
+//       fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+//       fontSize: "16px",
+//       fontSmoothing: "antialiased",
+//       ":-webkit-autofill": {
+//         color: "#fce883",
+//       },
+//       "::placeholder": {
+//         color: "#141414",
+//       },
+//     },
+//     invalid: {
+//       iconColor: "#ffc7ee",
+//       color: "#dc143c",
+//     },
+//   },
+// }
 
 const CardField = ({ onChange }) => (
-  <div className="FormRow">
-    <CardElement options={CARD_OPTIONS} onChange={onChange} />
-  </div>
-)
-
-const Field = ({
-  label,
-  id,
-  type,
-  placeholder,
-  required,
-  autoComplete,
-  value,
-  onChange,
-}) => (
-  <div className={design.FormRow}>
-    <label htmlFor={id} className={design.FormRowLabel}>
-      {label}
-    </label>
-    <input
-      className={design.FormRowInput}
-      id={id}
-      type={type}
-      placeholder={placeholder}
-      required={required}
-      autoComplete={autoComplete}
-      value={value}
-      onChange={onChange}
-    />
+  <div className="placeholder-gray-400 mt-2 rounded-md text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md px-2 py-3 focus:ring-2 focus:ring-primary border-none outline-none">
+    <CardElement onChange={onChange} />
   </div>
 )
 
 const SubmitButton = ({ processing, error, children, disabled }) => (
-  <button
-    className={`${design.SubmitButton} ${
-      error ? design.SubmitButtonError : ""
-    }`}
-    type="submit"
-    disabled={processing || disabled}
-  >
+  <button type="submit" disabled={processing || disabled}>
     {processing ? "Processing..." : children}
   </button>
 )
 
 const ErrorMessage = ({ children }) => (
-  <div className={design.ErrorMessage} role="alert">
+  <div role="alert">
     <svg width="16" height="16" viewBox="0 0 17 17">
       <path
         fill="#FFF"
@@ -90,7 +59,7 @@ const ErrorMessage = ({ children }) => (
 )
 
 const ResetButton = ({ onClick }) => (
-  <button type="button" className={design.ResetButton} onClick={onClick}>
+  <button type="button" onClick={onClick}>
     <svg width="32px" height="32px" viewBox="0 0 32 32">
       <path
         fill="#FFF"
@@ -115,7 +84,7 @@ const PaymentForm = () => {
 
   const { currentUser } = useUserContext()
   const router = useRouter()
-  
+
   useEffect(() => {
     if (currentUser?._id)
       setBillingDetails({
@@ -123,11 +92,10 @@ const PaymentForm = () => {
         phone: currentUser.phoneNumber,
         name: currentUser.name,
       })
-      else{
-          router.replace(`/user/login?from=${router.asPath}`)
-      }
+    else {
+      router.replace(`/user/login?from=${router.asPath}`)
+    }
   }, [currentUser, router])
-
 
   console.log("PaymentMethod", paymentMethod)
 
@@ -177,11 +145,9 @@ const PaymentForm = () => {
   }
 
   return paymentMethod ? (
-    <div className={design.Result}>
-      <div className={design.ResultTitle} role="alert">
-        Payment successful
-      </div>
-      <div className={design.ResultMessage}>
+    <div>
+      <div role="alert">Payment successful</div>
+      <div>
         Thanks for trying Stripe Elements. No money was charged, but we
         generated a PaymentMethod: {paymentMethod.id}
       </div>
@@ -189,51 +155,50 @@ const PaymentForm = () => {
     </div>
   ) : (
     <div>
-      <h1 className="pb-10 text-center text-xl text-gray-50">
-        Please Make Your Payment
+      <h1 className="text-xl text-center sm:text-2xl font-bold mb-5">
+        Please Make Your Payment{" "}
+        <span className="block">Before Continuing!</span>
       </h1>
 
-      <form className={design.Form} onSubmit={handleSubmit}>
-        <fieldset className={design.FormGroup}>
-          <Field
-            label="Name"
-            id="name"
-            type="text"
-            placeholder="Jane Doe"
-            required
-            autoComplete="name"
-            value={billingDetails.name}
-            onChange={(e) => {
-              setBillingDetails({ ...billingDetails, name: e.target.value })
-            }}
-          />
+      <form
+        className="flex justify-center flex-col space-y-2"
+        onSubmit={handleSubmit}
+      >
+        <FormInput
+          id="name"
+          type="text"
+          placeholder="Your Name"
+          required
+          autoComplete="name"
+          value={billingDetails.name}
+          onChange={(e) => {
+            setBillingDetails({ ...billingDetails, name: e.target.value })
+          }}
+        />
 
-          <Field
-            label="Email"
-            id="email"
-            type="email"
-            placeholder="janedoe@gmail.com"
-            required
-            autoComplete="email"
-            value={billingDetails.email}
-            onChange={(e) => {
-              setBillingDetails({ ...billingDetails, email: e.target.value })
-            }}
-          />
-          <Field
-            label="Phone"
-            id="phone"
-            type="tel"
-            placeholder="(941) 555-0123"
-            required
-            autoComplete="tel"
-            value={billingDetails.phone}
-            onChange={(e) => {
-              setBillingDetails({ ...billingDetails, phone: e.target.value })
-            }}
-          />
-        </fieldset>
-        <fieldset className={design.FormGroup}>
+        <FormInput
+          id="email"
+          type="email"
+          placeholder="Your Email"
+          required
+          autoComplete="email"
+          value={billingDetails.email}
+          onChange={(e) => {
+            setBillingDetails({ ...billingDetails, email: e.target.value })
+          }}
+        />
+        <FormInput
+          id="phone"
+          type="tel"
+          placeholder="Your Phone No."
+          required
+          autoComplete="tel"
+          value={billingDetails.phone}
+          onChange={(e) => {
+            setBillingDetails({ ...billingDetails, phone: e.target.value })
+          }}
+        />
+        <fieldset>
           <CardField
             onChange={(e) => {
               setError(e.error)
@@ -243,7 +208,12 @@ const PaymentForm = () => {
         </fieldset>
         {error && <ErrorMessage>{error.message}</ErrorMessage>}
         <SubmitButton processing={processing} error={error} disabled={!stripe}>
-          PAY
+          <AppButton
+            className="flex mt-2 justify-center"
+            Icon={AiFillCreditCard}
+          >
+            Pay Now
+          </AppButton>
         </SubmitButton>
       </form>
     </div>
