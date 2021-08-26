@@ -3,19 +3,21 @@ import { AiOutlineArrowRight } from "react-icons/ai"
 
 export default function AppInfoCard({ data, className }) {
   const {
-    firstName,
-    lastName,
     name,
     isOnline,
     profilePic,
     bio,
-    specializations = [],
+    speciality = [],
+    consultationFee,
+    followUpFee,
+    degrees,
     rating = 4.5,
     conversations,
     communication = [{ cost: 0 }],
   } = data
-  // console.log(data)
-  const specializationsInString = specializations.join(", ")
+  console.log(data)
+  const specializationsInString = speciality.join(", ")
+  const degreesInString = degrees.join(", ")
   const { ratingIcons } = useRatingClient(rating)
   return (
     <div
@@ -30,10 +32,10 @@ export default function AppInfoCard({ data, className }) {
       <div className="m-3">
         <p className="text-xs">{bio}</p>
         <p className="font-bold">
-          Dr. {firstName ? `${firstName} ${lastName}` : name}
+          Dr. {name}
         </p>
 
-        <p className="text-xs line-clamp-1">{specializationsInString}</p>
+        <p className="text-xs line-clamp-1">{degreesInString}</p>
 
         <div className="mt-1 text-sm flex items-center gap-0.5 text-yellow-400">
           {ratingIcons.map((RatingIcon) => (
@@ -41,10 +43,10 @@ export default function AppInfoCard({ data, className }) {
           ))}
           <p className="font-bold ml-1">{rating}</p>
         </div>
-        <p className="text-xs mt-1">({conversations} Conversation)</p>
+        <p className="text-xs mt-1">{specializationsInString}</p>
         <div className="mt-2 flex items-end justify-between">
           <div>
-            <p className="text-xl font-bold">৳ {communication[0].cost}</p>
+            <p className="text-xl font-bold">৳ {consultationFee}</p>
             <p className="text-xs">Per Consultation</p>
           </div>
           <div className="mb-0.5">

@@ -1,27 +1,24 @@
-import { useState } from "react"
 import classes from "./TagsInput.module.css"
 
 const TagsInput = (props) => {
-  const [tags, setTags] = useState(props.tags)
+  const {state, setState} = props
+
   const removeTags = (indexToRemove) => {
-    setTags([...tags.filter((_, index) => index !== indexToRemove)])
+    setState([...state?.filter((_, index) => index !== indexToRemove)])
   }
 
   const addTags = (e) => {
     e.preventDefault()
     if (e.target.value !== "") {
-      setTags([...tags, e.target.value])
-      props.selectedTags([...tags, e.target.value])
+      setState([...state, e.target.value])
       e.target.value = ""
     }
   }
-  const selectedTags = (tags) => {
-    console.log(tags)
-  }
+
   return (
     <div className={classes.tags_input}>
       <ul className={classes.tags_ul}>
-        {tags.map((tag, index) => (
+        {state?.map((tag, index) => (
           <li key={index} className={classes.tag}>
             <span className={classes.tag_title}>{tag}</span>
             <span
@@ -35,8 +32,9 @@ const TagsInput = (props) => {
       </ul>
       <input
         type="text"
+        readOnly={props.readOnly}
         onKeyUp={(e) => (e.key === "Enter" ? addTags(e) : null)}
-        placeholder="Press enter to add tags"
+        placeholder={`Press enter to add ${props.name}`}
       />
     </div>
   )
