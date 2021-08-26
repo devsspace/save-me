@@ -12,8 +12,8 @@ const MySwal = withReactContent(Swal)
 
 const DoctorsInfo = ({ doctor }) => {
   const [modalOpen, setModalOpen] = useState(false)
-  const [bookingDate, setBookingDate] = useState({bookingDate: new Date()})
-  
+  const [bookingDate, setBookingDate] = useState({ bookingDate: new Date() })
+
   const router = useRouter()
   const { doctorId } = router.query
   const {
@@ -28,19 +28,13 @@ const DoctorsInfo = ({ doctor }) => {
     active,
   } = doctor
   const { ratingIcons } = useRatingClient(4.5)
-<<<<<<< HEAD
-  
-  const availableTime = [
-    "10:30", "12:00", "2:00", "4:00"
-  ]
+
+  const availableTime = ["10:30", "12:00", "2:00", "4:00"]
 
   const [selectedTime, setSelectedTime] = useState(availableTime[0])
 
-
-=======
   const degreesInString = degrees.join(", ")
   const specialityInString = speciality.join(", ")
->>>>>>> 0f5b34433b3e30e015a0813fcd36d7795f8755c6
   return (
     <div>
       <div className="bg-gray-100">
@@ -341,10 +335,14 @@ const DoctorsInfo = ({ doctor }) => {
               </Table>
             </div>
           </div>
-          <AppButton onClick={() => {
-            successAlert()
-            setModalOpen(false)
-          }}>Book</AppButton>
+          <AppButton
+            onClick={() => {
+              successAlert()
+              setModalOpen(false)
+            }}
+          >
+            Book
+          </AppButton>
         </div>
       )}
     </div>
