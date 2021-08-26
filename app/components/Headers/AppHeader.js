@@ -24,13 +24,13 @@ export default function AppHeader({
           </div>
         )}
         <div className="space-y-4 md:w-1/2">
-          <p
+          <h2
             className="text-2xl text-center md:text-left lg:text-5xl 2xl:text-6xl font-extrabold"
             suppressHydrationWarning
           >
             {title}
-          </p>
-          <p className="text-center md:text-left text-base">{text}</p>
+          </h2>
+          <p className="text-center md:text-left">{text}</p>
           {others}
         </div>
 
