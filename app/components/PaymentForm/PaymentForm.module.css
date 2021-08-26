@@ -1,4 +1,4 @@
-@keyframes fade {
+/* @keyframes fade {
   from {
     opacity: 0;
     transform: scale3D(0.95, 0.95, 0.95);
@@ -175,4 +175,4 @@
     animation: fade 200ms ease-out;
     width: 100%;
   }
-}
+} */

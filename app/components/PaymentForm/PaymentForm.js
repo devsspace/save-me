@@ -114,6 +114,7 @@ const PaymentForm = () => {
   })
 
   const { currentUser } = useUserContext()
+  const router = useRouter()
   
   useEffect(() => {
     if (currentUser?._id)
@@ -122,9 +123,11 @@ const PaymentForm = () => {
         phone: currentUser.phoneNumber,
         name: currentUser.name,
       })
-  }, [currentUser])
+      else{
+          router.replace(`/user/login?from=${router.asPath}`)
+      }
+  }, [currentUser, router])
 
-  const router = useRouter()
 
   console.log("PaymentMethod", paymentMethod)
 
