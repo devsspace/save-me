@@ -10,7 +10,7 @@ export default function AppInfoCard({ data, className }) {
     speciality = [],
     consultationFee,
     followUpFee,
-    degrees,
+    degrees = [],
     rating = 4.5,
     conversations,
     communication = [{ cost: 0 }],
@@ -31,9 +31,7 @@ export default function AppInfoCard({ data, className }) {
 
       <div className="m-3">
         <p className="text-xs">{bio}</p>
-        <p className="font-bold">
-          Dr. {name}
-        </p>
+        <p className="font-bold">Dr. {name}</p>
 
         <p className="text-xs line-clamp-1">{degreesInString}</p>
 
