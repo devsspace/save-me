@@ -11,7 +11,7 @@ export default [
   },
   {
     id: 3,
-    name: "Child Care",
+    name: "Pediatrics",
     photoURL: "https://i.ibb.co/7zxFMSB/child-care.png",
   },
   {
@@ -111,17 +111,12 @@ export default [
   },
   {
     id: 23,
-    name: "Therapy",
+    name: "Physical Therapy",
     photoURL: "https://i.ibb.co/GnZdpzZ/occupational-therapy.png",
   },
   {
     id: 24,
     name: "Plustic Surgery",
     photoURL: "https://i.ibb.co/nc5d6Xy/plastic-surgery.png",
-  },
-  {
-    id: 25,
-    name: "Vascular Surgery",
-    photoURL: "https://i.ibb.co/NF1tZ5V/vascular-surgery.png",
   },
 ]
