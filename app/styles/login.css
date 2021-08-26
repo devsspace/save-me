@@ -287,12 +287,12 @@
     }
 
     .authContainer:before {
-      bottom: 72%;
+      bottom: 52%;
       left: 50%;
     }
 
     .authContainer.sign-up-mode:before {
-      bottom: 28%;
+      bottom: 38%;
       left: 50%;
     }
   }

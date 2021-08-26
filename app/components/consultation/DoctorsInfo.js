@@ -17,16 +17,18 @@ const DoctorsInfo = ({ doctor }) => {
   const router = useRouter()
   const { doctorId } = router.query
   const {
-    profilePic,
     name,
-    degrees,
-    specializations,
-    experience,
     bmdcNumber,
-    ratings,
+    degrees = [],
+    speciality = [],
+    consultationFee,
+    followUpFee,
+    totalExperienceYears,
+    profilePic,
     active,
   } = doctor
   const { ratingIcons } = useRatingClient(4.5)
+<<<<<<< HEAD
   
   const availableTime = [
     "10:30", "12:00", "2:00", "4:00"
@@ -35,6 +37,10 @@ const DoctorsInfo = ({ doctor }) => {
   const [selectedTime, setSelectedTime] = useState(availableTime[0])
 
 
+=======
+  const degreesInString = degrees.join(", ")
+  const specialityInString = speciality.join(", ")
+>>>>>>> 0f5b34433b3e30e015a0813fcd36d7795f8755c6
   return (
     <div>
       <div className="bg-gray-100">
@@ -44,7 +50,7 @@ const DoctorsInfo = ({ doctor }) => {
             <div className="w-full md:w-3/12 md:mx-2">
               {/* Profile Card */}
               <div className="bg-white p-3 border-t-4 border-green-400">
-                <div className="image overflow-hidden">
+                <div className="">
                   <img
                     className="h-28 w-28 mx-auto rounded-full"
                     src={
@@ -55,13 +61,13 @@ const DoctorsInfo = ({ doctor }) => {
                   />
                 </div>
                 <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-                  {name}
+                  Dr. {name}
                 </h1>
                 <h3 className="text-gray-600 font-lg text-semibold leading-6">
-                  {degrees || "MS(medicine), FCPS, MBBS"}
+                  {degreesInString || "MS(medicine), FCPS, MBBS"}
                 </h3>
                 <p className="text-sm text-gray-500 hover:text-gray-600 leading-6 text-error">
-                  {specializations || "Surgery Neurology"}
+                  {specialityInString || "Surgery Neurology"}
                 </p>
                 <ul className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                   <li className="flex items-center py-3">
@@ -87,7 +93,9 @@ const DoctorsInfo = ({ doctor }) => {
                   </li>
                   <li className="flex items-center py-3">
                     <span>Total Experience</span>
-                    <span className="ml-auto">{experience || "5+ years"}</span>
+                    <span className="ml-auto">
+                      {totalExperienceYears || "5+ years"} Years
+                    </span>
                   </li>
                   <li className="flex items-center py-3">
                     <span>Rating</span>

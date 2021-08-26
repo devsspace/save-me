@@ -19,14 +19,14 @@ export default function ConsultationHeader() {
       others={
         // FIXME: href="/coming-soon"
         <div className="flex justify-center md:justify-start space-x-3">
-          <AppLink href="/coming-soon">
+          <AppLink href="/doctors">
             <AppButtonV2
               Icon={BsFillPeopleFill}
               textPrimary="Available Now"
               textSecondary="Doctors"
             />
           </AppLink>
-          <AppLink href="coming-soon">
+          <AppLink href="/user/login">
             <AppButtonV2
               Icon={FaUserEdit}
               textPrimary="As Doctor"
