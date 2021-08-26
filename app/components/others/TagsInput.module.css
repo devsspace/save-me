@@ -20,9 +20,9 @@
   font-size: 14px;
   padding: 4px 0 0 0;
 }
-/* .tags_input input :focus {
-  outline: transparent;
-} */
+.tags_input input:focus {
+  outline: none;
+}
 .tags_ul {
   display: flex;
   flex-wrap: wrap;

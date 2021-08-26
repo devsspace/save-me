@@ -1,33 +1,33 @@
 import AppButton from "@components/others/AppButton"
 import FormInput from "@components/others/FormInput"
-import { useUserContext } from "app/contexts/UserContext"
+import TagsInput from "@components/others/TagsInput"
 import Image from "next/image"
-import { useRouter } from "node_modules/next/dist/client/router"
 import React, { useRef, useState } from "react"
 import { useForm } from "react-hook-form"
-const BasicInfo = ({ formData, setFormData, navigation }) => {
-  const router = useRouter()
 
-  const { currentUser } = useUserContext()
+const BasicInfo = ({
+  formData,
+  setFormData,
+  navigation,
+  setSpeciality,
+  setDegrees,
+  degrees,
+  speciality,
+}) => {
   const [editable, setEditable] = useState(false)
-  const { fullName, degrees, speciality, bmdcNumber } = formData
+  const { name, bmdcNumber } = formData
+  console.log(speciality, degrees)
 
   const {
     register,
     formState: { errors },
-    setValue,
-    handleSubmit,
   } = useForm()
 
   const fullNameRef = useRef()
-  const degreesRef = useRef()
-  const specialityRef = useRef()
   const bmdcNumberRef = useRef()
 
   const handleEdit = (e) => {
     e.preventDefault()
-    // setValue("name", donorInfo.name)
-    // setValue("phoneNumber", donorInfo.phoneNumber)
     setEditable(true)
     fullNameRef.current.focus()
   }
@@ -39,7 +39,7 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
           <Image height={300} width={300} src="/images/doctorInfo.svg" />
         </div>
         <div className="md:w-1/2 flex justify-center mt-5 md:justify-end w-full md:w-1/2 ">
-          <form className="w-4/5">
+          <div className="w-4/5">
             <div className="shadow-md flex-auto max-w-sm p-5 sm:p-10 pb-20">
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
@@ -47,11 +47,11 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
                 </div>
                 <FormInput
                   className="w-full"
-                  name="fullName"
+                  name="name"
                   required
                   placeholder="Your name"
                   readOnly={!editable}
-                  defaultValue={fullName}
+                  defaultValue={name}
                   onBlur={setFormData}
                   register={register}
                   errors={errors}
@@ -65,7 +65,7 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
                 <FormInput
                   className="w-full"
                   name="bmdcNumber"
-                  type="number"
+                  type="text"
                   required
                   placeholder="123456"
                   readOnly={!editable}
@@ -81,34 +81,28 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                   <span className="text-red-400 mr-1">*</span> Degrees
                 </div>
-                <FormInput
+                <TagsInput
                   className="w-full"
                   name="degrees"
+                  state={degrees}
+                  setState={setDegrees}
                   required
                   placeholder="Your degree"
                   readOnly={!editable}
-                  defaultValue={degrees}
-                  onBlur={setFormData}
-                  register={register}
-                  errors={errors}
-                  refnc={degreesRef}
                 />
               </div>
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                   <span className="text-red-400 mr-1">*</span> Speciality
                 </div>
-                <FormInput
+                <TagsInput
                   className="w-full"
                   name="speciality"
-                  required
                   placeholder="Your speciality"
+                  state={speciality}
+                  setState={setSpeciality}
+                  required
                   readOnly={!editable}
-                  defaultValue={speciality}
-                  onBlur={setFormData}
-                  register={register}
-                  errors={errors}
-                  refnc={specialityRef}
                 />
               </div>
 
@@ -138,12 +132,13 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
                   }`}
                   disabled={!editable}
                   onClick={() => navigation.next()}
+                  type="clear"
                 >
                   Next
                 </AppButton>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

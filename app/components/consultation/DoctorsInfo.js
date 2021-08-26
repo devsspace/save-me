@@ -31,7 +31,7 @@ const DoctorsInfo = ({ doctor }) => {
                     className="h-28 w-28 mx-auto rounded-full"
                     src={
                       profilePic ||
-                      `https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGRvY3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60`
+                      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGRvY3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                     }
                     alt=""
                   />
@@ -81,7 +81,7 @@ const DoctorsInfo = ({ doctor }) => {
                 </ul>
               </div>
               {/* End of profile card */}
-              <div className="my-4"></div>
+              <div className="my-4" />
             </div>
             {/* Right Side */}
             <div className="w-full md:w-9/12 mx-2 h-64">
@@ -98,9 +98,9 @@ const DoctorsInfo = ({ doctor }) => {
                       stroke="currentColor"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
@@ -164,7 +164,7 @@ const DoctorsInfo = ({ doctor }) => {
               </div>
               {/* End of about section */}
 
-              <div className="my-4"></div>
+              <div className="my-4" />
 
               {/* Experience and education */}
               <div className="bg-white p-3 shadow-sm rounded-sm">
@@ -180,9 +180,9 @@ const DoctorsInfo = ({ doctor }) => {
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                           />
                         </svg>
@@ -243,9 +243,9 @@ const DoctorsInfo = ({ doctor }) => {
                             d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
                           />
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
                           />
                         </svg>
@@ -280,11 +280,11 @@ const DoctorsInfo = ({ doctor }) => {
         </div>
       </div>
       <div className="flex justify-center my-32">
-        <AppButton onClick={() => router.push(`${router.asPath}/waitingList`)}>
+        <AppButton onClick={() => router.push(`/payment-process?doctor=${doctorId}`)}>
           Consult now
         </AppButton>
 
-        <AppButton className={`ml-5 justify-center`}>Book</AppButton>
+        <AppButton className="ml-5 justify-center">Book</AppButton>
       </div>
     </div>
   )

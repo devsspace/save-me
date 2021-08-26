@@ -64,7 +64,7 @@ const waitingList = () => {
     // }
   })
 
-  socket.on("patient-removed", (patientId, s) => {
+  socket.on("patient-removed", (patientId, s, byDoctor) => {
 
     if(patientId === currentUser._id){
       setPatient({})
@@ -72,6 +72,9 @@ const waitingList = () => {
       setSerial(s)
     }
     setWaiting(s)
+    if(byDoctor){
+      router.push("/doctors")
+    }
   })
 
   const handleJoin = () => {
@@ -103,7 +106,7 @@ const waitingList = () => {
   return (
     <div className="">
       <h1 className="title">Waiting List</h1>
-      <h2 className="my-10 mx-auto flex items-center text-shine"><AiOutlineAim className="mr-2 text-red-700" /> {patient.patientId === currentUser._id ? `Your serial is ${serial}` : `${waiting} people waiting`}</h2>
+      <h2 className="my-10 mx-auto flex items-center text-shine"><AiOutlineAim className="mr-2 text-red-700" /> {patient.patientId === currentUser._id ? `Your serial is ${serial || 0}` : `${waiting || 0} people waiting`}</h2>
       <Table>
         {patient._id ?
             <TableBody>

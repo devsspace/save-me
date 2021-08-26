@@ -8,7 +8,7 @@ import Image from "next/image"
 import React, { useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
-const FeeAndEducation = ({ formData, setFormData, navigation }) => {
+const FeeAndEducation = ({ formData, setFormData, navigation, degrees, speciality }) => {
   const [imgURL, setImgURL] = useState(null)
   const { currentUser } = useUserContext()
   const { consultationFee, followUpFee, totalExperienceYears, profilePic } =
@@ -16,7 +16,6 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
   const {
     register,
     formState: { errors },
-    setValue,
     handleSubmit,
   } = useForm()
   const consultationFeeRef = useRef()
@@ -28,6 +27,8 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
       ...currentUser,
       ...formData,
       ...data,
+      degrees,
+      speciality,
       profilePic: imgURL,
     }
     try {
