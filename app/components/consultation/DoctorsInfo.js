@@ -1,9 +1,19 @@
+import { successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
+import AppDatePicker from "@components/others/AppDatePicker"
+import { Table, TD } from "@components/others/Table"
 import useRatingClient from "@hooks/useRatingClient"
 import { useRouter } from "node_modules/next/dist/client/router"
-import React from "react"
+import React, { useState } from "react"
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
+
+const MySwal = withReactContent(Swal)
 
 const DoctorsInfo = ({ doctor }) => {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [bookingDate, setBookingDate] = useState({bookingDate: new Date()})
+  
   const router = useRouter()
   const { doctorId } = router.query
   const {
@@ -18,8 +28,19 @@ const DoctorsInfo = ({ doctor }) => {
     active,
   } = doctor
   const { ratingIcons } = useRatingClient(4.5)
+<<<<<<< HEAD
+  
+  const availableTime = [
+    "10:30", "12:00", "2:00", "4:00"
+  ]
+
+  const [selectedTime, setSelectedTime] = useState(availableTime[0])
+
+
+=======
   const degreesInString = degrees.join(", ")
   const specialityInString = speciality.join(", ")
+>>>>>>> 0f5b34433b3e30e015a0813fcd36d7795f8755c6
   return (
     <div>
       <div className="bg-gray-100">
@@ -282,8 +303,50 @@ const DoctorsInfo = ({ doctor }) => {
           Consult now
         </AppButton>
 
-        <AppButton className="ml-5 justify-center">Book</AppButton>
+        <AppButton
+          className="ml-5 justify-center"
+          onClick={() => setModalOpen(true)}
+        >
+          Book
+        </AppButton>
       </div>
+      {modalOpen && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-1/2 h-1/3 bg-gray-600 flex flex-col items-center justify-evenly rounded shadow-lg">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-white">Select Date: </span>
+              <AppDatePicker
+                name="bookingDate"
+                className="h-[52px]"
+                state={bookingDate}
+                setState={setBookingDate}
+              />
+            </div>
+            <div className="ml-5">
+              <span className="text-white ml-5">Schedule:</span>
+              <Table>
+                {availableTime.map((time) => {
+                  console.log(selectedTime, time)
+                  return (
+                    <TD
+                      className={`text-dark bg-white hover:bg-primary cursor-pointer ${
+                        selectedTime === time && "!bg-primary"
+                      }`}
+                      onClick={() => setSelectedTime(time)}
+                    >
+                      {time}
+                    </TD>
+                  )
+                })}
+              </Table>
+            </div>
+          </div>
+          <AppButton onClick={() => {
+            successAlert()
+            setModalOpen(false)
+          }}>Book</AppButton>
+        </div>
+      )}
     </div>
   )
 }

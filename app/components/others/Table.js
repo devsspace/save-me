@@ -55,9 +55,9 @@ export const TableBody = ({ children }) => {
   )
 }
 
-export const TD = ({ children, className }) => {
+export const TD = ({ children, className, onClick }) => {
   return (
-    <td className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-light ${className}`}>
+    <td onClick={onClick} className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-light ${className}`}>
       {children}
     </td>
   )
