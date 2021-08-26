@@ -11,7 +11,7 @@ export default function LoginPage() {
   const signUpButtonRef = useRef()
   const containerRef = useRef()
   const [loading, setLoading] = useState(false)
-  
+
   const handleRegister = () => {
     containerRef.current.classList.add("sign-up-mode")
   }
@@ -19,23 +19,23 @@ export default function LoginPage() {
   const handleLogin = () => {
     containerRef.current.classList.remove("sign-up-mode")
   }
-  
+
   const { currentUser } = useUserContext()
   const router = useRouter()
   const { from } = router.query
-  
+
   useEffect(() => {
     if (currentUser) router.replace(from || "/dashboard/add-donor-info")
   }, [currentUser, from, router])
 
-  if(loading) return <LoadingSpinner />
+  if (loading) return <LoadingSpinner />
 
   return (
     <div className="authContainer" ref={containerRef}>
       <div className="forms-container">
         <AuthForm setLoading={setLoading} />
       </div>
-      
+
       <div className="panels-container">
         <div className="panel left-panel">
           <div className="content">

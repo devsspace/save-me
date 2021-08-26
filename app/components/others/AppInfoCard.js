@@ -1,4 +1,3 @@
-import useLineClamp from "@hooks/useLineClamp"
 import useRatingClient from "@hooks/useRatingClient"
 import { AiOutlineArrowRight } from "react-icons/ai"
 
@@ -23,7 +22,7 @@ export default function AppInfoCard({ data, className }) {
       className={`rounded-md overflow-hidden shadow-md relative bg-light dark:bg-gray-600 cursor-pointer ${className}`}
     >
       <img
-        className="w-full h-32 sm:h-48 w-full object-cover"
+        className="h-32 sm:h-48 w-full object-cover"
         src={profilePic}
         alt=""
       />
@@ -34,7 +33,7 @@ export default function AppInfoCard({ data, className }) {
           Dr. {firstName ? `${firstName} ${lastName}` : name}
         </p>
 
-        <p className="text-xs">{useLineClamp(specializationsInString)}</p>
+        <p className="text-xs line-clamp-1">{specializationsInString}</p>
 
         <div className="mt-1 text-sm flex items-center gap-0.5 text-yellow-400">
           {ratingIcons.map((RatingIcon) => (

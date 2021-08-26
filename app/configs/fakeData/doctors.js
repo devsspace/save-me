@@ -373,7 +373,7 @@ export default [
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZG9jdG9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     profileDesc:
       "Dr Mahububul Alam Kulkarni belives that once you start being more aware of your thoughts and actions, you will start appreciating life in a new way. This is why he specializes in depression, mood disorders, sexual disorders and anxiety disorders, because he feels that every person is capable of bringing about a change from within. His process is supportive, but aimed at direct interaction to help the patient bring about a visible change in himself or herself.",
-    specializations: ["Pocha Hagu", "Fever", "Domestic Violence"],
+    specializations: ["Coding (Hell Yeah)", "Fever", "Domestic Violence"],
     license: [
       "Registration No. MMC 2009093394, Medical Council of India 09/33958",
       "2006113358 Maharashtra Medical Council, 2006",
