@@ -30,7 +30,7 @@ export default function AppHeader({
           >
             {title}
           </p>
-          <p className="text-center md:text-left !text-base">{text}</p>
+          <p className="text-center md:text-left text-base">{text}</p>
           {others}
         </div>
 
