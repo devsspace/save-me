@@ -16,8 +16,8 @@ export default function AppInfoCard({ data, className }) {
     communication = [{ cost: 0 }],
   } = data
   console.log(data)
-  const specializationsInString = speciality.join(", ")
-  const degreesInString = degrees.join(", ")
+  const specializationsInString = speciality?.join(", ")
+  const degreesInString = degrees?.join(", ")
   const { ratingIcons } = useRatingClient(rating)
   return (
     <div
