@@ -1,14 +1,18 @@
+import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
 import FormInput from "@components/others/FormInput"
+import { saveProfile } from "app/api/index"
+import { useUserContext } from "app/contexts/UserContext"
+import axios from "axios"
 import Image from "next/image"
 import React, { useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const FeeAndEducation = ({ formData, setFormData, navigation }) => {
   const [imgURL, setImgURL] = useState(null)
+  const { currentUser } = useUserContext()
   const { consultationFee, followUpFee, totalExperienceYears, profilePic } =
     formData
-  const [editable, setEditable] = useState(false)
   const {
     register,
     formState: { errors },
@@ -17,14 +21,24 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
   } = useForm()
   const consultationFeeRef = useRef()
   const followUpFeeRef = useRef()
-  const educationalBackgroundDetailsRef = useRef()
   const totalExperienceYearsRef = useRef()
-  const handleEdit = (e) => {
-    e.preventDefault()
-    setEditable(true)
-    consultationFeeRef.current.focus()
-  }
 
+  const handleSave = async (data) => {
+    const doctorProfile = {
+      ...currentUser,
+      ...formData,
+      ...data,
+      profilePic: imgURL,
+    }
+    try {
+      const { data } = await saveProfile(doctorProfile)
+
+      if (data?.user) successAlert("Successfully saved your profile")
+      else errorAlert(data.message)
+    } catch (error) {
+      errorAlert(error.message)
+    }
+  }
   // upload images
   const handleImageUpload = async (e) => {
     const imgData = new FormData()
@@ -39,7 +53,6 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
       console.log(error)
     }
   }
-
   return (
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-col md:flex-row justify-center">
@@ -47,7 +60,7 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
           <Image height={300} width={300} src="/images/doctorInfo.svg" />
         </div>
         <div className="md:w-1/2 flex justify-center mt-5 md:justify-end w-full md:w-1/2 ">
-          <form onSubmit={(e) => e.preventDefault()} className="w-4/5">
+          <form className="w-4/5">
             <div className="shadow-md flex-auto max-w-sm p-5 sm:p-10 pb-20">
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
@@ -57,10 +70,10 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
                   type="number"
                   className="w-full"
                   name="consultationFee"
-                  // readOnly={!editable}
                   required
                   placeholder="Consultaion Fee"
                   defaultValue={consultationFee}
+                  onBlur={setFormData}
                   register={register}
                   errors={errors}
                   refnc={consultationFeeRef}
@@ -74,10 +87,10 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
                   type="number"
                   className="w-full"
                   name="followUpFee"
-                  // readOnly={!editable}
                   required
                   placeholder="Follow up fee"
                   defaultValue={followUpFee}
+                  onBlur={setFormData}
                   register={register}
                   errors={errors}
                   refnc={followUpFeeRef}
@@ -91,10 +104,10 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
                   className="w-full"
                   name="totalExperienceYears"
                   type="number"
-                  // readOnly={!editable}
                   required
                   placeholder="Total experiences"
                   defaultValue={totalExperienceYears}
+                  onBlur={setFormData}
                   register={register}
                   errors={errors}
                   refnc={totalExperienceYearsRef}
@@ -118,11 +131,10 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
                       className="w-full hidden"
                       name="profilePic"
                       type="file"
-                      // disabled={!editable}
                       register={register}
                       errors={errors}
                       required={false}
-                      onchange={handleImageUpload}
+                      onChange={handleImageUpload}
                     />
                   </label>
                 </div>
@@ -138,9 +150,9 @@ const FeeAndEducation = ({ formData, setFormData, navigation }) => {
 
                 <AppButton
                   className="justify-center"
-                  onClick={() => navigation.next()}
+                  onClick={handleSubmit(handleSave)}
                 >
-                  Next
+                  Save
                 </AppButton>
               </div>
             </div>

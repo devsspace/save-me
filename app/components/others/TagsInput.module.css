@@ -5,12 +5,14 @@
   min-height: 48px;
   width: auto;
   padding: 0 8px;
-  border: 1px solid rgb(214, 216, 218);
+  border: none;
   border-radius: 6px;
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-.tags_input:focus-within {
-  border: 1px solid #00cffc;
-}
+
 .tags_input input {
   flex: 1;
   border: none;
@@ -18,9 +20,9 @@
   font-size: 14px;
   padding: 4px 0 0 0;
 }
-.tags_input input :focus {
+/* .tags_input input :focus {
   outline: transparent;
-}
+} */
 .tags_ul {
   display: flex;
   flex-wrap: wrap;

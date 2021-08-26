@@ -39,7 +39,7 @@ const DonorInfo = () => {
       try {
         const { data } = await getDonor(currentUser._id)
         if (data?.donor) setDonorInfo(data.donor)
-      } catch (error) { }
+      } catch (error) {}
     }
     getInfo()
   }, [])
@@ -180,7 +180,7 @@ const DonorInfo = () => {
                       register={register}
                       errors={errors}
                       required={false}
-                      onchange={handleImageUpload}
+                      onChange={handleImageUpload}
                     />
                   </label>
                 </div>
@@ -218,8 +218,9 @@ const DonorInfo = () => {
                   </AppButton>
                 )}
                 <AppButton
-                  className={`justify-center ${!editable ? "cursor-not-allowed" : "cursor-pointer"
-                    }`}
+                  className={`justify-center ${
+                    !editable ? "cursor-not-allowed" : "cursor-pointer"
+                  }`}
                   disabled={!editable}
                   onClick={
                     editable

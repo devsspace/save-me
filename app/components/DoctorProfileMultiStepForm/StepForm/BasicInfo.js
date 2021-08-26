@@ -1,6 +1,5 @@
 import AppButton from "@components/others/AppButton"
 import FormInput from "@components/others/FormInput"
-import TagsInput from "@components/others/TagsInput"
 import { useUserContext } from "app/contexts/UserContext"
 import Image from "next/image"
 import { useRouter } from "node_modules/next/dist/client/router"
@@ -11,7 +10,7 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
 
   const { currentUser } = useUserContext()
   const [editable, setEditable] = useState(false)
-  const { fullName, degrees, speciality, bmdcNumber, profilePic } = formData
+  const { fullName, degrees, speciality, bmdcNumber } = formData
 
   const {
     register,
@@ -53,6 +52,7 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
                   placeholder="Your name"
                   readOnly={!editable}
                   defaultValue={fullName}
+                  onBlur={setFormData}
                   register={register}
                   errors={errors}
                   refnc={fullNameRef}
@@ -70,6 +70,7 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
                   placeholder="123456"
                   readOnly={!editable}
                   defaultValue={bmdcNumber}
+                  onBlur={setFormData}
                   register={register}
                   errors={errors}
                   refnc={bmdcNumberRef}
@@ -80,74 +81,35 @@ const BasicInfo = ({ formData, setFormData, navigation }) => {
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                   <span className="text-red-400 mr-1">*</span> Degrees
                 </div>
-                {/* <FormInput
+                <FormInput
                   className="w-full"
                   name="degrees"
                   required
-                  placeholder="MBBS, FCPS"
+                  placeholder="Your degree"
                   readOnly={!editable}
                   defaultValue={degrees}
+                  onBlur={setFormData}
                   register={register}
                   errors={errors}
-                  refnc={nameRef}
-                /> */}
-
-                <TagsInput
-                  name="degrees"
-                  required
-                  defaultValue={degrees}
-                  register={register}
-                  errors={errors}
-                  tags={["MBBS", "FCPS"]}
+                  refnc={degreesRef}
                 />
-
-                {/* <textarea
-                  name="degrees"
-                  required
-                  placeholder="MBBS, FCPS"
-                  readOnly={!editable}
-                  defaultValue={degrees}
-                  register={register}
-                  errors={errors}
-                  ref={degreesRef}
-                  className="w-full placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-4"
-                /> */}
               </div>
               <div className="w-full">
                 <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
                   <span className="text-red-400 mr-1">*</span> Speciality
                 </div>
-                <TagsInput
-                  name="speciality"
-                  required
-                  defaultValue={speciality}
-                  register={register}
-                  errors={errors}
-                  tags={["Cardiologist", "Medicine"]}
-                />
-
-                {/* <FormInput
+                <FormInput
                   className="w-full"
                   name="speciality"
                   required
-                  placeholder="General Physician"
+                  placeholder="Your speciality"
                   readOnly={!editable}
                   defaultValue={speciality}
+                  onBlur={setFormData}
                   register={register}
                   errors={errors}
-                  refnc={nameRef}
-                /> */}
-                {/* <textarea
-                  name="speciality"
-                  required
-                  placeholder="General Physician"
-                  readOnly={!editable}
-                  defaultValue={speciality}
-                  register={register}
-                  errors={errors}
-                  ref={specialityRef}
-                  className="w-full placeholder-gray-400 rounded-md focus:ring-2 focus:!ring-primary text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md border-none p-4"
-                /> */}
+                  refnc={specialityRef}
+                />
               </div>
 
               <div className="flex justify-center mt-6">

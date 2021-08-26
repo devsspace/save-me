@@ -14,6 +14,9 @@ const TagsInput = (props) => {
       e.target.value = ""
     }
   }
+  const selectedTags = (tags) => {
+    console.log(tags)
+  }
   return (
     <div className={classes.tags_input}>
       <ul className={classes.tags_ul}>

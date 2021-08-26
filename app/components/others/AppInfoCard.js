@@ -13,13 +13,20 @@ export default function AppInfoCard({ data, className }) {
     specializations = [],
     rating = 4.5,
     conversations,
-    communication = [{cost: 0}],
+    communication = [{ cost: 0 }],
   } = data
+  // console.log(data)
   const specializationsInString = specializations.join(", ")
   const { ratingIcons } = useRatingClient(rating)
   return (
-    <div className={`rounded-md overflow-hidden shadow-md relative bg-light dark:bg-gray-600 cursor-pointer ${className}`}>
-      <img className="w-full h-32 sm:h-48 w-full object-cover" src={profilePic} alt="" />
+    <div
+      className={`rounded-md overflow-hidden shadow-md relative bg-light dark:bg-gray-600 cursor-pointer ${className}`}
+    >
+      <img
+        className="w-full h-32 sm:h-48 w-full object-cover"
+        src={profilePic}
+        alt=""
+      />
 
       <div className="m-3">
         <p className="text-xs">{bio}</p>
