@@ -11,8 +11,8 @@ export default function LoadingSpinner() {
     },
   }
   return (
-    <div className="mx-auto">
-      <Lottie options={defaultOptions} height={200} width={200} />
+    <div className="container mx-auto">
+      <Lottie options={defaultOptions} height={300} width={300} />
     </div>
   )
 }
