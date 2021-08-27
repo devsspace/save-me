@@ -4,7 +4,7 @@ import { SocketContext } from "app/contexts/videoContext"
 import React, { useContext } from "react"
 
 const Notifications = () => {
-  const { answerCall, call, callAccepted } = useContext(SocketContext)
+  const { answerCall, call, callAccepted, callEnded } = useContext(SocketContext)
   const { currentUser } = useUserContext()
 
   const s = {

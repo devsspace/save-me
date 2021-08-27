@@ -8,11 +8,12 @@ import { TiArrowRightThick } from "react-icons/ti"
 
 const Doctors = () => {
   const [doctorsList, setDoctorsList] = useState([])
-
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const get = async () => {
       try {
         const { data } = await getDoctors()
+        setLoading(false)
         setDoctorsList(data)
         console.log(data)
       } catch (error) {

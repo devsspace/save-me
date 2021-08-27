@@ -1,9 +1,19 @@
+import { successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
+import AppDatePicker from "@components/others/AppDatePicker"
+import { Table, TD } from "@components/others/Table"
 import useRatingClient from "@hooks/useRatingClient"
 import { useRouter } from "node_modules/next/dist/client/router"
-import React from "react"
+import React, { useState } from "react"
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
+
+const MySwal = withReactContent(Swal)
 
 const DoctorsInfo = ({ doctor }) => {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [bookingDate, setBookingDate] = useState({ bookingDate: new Date() })
+
   const router = useRouter()
   const { doctorId } = router.query
   const {
@@ -18,6 +28,11 @@ const DoctorsInfo = ({ doctor }) => {
     active,
   } = doctor
   const { ratingIcons } = useRatingClient(4.5)
+
+  const availableTime = ["10:30", "12:00", "2:00", "4:00"]
+
+  const [selectedTime, setSelectedTime] = useState(availableTime[0])
+
   const degreesInString = degrees.join(", ")
   const specialityInString = speciality.join(", ")
   return (
@@ -77,12 +92,16 @@ const DoctorsInfo = ({ doctor }) => {
                     </span>
                   </li>
                   <li className="flex items-center py-3">
+                    <span>Consultaion Fee</span>
+                    <span className="ml-auto">৳ {consultationFee}</span>
+                  </li>
+                  {/* <li className="flex items-center py-3">
                     <span>Rating</span>
 
                     <span className="ml-auto">
                       &#11088;&#11088;&#11088;&#11088;
                     </span>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               {/* End of profile card */}
@@ -115,8 +134,8 @@ const DoctorsInfo = ({ doctor }) => {
                 <div className="text-gray-700">
                   <div className="grid md:grid-cols-2 text-sm">
                     <div className="grid grid-cols-2">
-                      <div className="px-4 py-2 font-semibold">First Name</div>
-                      <div className="px-4 py-2">Jane</div>
+                      <div className="px-4 py-2 font-semibold">Name</div>
+                      <div className="px-4 py-2">{name}</div>
                     </div>
                     <div className="grid grid-cols-2">
                       <div className="px-4 py-2 font-semibold">Last Name</div>
@@ -197,7 +216,7 @@ const DoctorsInfo = ({ doctor }) => {
                     <ul className="list-inside space-y-2">
                       <li>
                         <div className="text-teal-600">
-                          Dhaka Medical College
+                          Stanford University School of Medicine
                         </div>
                         <div className="text-gray-500 text-xs">
                           March 2020 - Now
@@ -213,21 +232,8 @@ const DoctorsInfo = ({ doctor }) => {
                         <div className="text-gray-500 text-xs">
                           March 2020 - Now
                         </div>
-                      </li>
-                      <li>
-                        <div className="text-teal-600">
-                          Owner at Her Company Inc.
-                        </div>
                         <div className="text-gray-500 text-xs">
-                          March 2020 - Now
-                        </div>
-                      </li>
-                      <li>
-                        <div className="text-teal-600">
-                          Owner at Her Company Inc.
-                        </div>
-                        <div className="text-gray-500 text-xs">
-                          March 2020 - Now
+                          Medical Officer
                         </div>
                       </li>
                     </ul>
@@ -260,18 +266,18 @@ const DoctorsInfo = ({ doctor }) => {
                     <ul className="list-inside space-y-2">
                       <li>
                         <div className="text-teal-600">
-                          Masters Degree in Oxford
+                          Stanford University School of Medicine
                         </div>
                         <div className="text-gray-500 text-xs">
-                          March 2020 - Now
+                          March 2016 - 2020
                         </div>
                       </li>
                       <li>
                         <div className="text-teal-600">
-                          Bachelors Degreen in LPU
+                          David Geffen School of Medicine at UCLA
                         </div>
                         <div className="text-gray-500 text-xs">
-                          March 2020 - Now
+                          March 2012 - 2016
                         </div>
                       </li>
                     </ul>
@@ -291,8 +297,54 @@ const DoctorsInfo = ({ doctor }) => {
           Consult now
         </AppButton>
 
-        <AppButton className="ml-5 justify-center">Book</AppButton>
+        <AppButton
+          className="ml-5 justify-center"
+          onClick={() => setModalOpen(true)}
+        >
+          Book
+        </AppButton>
       </div>
+      {modalOpen && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-1/2 h-1/3 bg-gray-600 flex flex-col items-center justify-evenly rounded shadow-lg">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-white">Select Date: </span>
+              <AppDatePicker
+                name="bookingDate"
+                className="h-[52px]"
+                state={bookingDate}
+                setState={setBookingDate}
+              />
+            </div>
+            <div className="ml-5">
+              <span className="text-white ml-5">Schedule:</span>
+              <Table>
+                {availableTime.map((time) => {
+                  console.log(selectedTime, time)
+                  return (
+                    <TD
+                      className={`text-dark bg-white hover:bg-primary cursor-pointer ${
+                        selectedTime === time && "!bg-primary"
+                      }`}
+                      onClick={() => setSelectedTime(time)}
+                    >
+                      {time}
+                    </TD>
+                  )
+                })}
+              </Table>
+            </div>
+          </div>
+          <AppButton
+            onClick={() => {
+              successAlert()
+              setModalOpen(false)
+            }}
+          >
+            Book
+          </AppButton>
+        </div>
+      )}
     </div>
   )
 }
