@@ -92,7 +92,8 @@ const VideoContextProvider = ({ children }) => {
     })
 
     peer.on("stream", (currentStream) => {
-      userVideo.current.srcObject = currentStream
+      if(userVideo.current) userVideo.current.srcObject = currentStream
+      console.log(userVideo.current)
       setUserCamera(currentStream.getVideoTracks()[0]?.enabled)
       setUserMic(currentStream.getAudioTracks()[0]?.enabled)
     })
