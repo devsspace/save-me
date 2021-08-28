@@ -16,7 +16,7 @@ export default function AvailableForConsultation() {
           <TiArrowRightThick />
         </div>
       </div>
-      <ViewDoctorsSlide />
+      <ViewDoctorsSlide limitDoctorsTo={4} />
     </AppContainer>
   )
 }

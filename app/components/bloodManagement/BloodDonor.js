@@ -9,8 +9,16 @@ import { HiLocationMarker } from "react-icons/hi"
 export default function BloodDonor({ donorInfo }) {
   const router = useRouter()
   const isActive = Math.floor(Math.random() * 2) + 1
-  const { name, profilePic, eligibility, bloodGroup, location, donated = 10, _id } = donorInfo
-console.log(donorInfo.profilePic)
+  const {
+    name,
+    profilePic,
+    eligibility,
+    bloodGroup,
+    location,
+    donated = 10,
+    _id,
+  } = donorInfo
+  console.log(donorInfo.profilePic)
   let AppHeartIcon
   if (donated >= 10) {
     AppHeartIcon = FaHeartbeat
@@ -59,6 +67,7 @@ console.log(donorInfo.profilePic)
           text={`${name}`}
           Icon={AiOutlineUser}
           className="-mt-9"
+          textClassName="line-clamp-1"
           iconClassName="text-red-500 dark:text-red-400"
         />
         {eligibility ? (

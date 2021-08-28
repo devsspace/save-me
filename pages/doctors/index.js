@@ -8,11 +8,12 @@ import { TiArrowRightThick } from "react-icons/ti"
 
 const Doctors = () => {
   const [doctorsList, setDoctorsList] = useState([])
-
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const get = async () => {
       try {
         const { data } = await getDoctors()
+        setLoading(false)
         setDoctorsList(data)
         console.log(data)
       } catch (error) {
@@ -23,31 +24,32 @@ const Doctors = () => {
   }, [])
 
   return (
-    <AppContainer>
-      <h1 className="title">Our Doctors</h1>
+    <section>
+      <h1 className="title font-bold">Our Doctors</h1>
       <DocorsFilterForm />
-
-      <div className="flex justify-between">
-        <h1 className="text-xs sm:text-xl font-bold">
-          Available For Consultation Now
-        </h1>
-        <div className="flex items-center">
-          <button className="font-poppins text-xs  sm:text-xl font-bold mr-1">
-            View All
-          </button>
-          <TiArrowRightThick />
+      <AppContainer className="!mt-7 mb-0">
+        <div className="flex justify-between">
+          <h1 className="text-xs sm:text-xl font-bold">
+            Available For Consultation Now
+          </h1>
+          <div className="flex items-center">
+            <button className="font-poppins text-xs  sm:text-xl font-bold mr-1">
+              View All
+            </button>
+            <TiArrowRightThick />
+          </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-3">
-        {doctorsList.length &&
-          doctorsList.map((doctor) => (
-            <AppLink href={`/doctors/${doctor._id}`}>
-              <AppInfoCard data={doctor} />
-            </AppLink>
-          ))}
-      </div>
-    </AppContainer>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 mt-3">
+          {doctorsList.length &&
+            doctorsList.map((doctor) => (
+              <AppLink href={`/doctors/${doctor._id}`}>
+                <AppInfoCard data={doctor} />
+              </AppLink>
+            ))}
+        </div>
+      </AppContainer>
+    </section>
   )
 }
 

@@ -40,8 +40,8 @@ export const askDonation = (info) => API.post("/donation", info)
 export const requestBlood = (bloodReqInfo) =>
   API.post("/request-blood", bloodReqInfo)
 export const getRequests = () => API.get("/request-blood")
-export const updateRequest = (requestInfo) => API.put(`/request-blood/${requestInfo._id}`, requestInfo)
-
+export const updateRequest = (requestInfo) =>
+  API.put(`/request-blood/${requestInfo._id}`, requestInfo)
 
 export const getDonations = (
   type = "",
@@ -59,7 +59,7 @@ export const getDonations = (
 export const updateDonation = (donationId, donationInfo) =>
   API.put(`/donation/${donationId}`, donationInfo)
 
-
-  export const getWaitingList = (doctorId) => API.get(`/consult/${doctorId}`)
-  export const getDoctors = () => API.get("/doctors")
-  export const getDoctor = (doctorId) => API.get(`/doctors/${doctorId}`)
+export const getWaitingList = (doctorId) => API.get(`/consult/${doctorId}`)
+export const getDoctors = (queryString) =>
+  API.get(`/doctors?valueToLimit=${queryString}`)
+export const getDoctor = (doctorId) => API.get(`/doctors/${doctorId}`)

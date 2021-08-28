@@ -12,8 +12,8 @@ const MySwal = withReactContent(Swal)
 
 const DoctorsInfo = ({ doctor }) => {
   const [modalOpen, setModalOpen] = useState(false)
-  const [bookingDate, setBookingDate] = useState({bookingDate: new Date()})
-  
+  const [bookingDate, setBookingDate] = useState({ bookingDate: new Date() })
+
   const router = useRouter()
   const { doctorId } = router.query
   const {
@@ -28,13 +28,10 @@ const DoctorsInfo = ({ doctor }) => {
     active,
   } = doctor
   const { ratingIcons } = useRatingClient(4.5)
-  
-  const availableTime = [
-    "10:30", "12:00", "2:00", "4:00"
-  ]
+
+  const availableTime = ["10:30", "12:00", "2:00", "4:00"]
 
   const [selectedTime, setSelectedTime] = useState(availableTime[0])
-
 
   const degreesInString = degrees.join(", ")
   const specialityInString = speciality.join(", ")
@@ -95,12 +92,16 @@ const DoctorsInfo = ({ doctor }) => {
                     </span>
                   </li>
                   <li className="flex items-center py-3">
+                    <span>Consultaion Fee</span>
+                    <span className="ml-auto">৳ {consultationFee}</span>
+                  </li>
+                  {/* <li className="flex items-center py-3">
                     <span>Rating</span>
 
                     <span className="ml-auto">
                       &#11088;&#11088;&#11088;&#11088;
                     </span>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               {/* End of profile card */}
@@ -133,8 +134,8 @@ const DoctorsInfo = ({ doctor }) => {
                 <div className="text-gray-700">
                   <div className="grid md:grid-cols-2 text-sm">
                     <div className="grid grid-cols-2">
-                      <div className="px-4 py-2 font-semibold">First Name</div>
-                      <div className="px-4 py-2">Jane</div>
+                      <div className="px-4 py-2 font-semibold">Name</div>
+                      <div className="px-4 py-2">{name}</div>
                     </div>
                     <div className="grid grid-cols-2">
                       <div className="px-4 py-2 font-semibold">Last Name</div>
@@ -215,7 +216,7 @@ const DoctorsInfo = ({ doctor }) => {
                     <ul className="list-inside space-y-2">
                       <li>
                         <div className="text-teal-600">
-                          Dhaka Medical College
+                          Stanford University School of Medicine
                         </div>
                         <div className="text-gray-500 text-xs">
                           March 2020 - Now
@@ -231,21 +232,8 @@ const DoctorsInfo = ({ doctor }) => {
                         <div className="text-gray-500 text-xs">
                           March 2020 - Now
                         </div>
-                      </li>
-                      <li>
-                        <div className="text-teal-600">
-                          Owner at Her Company Inc.
-                        </div>
                         <div className="text-gray-500 text-xs">
-                          March 2020 - Now
-                        </div>
-                      </li>
-                      <li>
-                        <div className="text-teal-600">
-                          Owner at Her Company Inc.
-                        </div>
-                        <div className="text-gray-500 text-xs">
-                          March 2020 - Now
+                          Medical Officer
                         </div>
                       </li>
                     </ul>
@@ -278,18 +266,18 @@ const DoctorsInfo = ({ doctor }) => {
                     <ul className="list-inside space-y-2">
                       <li>
                         <div className="text-teal-600">
-                          Masters Degree in Oxford
+                          Stanford University School of Medicine
                         </div>
                         <div className="text-gray-500 text-xs">
-                          March 2020 - Now
+                          March 2016 - 2020
                         </div>
                       </li>
                       <li>
                         <div className="text-teal-600">
-                          Bachelors Degreen in LPU
+                          David Geffen School of Medicine at UCLA
                         </div>
                         <div className="text-gray-500 text-xs">
-                          March 2020 - Now
+                          March 2012 - 2016
                         </div>
                       </li>
                     </ul>
@@ -347,10 +335,14 @@ const DoctorsInfo = ({ doctor }) => {
               </Table>
             </div>
           </div>
-          <AppButton onClick={() => {
-            successAlert()
-            setModalOpen(false)
-          }}>Book</AppButton>
+          <AppButton
+            onClick={() => {
+              successAlert()
+              setModalOpen(false)
+            }}
+          >
+            Book
+          </AppButton>
         </div>
       )}
     </div>

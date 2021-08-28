@@ -18,7 +18,7 @@ export default function SearchDonorsPage() {
         </div>
       </div>
 
-      <div className="p-5">
+      <div>
         <LoadBloodDonors />
       </div>
     </section>

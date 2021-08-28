@@ -10,7 +10,9 @@ export default function AppButton({
 }) {
   return (
     <div
-      className={`py-2 px-4 flex bg-primary rounded-md items-center cursor-pointer shadow ${
+      className={`py-1.5 px-4 flex bg-primary hover:bg-primaryLightBlue
+      active:ring-2 active:shadow-lg active:ring-gray-300 active:bg-primary dark:active:ring-gray-600
+      rounded-md items-center cursor-pointer shadow ${
         disabled && "!bg-gray-400 !cursor-not-allowed"
       } ${className}`}
     >

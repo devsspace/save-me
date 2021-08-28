@@ -29,7 +29,7 @@
   h5,
   span,
   button {
-    @apply text-dark dark:text-light;
+    @apply text-darkGray dark:text-light;
   }
   .title {
     @apply text-3xl text-center text-green-400 my-5 mx-auto;
@@ -67,7 +67,7 @@
     @apply dark:border-none;
     border-radius: 0 0 0px 15px;
   }
-  .text-shine{
+  .text-shine {
     width: fit-content;
     font-weight: 600;
     padding: 12px 48px;
@@ -78,18 +78,17 @@
     animation: shine 2s infinite linear;
     animation-fill-mode: forwards;
   }
-      
-  @keyframes shine{
-    0%{
+
+  @keyframes shine {
+    0% {
       background-position: 0;
     }
-    60%{
+    60% {
       background-position: 180px;
     }
-    100%{
+    100% {
       background-position: 180px;
     }
-
   }
 }
 

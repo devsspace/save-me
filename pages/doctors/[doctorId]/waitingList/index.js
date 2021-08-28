@@ -25,10 +25,12 @@ const waitingList = () => {
     const get = async () => {
       try {
         const { data } = await getWaitingList(doctorId)
-        const currentPatient = data?.find((p) => p.patientId === currentUser._id)
-        if(currentPatient) {
+        const currentPatient = data?.find(
+          (p) => p.patientId === currentUser._id
+        )
+        if (currentPatient) {
           setPatient(currentPatient)
-          setSerial(data.indexOf(currentPatient)+1)
+          setSerial(data.indexOf(currentPatient) + 1)
           setJoined(true)
           setWaiting(data.length)
           if (!videoWindow || videoWindow.closed) {
@@ -41,11 +43,9 @@ const waitingList = () => {
               )
             )
           }
-        }
-        else{
+        } else {
           setWaiting(data?.length)
         }
-
       } catch (error) {
         console.log(error)
       }
@@ -54,8 +54,7 @@ const waitingList = () => {
   }, [])
 
   socket.on("patient-added", (newPatient, s) => {
-    
-    if(newPatient.patientId === currentUser._id){
+    if (newPatient.patientId === currentUser._id) {
       setPatient(newPatient)
       setSerial(s)
     }
@@ -65,27 +64,30 @@ const waitingList = () => {
   })
 
   socket.on("patient-removed", (patientId, s, byDoctor) => {
-
-    if(patientId === currentUser._id){
+    if (patientId === currentUser._id) {
       setPatient({})
-    } else{
+    } else {
       setSerial(s)
     }
     setWaiting(s)
-    if(byDoctor){
+    if (byDoctor) {
       router.push("/doctors")
     }
   })
 
   const handleJoin = () => {
-    socket.emit("add-patient", {
-      patientId: currentUser._id,
-      doctorId,
-      name: currentUser.name,
-      phoneNumber: currentUser.phoneNumber,
-    }, waiting)
+    socket.emit(
+      "add-patient",
+      {
+        patientId: currentUser._id,
+        doctorId,
+        name: currentUser.name,
+        phoneNumber: currentUser.phoneNumber,
+      },
+      waiting
+    )
     setJoined(true)
-    
+
     setVideoWindow(
       window.open(
         `/call/${doctorId}`,
@@ -94,27 +96,37 @@ const waitingList = () => {
         "fullscreen=yes,scrollbars=yes,status=yes"
       )
     )
-    
   }
-  
+
   const handleCancel = () => {
     socket.emit("remove-patient", currentUser._id, waiting)
     setJoined(false)
-    if(videoWindow) videoWindow.close()
+    if (videoWindow) videoWindow.close()
   }
 
   return (
     <div className="">
-      <h1 className="title">Waiting List</h1>
-      <h2 className="my-10 mx-auto flex items-center text-shine"><AiOutlineAim className="mr-2 text-red-700" /> {patient.patientId === currentUser._id ? `Your serial is ${serial || 0}` : `${waiting || 0} people waiting`}</h2>
+      <h1 className="title font-bold">Waiting List</h1>
+      <h2 className="my-10 mx-auto flex items-center text-shine">
+        <AiOutlineAim className="mr-2 text-red-700" />{" "}
+        {patient.patientId === currentUser._id
+          ? `Your serial is ${serial || 0}`
+          : `${waiting || 0} people waiting`}
+      </h2>
       <Table>
-        {patient._id ?
-            <TableBody>
-              <TD>{patient.name}</TD>
-              <TD>Estimated: {(serial - 1) * 3} min</TD>
-              <TD><AppButton onClick={handleCancel} className="justify-center" >Cancel</AppButton></TD>
-            </TableBody>
-           : <TD>You haven't joined the waiting list yet, join now!</TD>}
+        {patient._id ? (
+          <TableBody>
+            <TD>{patient.name}</TD>
+            <TD>Estimated: {(serial - 1) * 3} min</TD>
+            <TD>
+              <AppButton onClick={handleCancel} className="justify-center">
+                Cancel
+              </AppButton>
+            </TD>
+          </TableBody>
+        ) : (
+          <TD>You haven't joined the waiting list yet, join now!</TD>
+        )}
       </Table>
       <AppButton
         className="w-56 my-5 mx-auto"
