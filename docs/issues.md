@@ -32,16 +32,24 @@ data updates but pagination info doesn't update!
 
 
 
-[] dashboard wrapper
+[x] dashboard wrapper
 [] dashboard loading
-[] 
 
 
 
 [x] No user in Navbar after refresh
 [] Video chat responsive + millions of bugs
 
+[] video bugs
+[] modal book
+[] doctor profile
+[] payment
 
+[] doctor verification
+[] dashboard doctors list
+[] prescription
+[] Doctor appointment time
+[] doctor filter
 
 
 ## SERVER

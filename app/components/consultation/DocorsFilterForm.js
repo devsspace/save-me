@@ -6,6 +6,7 @@ import doctorsActiveSorting from "@configs/fakeData/doctorsActiveSorting"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { BsFilterLeft } from "react-icons/bs"
+
 const DocorsFilterForm = () => {
   const initialFilterData = {
     speciality: "Heart",
@@ -23,7 +24,7 @@ const DocorsFilterForm = () => {
       <div className="flex flex-col md:flex-row justify-evenly">
         <div className="w-full md:w-56">
           <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-            <span className="text-red-400 mr-1"></span> Search by specialty
+            Search by specialty
           </div>
           <AppDropdown
             name="speciality"
@@ -35,8 +36,7 @@ const DocorsFilterForm = () => {
         </div>
         <div className="w-full md:w-56">
           <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-            <span className="text-red-400 mr-1"></span> Search by Consultation
-            Fees
+            <span className="text-red-400 mr-1" /> Search by Consultation Fees
           </div>
           <AppDropdown
             name="consultationFee"
@@ -48,7 +48,7 @@ const DocorsFilterForm = () => {
         </div>
         <div className="w-full md:w-56">
           <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-            <span className="text-red-400 mr-1"></span> Search by availability
+            <span className="text-red-400 mr-1" /> Search by availability
           </div>
           <AppDropdown
             name="available"
