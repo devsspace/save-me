@@ -11,6 +11,7 @@ export default function FormInput({
   register = () => null,
   errors = "",
   refnc = null,
+  onBlur = null,
   ...otherInputProps
 }) {
   const check = {}
@@ -36,6 +37,7 @@ export default function FormInput({
             placeholder={placeholder}
             {...register(name, check)}
             ref={refnc}
+            onBlur={onBlur}
             {...otherInputProps}
           />
         </div>
@@ -46,6 +48,7 @@ export default function FormInput({
           placeholder={placeholder}
           {...register(name, check)}
           ref={refnc}
+          onBlur={onBlur}
           {...otherInputProps}
         />
       )}

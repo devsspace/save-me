@@ -16,7 +16,7 @@ const BasicInfo = ({
 }) => {
   const [editable, setEditable] = useState(false)
   const { name, bmdcNumber } = formData
-  console.log(speciality, degrees)
+  // console.log(speciality, degrees)
 
   const {
     register,
@@ -52,7 +52,9 @@ const BasicInfo = ({
                   placeholder="Your name"
                   readOnly={!editable}
                   defaultValue={name}
-                  onBlur={setFormData}
+                  onBlur={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   register={register}
                   errors={errors}
                   refnc={fullNameRef}
@@ -70,8 +72,10 @@ const BasicInfo = ({
                   placeholder="123456"
                   readOnly={!editable}
                   defaultValue={bmdcNumber}
-                  onBlur={setFormData}
                   register={register}
+                  onBlur={(e) =>
+                    setFormData({ ...formData, bmdcNumber: e.target.value })
+                  }
                   errors={errors}
                   refnc={bmdcNumberRef}
                 />
