@@ -37,7 +37,7 @@ const DoctorsInfo = ({ doctor }) => {
   const specialityInString = speciality.join(", ")
   return (
     <div>
-      <div className="bg-gray-100">
+      <div onClick={() => setModalOpen(false)} className="bg-gray-100">
         <div className="container mx-auto my-5 p-5">
           <div className="md:flex no-wrap md:-mx-2 ">
             {/* Left Side */}
