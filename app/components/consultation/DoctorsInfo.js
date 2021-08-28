@@ -28,7 +28,6 @@ const DoctorsInfo = ({ doctor }) => {
     active,
   } = doctor
   const { ratingIcons } = useRatingClient(4.5)
-<<<<<<< HEAD
   
   const availableTime = [
     "10:30", "12:00", "2:00", "4:00"
@@ -37,10 +36,8 @@ const DoctorsInfo = ({ doctor }) => {
   const [selectedTime, setSelectedTime] = useState(availableTime[0])
 
 
-=======
   const degreesInString = degrees.join(", ")
   const specialityInString = speciality.join(", ")
->>>>>>> 0f5b34433b3e30e015a0813fcd36d7795f8755c6
   return (
     <div>
       <div className="bg-gray-100">

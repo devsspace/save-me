@@ -3,6 +3,7 @@ import Notifications from "@components/video/Notifications"
 import Sidebar from "@components/video/Sidebar"
 import VideoPlayer from "@components/video/VideoPlayer"
 import { VideoContextProvider } from "app/contexts/videoContext"
+import Prescription from "./Prescription/Prescription"
 
 
 const Call = () => {
@@ -14,6 +15,7 @@ const Call = () => {
         <Sidebar>
           <Notifications />
         </Sidebar>
+        <Prescription />
       </div>
     </VideoContextProvider>
   )
