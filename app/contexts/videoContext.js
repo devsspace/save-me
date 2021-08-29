@@ -86,13 +86,24 @@ const VideoContextProvider = ({ children }) => {
   const answerCall = () => {
     setCallAccepted(true)
 
-    const peer = new Peer({ initiator: false, trickle: false, stream })
+    const peer = new Peer({
+      initiator: false,
+      trickle: false,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+        ],
+      },
+      stream,
+    })
     peer.on("signal", (data) => {
       socket.emit("answerCall", { signal: data, to: call.from })
     })
 
     peer.on("stream", (currentStream) => {
-      userVideo.current.srcObject = currentStream
+      if(userVideo.current) userVideo.current.srcObject = currentStream
+      console.log(userVideo.current)
       setUserCamera(currentStream.getVideoTracks()[0]?.enabled)
       setUserMic(currentStream.getAudioTracks()[0]?.enabled)
     })

@@ -1,7 +1,7 @@
 import { getDoctor } from "app/api/index"
 import { useUserContext } from "app/contexts/UserContext"
 import React, { useEffect, useState } from "react"
-import { useForm, useStep } from "react-hooks-helper"
+import { useStep } from "react-hooks-helper"
 import BasicInfo from "./StepForm/BasicInfo"
 import FeeAndEducation from "./StepForm/FeeAndEducation"
 import Submit from "./StepForm/Submit"
@@ -25,7 +25,7 @@ const DoctorProfileMultiStepForm = () => {
   const [speciality, setSpeciality] = useState(["Cardiac"])
   const [degrees, setDegrees] = useState(["MBBS"])
   
-  const [formData, setFormData] = useForm(defaultData)
+  const [formData, setFormData] = useState(defaultData)
   
   const { step, navigation } = useStep({
     steps,
@@ -36,14 +36,16 @@ const DoctorProfileMultiStepForm = () => {
     const get = async () => {
       try {
         const { data } = await getDoctor(currentUser._id)
-        setFormData({ ...formData, data })
-        console.log(formData)
+
+        setFormData(data)
       } catch (error) {
         console.log(error)
       }
     }
     get()
   }, [])
+  console.log(formData)
+
 
   const props = { formData, setFormData, navigation, speciality, degrees, setSpeciality, setDegrees }
 
