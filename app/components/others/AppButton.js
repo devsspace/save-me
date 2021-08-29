@@ -10,6 +10,7 @@ export default function AppButton({
 }) {
   return (
     <div
+      onClick={onClick}
       className={`py-1.5 px-4 flex bg-primary hover:bg-primaryLightBlue
       active:ring-2 active:shadow-lg active:ring-gray-300 active:bg-primary dark:active:ring-gray-600
       rounded-md items-center cursor-pointer shadow ${
@@ -24,7 +25,6 @@ export default function AppButton({
           disabled && "!cursor-not-allowed"
         } ${textClassName}`}
         type={type}
-        onClick={onClick}
         disabled={disabled}
       >
         {children}
