@@ -33,7 +33,7 @@ const Prescription = () => {
       errorAlert("keep atleast single textarea")
       return values
     }
-    setTextAreas(values)
+    return setTextAreas(values)
   }
 
   // save prescription
@@ -76,11 +76,12 @@ const Prescription = () => {
 
       {/* Medicine */}
 
-      <div className="flex flex-col md:flex-row justify-center mt-10 justify-evenly">
+      <div className="flex flex-wrap flex-col md:flex-row justify-center mt-10">
         <div>
           {textAreas.map((textArea, ids) => {
+            const key = textArea - ids
             return (
-              <div className="flex flex-row" key={`${textArea}-${ids}`}>
+              <div className="flex flex-row" key={key}>
                 <div>
                   <AppButton
                     className="mt-2 mr-2"
@@ -91,6 +92,7 @@ const Prescription = () => {
                 </div>
                 <div>
                   <textarea
+                    className="p-2 min-h-[50px] max-w-full"
                     placeholder="Enter medicine name"
                     value={textArea.value || ""}
                     onChange={(e) => handleChange(ids, e)}
