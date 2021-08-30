@@ -13,7 +13,6 @@ const PrescriptioForm = ({ prescriptions }) => {
   }
   const { currentUser } = useUserContext()
   const { name, degress = [], speciality = [], bmdcNumber } = currentUser
-  console.log(currentUser)
   const { complaints = [], investigations = [], textAreas } = prescriptions
   const complaintsInString = complaints.join(", ")
   const investigationsInString = investigations.join(", ")
@@ -47,7 +46,7 @@ const PrescriptioForm = ({ prescriptions }) => {
           </div>
           <hr className=" border-primary" />
 
-          <div className="flex flex-row">
+          <div className="flex flex-wrap flex-row">
             <div className="w-3/12">
               <div className="mt-4">
                 <h1 className="text-xl">Chief Compliments</h1>
@@ -65,16 +64,17 @@ const PrescriptioForm = ({ prescriptions }) => {
               <hr className=" border-primary mt-8" />
             </div>
             <div
-              className="w-9/12"
-              style={{ borderLeft: "1px solid #00CFFC", height: "500px" }}
+              className={`w-9/12 border-l border-solid border-primary ${
+                !textAreas ? "min-h-[500px]" : "h-auto"
+              }`}
             >
               <div className="m-10">
                 <h1 className="text-4xl">&#x211E;</h1>
                 {textAreas?.map(({ value }) => (
                   <div className="mt-10">
-                    <ul>
+                    <ol>
                       <li key={value}>{value}</li>
-                    </ul>
+                    </ol>
                   </div>
                 ))}
               </div>
@@ -82,7 +82,7 @@ const PrescriptioForm = ({ prescriptions }) => {
           </div>
         </div>
       </AppContainer>
-      <div className="flex flex-row">
+      <div className="flex flex-wrap flex-row min-h-full">
         <AppButton className="mx-auto">
           <PDF
             targetRef={ref}
