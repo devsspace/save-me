@@ -1,5 +1,6 @@
 import { errorAlert, successAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
+import AppContainer from "@components/others/AppContainer"
 import TagsInput from "@components/others/TagsInput"
 import React, { useState } from "react"
 import PrescriptioForm from "./PrescriptioForm"
@@ -45,14 +46,14 @@ const Prescription = () => {
     successAlert("Prescription succesfully saved")
     setPrescriptions(prescriptionData)
   }
+
   return (
-    <>
-      <div className="shadow-lg flex-auto p-5 sm:p-10 pb-20 mx-auto w-full md:w-[500px]">
-        <h1 className="text-center text-primary text-2xl">Make Rx</h1>
-        <div className="w-full">
-          <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-            <span className="text-red-400 mr-1">*</span> Chief Comlaints
-          </div>
+    <AppContainer>
+      <h1 className="text-center text-primary text-2xl">Prescription</h1>
+      {/* complaints and investigation */}
+      <div className="flex flex-col md:flex-row justify-center">
+        <div>
+          <h1>Chief Comlaints</h1>
           <TagsInput
             className="w-full"
             name="complaints"
@@ -60,62 +61,59 @@ const Prescription = () => {
             setState={setComplaints}
           />
         </div>
-        <div className="w-full">
-          <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-            <span className="text-red-400 mr-1">*</span> Investigations
-          </div>
+        <div>
+          <h1>Investigations</h1>
           <TagsInput
+            align="vertical"
             className="w-full"
             name="investigations"
             state={investigations}
             setState={setInvestigations}
           />
         </div>
+      </div>
 
-        <div className="w-full">
-          <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">
-            <span className="text-red-400 mr-1">*</span> Medicines
-          </div>
+      {/* Medicine */}
+
+      <div className="flex flex-wrap flex-col md:flex-row justify-center mt-10">
+        <div>
           {textAreas.map((textArea, ids) => {
             const key = textArea - ids
             return (
-              <div className="flex flex-row justify-between" key={key}>
-                <div>
-                  <textarea
-                    className="p-2 min-h-[50px] mt-2 shadow-lg w-72"
-                    placeholder="Enter medicine name"
-                    value={textArea.value || ""}
-                    onChange={(e) => handleChange(ids, e)}
-                  />
-                </div>
+              <div className="flex flex-row" key={key}>
                 <div>
                   <AppButton
-                    className="mt-4"
+                    className="mt-2 mr-2"
                     onClick={() => handleRemoveTextArea(ids)}
                   >
                     X
                   </AppButton>
                 </div>
+                <div>
+                  <textarea
+                    className="p-2 min-h-[50px] max-w-full"
+                    placeholder="Enter medicine name"
+                    value={textArea.value || ""}
+                    onChange={(e) => handleChange(ids, e)}
+                  />
+                </div>
               </div>
             )
           })}
-          <div className="flex flex-row mt-4">
+          <div className="flex flex-row">
             <AppButton className="mx-auto" onClick={() => handleAddTextArea()}>
-              Add Medicines
-            </AppButton>
-          </div>
-        </div>
-        <div className="w-full">
-          <div className="flex flex-row justify-center mt-8">
-            <AppButton onClick={handlePrescriptionSave}>
-              Save Prescription
+              Add Medicine
             </AppButton>
           </div>
         </div>
       </div>
-
+      <div className="flex flex-row justify-center mt-8">
+        <AppButton onClick={handlePrescriptionSave}>
+          Save Prescription
+        </AppButton>
+      </div>
       <PrescriptioForm prescriptions={prescriptions} />
-    </>
+    </AppContainer>
   )
 }
 

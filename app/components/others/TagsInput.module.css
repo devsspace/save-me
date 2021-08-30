@@ -1,5 +1,5 @@
 .tags_input {
-  display: flex;
+  /* display: flex; */
   align-items: flex-start;
   flex-wrap: wrap;
   min-height: 48px;
@@ -24,7 +24,7 @@
   outline: none;
 }
 .tags_ul {
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
   padding: 0;
   margin: 8px 0 0 0;
@@ -35,7 +35,7 @@
   height: 32px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: #fff;
   padding: 0 8px;
   font-size: 14px;

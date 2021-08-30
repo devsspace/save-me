@@ -5,7 +5,6 @@ import VideoPlayer from "@components/video/VideoPlayer"
 import { VideoContextProvider } from "app/contexts/videoContext"
 import Prescription from "./Prescription/Prescription"
 
-
 const Call = () => {
   return (
     <VideoContextProvider>

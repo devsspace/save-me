@@ -39,7 +39,9 @@ const DonorInfo = () => {
       try {
         const { data } = await getDonor(currentUser._id)
         if (data?.donor) setDonorInfo(data.donor)
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     }
     getInfo()
   }, [])
