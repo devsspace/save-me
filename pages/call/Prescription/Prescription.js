@@ -6,8 +6,8 @@ import React, { useState } from "react"
 import PrescriptioForm from "./PrescriptioForm"
 
 const Prescription = () => {
-  const [complaints, setComplaints] = useState(["pain"])
-  const [investigations, setInvestigations] = useState(["x-ray"])
+  const [complaints, setComplaints] = useState(["Pain"])
+  const [investigations, setInvestigations] = useState(["X-ray"])
   const [textAreas, setTextAreas] = useState([{ value: null }])
   const [prescriptions, setPrescriptions] = useState([])
 
@@ -103,7 +103,7 @@ const Prescription = () => {
           })}
           <div className="flex flex-row">
             <AppButton className="mx-auto" onClick={() => handleAddTextArea()}>
-              Add Textarea
+              Add Medicine
             </AppButton>
           </div>
         </div>
