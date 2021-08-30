@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useRef, useState } from "react"
-import Peer from "simple-peer"
+import Peer from "peerjs"
 import { io } from "socket.io-client"
 
 const SocketContext = createContext()
@@ -86,17 +86,7 @@ const VideoContextProvider = ({ children }) => {
   const answerCall = () => {
     setCallAccepted(true)
 
-    const peer = new Peer({
-      initiator: false,
-      trickle: false,
-      config: {
-        iceServers: [
-          { urls: "stun:stun.l.google.com:19302" },
-          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
-        ],
-      },
-      stream,
-    })
+    const peer = new Peer({ initiator: false, trickle: false, stream })
     peer.on("signal", (data) => {
       socket.emit("answerCall", { signal: data, to: call.from })
     })
