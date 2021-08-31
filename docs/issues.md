@@ -45,7 +45,7 @@ data updates but pagination info doesn't update!
 [] doctor profile
 [] payment
 
-[] doctor verification
+[x] doctor verification
 [] dashboard doctors list
 [] prescription
 [] Doctor appointment time

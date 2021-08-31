@@ -59,6 +59,18 @@ export default function DashButtons({ sideBarIsOpen }) {
           />
         </AppLink>
       )}
+      
+      {admin && (
+        <AppLink href="/">
+          <DashButton
+            sideBarIsOpen={sideBarIsOpen}
+            boxIcon="bxs-user-check"
+            text="Doctors"
+            onClick={() => router.push("/dashboard/doctors")}
+            className={active === "/dashboard/doctors" ? "!bg-primaryDark" : ""}
+          />
+        </AppLink>
+      )}
 
       <AppLink href="/">
         <DashButton
