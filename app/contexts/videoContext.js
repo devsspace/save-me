@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useRef, useState } from "react"
-// import Peer from "simple-peer"
+import Peer from "simple-peer"
 import { io } from "socket.io-client"
 
-let Peer
+// let Peer
 
 
 // const [Peer, setPeer] = useState()
@@ -37,11 +37,11 @@ const VideoContextProvider = ({ children }) => {
   const connectionRef = useRef()
 
 
-  useEffect(() => {
-    import("peerjs").then(({ default: P }) => {
-      Peer = P
-    })
-  }, [])
+  // useEffect(() => {
+  //   import("peerjs").then(({ default: P }) => {
+  //     Peer = P
+  //   })
+  // }, [])
 
   useEffect(() => {
     const startVideo = () => {

@@ -4,6 +4,7 @@ import { getWaitingList } from "app/api/index"
 import { useUserContext } from "app/contexts/UserContext"
 import { SocketContext } from "app/contexts/videoContext"
 import { useRouter } from "node_modules/next/dist/client/router"
+import Prescription from "pages/call/Prescription/Prescription"
 import React, { useContext, useEffect, useState } from "react"
 import { MdCancel } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
@@ -104,6 +105,11 @@ const Sidebar = ({ children }) => {
       )}
 
       {children}
+
+      {
+        callAccepted && !callEnded && isDoctor &&
+        <Prescription />
+      }
     </div>
   )
 }
