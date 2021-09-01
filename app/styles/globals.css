@@ -95,3 +95,6 @@
 .video-chat-page {
   height: calc(100vh - 68px);
 }
+.search-donor-page {
+  min-height: calc(100vh - 320px);
+}
