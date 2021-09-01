@@ -1,16 +1,11 @@
 import DoctorAboutSection from "@components/consultation/DoctorAboutSection"
 import DoctorProfileCard from "@components/consultation/DoctorProfileCard"
 import DoctorsInfoButtons from "@components/consultation/DoctorsInfoButtons"
-import { successAlert } from "@components/others/Alerts"
-import AppButton from "@components/others/AppButton"
-import AppDatePicker from "@components/others/AppDatePicker"
-import { Table, TD } from "@components/others/Table"
+import AppButtonV2 from "@components/others/AppButtonV2"
+import AppModal from "@components/others/AppModal"
 import { useRouter } from "node_modules/next/dist/client/router"
 import React, { useState } from "react"
-import Swal from "sweetalert2"
-import withReactContent from "sweetalert2-react-content"
-
-const MySwal = withReactContent(Swal)
+import { GiRose } from "react-icons/gi"
 
 const DoctorsInfo = ({ doctor }) => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -58,47 +53,28 @@ const DoctorsInfo = ({ doctor }) => {
         setModalOpen={setModalOpen}
         doctorId={doctorId}
       />
-      {modalOpen && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-1/2 h-1/3 bg-gray-600 flex flex-col items-center justify-evenly rounded shadow-lg">
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-white">Select Date: </span>
-              <AppDatePicker
-                name="bookingDate"
-                className="h-[52px]"
-                state={bookingDate}
-                setState={setBookingDate}
-              />
-            </div>
-            <div className="ml-5">
-              <span className="text-white ml-5">Schedule:</span>
-              <Table>
-                {availableTime.map((time) => {
-                  console.log(selectedTime, time)
-                  return (
-                    <TD
-                      className={`text-dark bg-white hover:bg-primary cursor-pointer ${
-                        selectedTime === time && "!bg-primary"
-                      }`}
-                      onClick={() => setSelectedTime(time)}
-                    >
-                      {time}
-                    </TD>
-                  )
-                })}
-              </Table>
-            </div>
-          </div>
-          <AppButton
-            onClick={() => {
-              successAlert()
-              setModalOpen(false)
-            }}
-          >
-            Book
-          </AppButton>
+      <AppModal isOpen={modalOpen} setIsOpen={setModalOpen} title="Test Title">
+        <div className="mt-2">
+          <p className="text-sm text-gray-500">
+            Your payment has been successfully submitted. We’ve sent your an
+            email with all of the details of your order.
+          </p>
         </div>
-      )}
+
+        <div className="mt-4">
+          <button
+            type="button"
+            className="inline-flex justify-center"
+            onClick={() => setModalOpen(false)}
+          >
+            <AppButtonV2
+              textPrimary="Thank You"
+              textSecondary="Okay"
+              Icon={GiRose}
+            />
+          </button>
+        </div>
+      </AppModal>
     </section>
   )
 }
