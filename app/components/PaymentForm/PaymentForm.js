@@ -1,6 +1,8 @@
+import { errorAlert } from "@components/others/Alerts"
 import AppButton from "@components/others/AppButton"
 import FormInput from "@components/others/FormInput"
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import { addPayment, getDoctor } from "app/api/index"
 import { useUserContext } from "app/contexts/UserContext"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
@@ -80,10 +82,17 @@ const PaymentForm = () => {
     email: "",
     phone: "",
     name: "",
+    doctor: "",
+    fee: ""
+
   })
+  const [specificDoc, setSpecificDoc] = useState({})
+
 
   const { currentUser } = useUserContext()
   const router = useRouter()
+  const { doctor } = router.query
+
 
   useEffect(() => {
     if (currentUser?._id)
@@ -91,17 +100,37 @@ const PaymentForm = () => {
         email: currentUser.email,
         phone: currentUser.phoneNumber,
         name: currentUser.name,
+        doctor: specificDoc.name,
+        fee: specificDoc.consultationFee
+
       })
     else {
       router.replace(`/user/login?from=${router.asPath}`)
     }
   }, [currentUser, router])
 
+  useEffect(() => {
+    const getDoc = async () => {
+
+      try {
+        const { data } = await getDoctor(doctor)
+        setSpecificDoc(data)
+
+      } catch (err) {
+
+        console.log(err)
+
+      }
+
+    }
+    getDoc()
+  }, [])
+
   console.log("PaymentMethod", paymentMethod)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
+    console.log(billingDetails.doctor)
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
@@ -120,7 +149,7 @@ const PaymentForm = () => {
     const payload = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
-      billing_details: billingDetails,
+      billing_details: { name: billingDetails.name, phone: billingDetails.phone, email: billingDetails.email }
     })
 
     setProcessing(false)
@@ -128,8 +157,27 @@ const PaymentForm = () => {
     if (payload.error) {
       setError(payload.error)
     } else {
-      setPaymentMethod(payload.paymentMethod)
-      router.push(`/doctors/${router.query.doctor}/waitingList`)
+
+      const serviceData = {
+        paymentInfo: payload.paymentMethod,
+        fee: billingDetails.fee
+
+      }
+
+
+      setPaymentMethod(serviceData)
+      try {
+        const { data } = addPayment({ ...serviceData, doctorId: doctor._id, patientId: currentUser._id })
+        console.log(data)
+        if (data._id) {
+          router.push(`/doctors/${router.query.doctor}/waitingList`)
+        } else {
+          errorAlert("Something Went Wrong")
+        }
+      } catch (e) {
+        errorAlert(e.message)
+      }
+
     }
   }
 
@@ -141,6 +189,9 @@ const PaymentForm = () => {
       email: "",
       phone: "",
       name: "",
+      doctor: "",
+      fee: ""
+
     })
   }
 
@@ -154,14 +205,37 @@ const PaymentForm = () => {
       <ResetButton onClick={reset} />
     </div>
   ) : (
-    <div>
+    <div className="bg-gray-200 dark:bg-gray-900 shadow-xl p-5 pb-12 px-12 mt-20">
+      <div className="w-full pt-1 pb-5">
+        <div className="bg-primary text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
+
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mdi mdi-credit-card-outline text-3xl" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+        </div>
+      </div>
       <h1 className="text-xl text-center sm:text-2xl font-bold mb-5">
         Please Make Your Payment{" "}
         <span className="block">Before Continuing!</span>
       </h1>
 
+      <div className="mb-3 flex -mx-2">
+        <div className="px-2">
+          <label for="type1" className="flex items-center cursor-pointer">
+            <input type="radio" className="form-radio h-5 w-5 text-primary" name="type" id="type1" checked />
+            <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" className="h-8 ml-3" alt="" />
+          </label>
+        </div>
+        <div className="px-2">
+          <label for="type2" className="flex items-center cursor-pointer">
+            <input type="radio" className="form-radio h-5 w-5 text-primary" name="type" id="type2" />
+            <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" className="h-8 ml-3" alt="" />
+          </label>
+        </div>
+      </div>
+
       <form
-        className="flex justify-center flex-col space-y-2"
+        className="flex justify-center flex-col space-y-2 "
         onSubmit={handleSubmit}
       >
         <FormInput
@@ -196,6 +270,30 @@ const PaymentForm = () => {
           value={billingDetails.phone}
           onChange={(e) => {
             setBillingDetails({ ...billingDetails, phone: e.target.value })
+          }}
+        />
+
+        <FormInput
+
+          type="tel"
+          placeholder="Doctor's Name"
+          required
+
+          value={billingDetails.doctor}
+          onChange={(e) => {
+            setBillingDetails({ ...billingDetails, doctor: e.target.value })
+          }}
+        />
+
+        <FormInput
+
+          type="text"
+
+          required
+          placeholder="Consultation Fee"
+          value={billingDetails.fee}
+          onChange={(e) => {
+            setBillingDetails({ ...billingDetails, fee: e.target.value })
           }}
         />
         <fieldset>
