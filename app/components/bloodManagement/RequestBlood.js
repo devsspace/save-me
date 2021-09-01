@@ -1,4 +1,5 @@
 import RequestBloodLottie from "@components/Lotties/RequestBloodLottie"
+import AppLink from "@components/others/AppLink"
 
 export default function RequestBlood() {
   return (
@@ -8,7 +9,9 @@ export default function RequestBlood() {
       </div>
       <p className="mt-1 z-10 text-center text-xl font-bold">
         Oops! No Donor Found. Request Blood From{" "}
-        <span className="underline text-error">Here!</span>
+        <AppLink href="/request-blood">
+          <span className="underline text-error">Here!</span>
+        </AppLink>
       </p>
     </section>
   )
