@@ -63,3 +63,6 @@ export const getWaitingList = (doctorId) => API.get(`/consult/${doctorId}`)
 export const getDoctors = (queryString) =>
   API.get(`/doctors?valueToLimit=${queryString}`)
 export const getDoctor = (doctorId) => API.get(`/doctors/${doctorId}`)
+
+export const updateDoctor = (doctorId, doctorInfo) =>
+  API.put(`/doctors/${doctorId}`, doctorInfo)

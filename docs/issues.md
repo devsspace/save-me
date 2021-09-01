@@ -38,16 +38,15 @@ data updates but pagination info doesn't update!
 
 
 [x] No user in Navbar after refresh
-[] Video chat responsive + millions of bugs
 
-[] video bugs
+[] Video chat responsive + millions of bugs
 [] modal book
-[] doctor profile
+[x] doctor profile
 [] payment
 
-[] doctor verification
-[] dashboard doctors list
-[] prescription
+[x] doctor verification
+[x] dashboard doctors list
+[x] prescription
 [] Doctor appointment time
 [] doctor filter
 
