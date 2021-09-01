@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const url = "https://save-me-dev.herokuapp.com"
-const API = axios.create({ baseURL: url })
+const API = axios.create({ baseURL: "http://localhost:5000" })
 
 API.interceptors.request.use((req) => {
   // if (localStorage?.getItem("profile")) {
@@ -63,3 +63,5 @@ export const getWaitingList = (doctorId) => API.get(`/consult/${doctorId}`)
 export const getDoctors = (queryString) =>
   API.get(`/doctors?valueToLimit=${queryString}`)
 export const getDoctor = (doctorId) => API.get(`/doctors/${doctorId}`)
+
+export const addPayment = (paymentInfo) => API.post ("/consult", paymentInfo)
