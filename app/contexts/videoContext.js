@@ -1,9 +1,9 @@
+import { errorAlert } from "@components/others/Alerts"
 import React, { createContext, useEffect, useRef, useState } from "react"
 import Peer from "simple-peer"
 import { io } from "socket.io-client"
 
 // let Peer
-
 
 // const [Peer, setPeer] = useState()
 // React.useEffect(() => {
@@ -49,14 +49,15 @@ const VideoContextProvider = ({ children }) => {
         .getUserMedia({ video: camera, audio: mic })
         .then((currentStream) => {
           setStream(currentStream)
-          if(myVideo.current) myVideo.current.srcObject = currentStream
+          if (myVideo.current) myVideo.current.srcObject = currentStream
         })
+        .catch(() => errorAlert("Please Allow Your Camera to Continue"))
     }
 
-    if(camera || mic) {
+    if (camera || mic) {
       startVideo()
     }
-    
+
     socket.emit("cm", camera, mic)
     // else if (!mic) stream.getTracks()[0].stop()
     // else if(!camera) {
@@ -66,32 +67,30 @@ const VideoContextProvider = ({ children }) => {
     // }
   }, [camera, mic])
 
-
-  if(camera === false) {
+  if (camera === false) {
     stream.getTracks().forEach((track) => {
-      if(track.kind === "video") {
+      if (track.kind === "video") {
         track.enabled = false
         track.stop()
       }
     })
   }
 
-  if(mic === false) {
+  if (mic === false) {
     stream.getTracks().forEach((track) => {
       console.log(track)
-      if(track.kind === "audio") {
+      if (track.kind === "audio") {
         track.enabled = false
         track.stop()
       }
     })
   }
-  
+
   socket.on("cm", (c, m) => {
     // console.log(userCamera)
     setUserCamera(c)
     setUserMic(m)
   })
-
 
   socket.on("callUser", ({ signal, from, docName, patientName }) => {
     console.log("Call coming from: ", from)
@@ -102,7 +101,7 @@ const VideoContextProvider = ({ children }) => {
   socket.on("me", (id) => {
     setMe(id)
   })
-  
+
   const answerCall = () => {
     setCallAccepted(true)
 
@@ -112,7 +111,7 @@ const VideoContextProvider = ({ children }) => {
     })
 
     peer.on("stream", (currentStream) => {
-      if(userVideo.current) userVideo.current.srcObject = currentStream
+      if (userVideo.current) userVideo.current.srcObject = currentStream
       console.log(userVideo.current)
       setUserCamera(currentStream.getVideoTracks()[0]?.enabled)
       setUserMic(currentStream.getAudioTracks()[0]?.enabled)
@@ -196,4 +195,3 @@ const VideoContextProvider = ({ children }) => {
 }
 
 export { VideoContextProvider, SocketContext }
-
