@@ -1,6 +1,19 @@
 import React, { createContext, useEffect, useRef, useState } from "react"
-import Peer from "peerjs"
+import Peer from "simple-peer"
 import { io } from "socket.io-client"
+
+// let Peer
+
+
+// const [Peer, setPeer] = useState()
+// React.useEffect(() => {
+//   const fn = async () => {
+//     const peerJs = (await import("peerjs")).default
+//     // set it to state here
+//     setPeer(peerJs)
+//   }
+//   fn()
+// }, [])
 
 const SocketContext = createContext()
 
@@ -22,6 +35,13 @@ const VideoContextProvider = ({ children }) => {
   const myVideo = useRef()
   const userVideo = useRef()
   const connectionRef = useRef()
+
+
+  // useEffect(() => {
+  //   import("peerjs").then(({ default: P }) => {
+  //     Peer = P
+  //   })
+  // }, [])
 
   useEffect(() => {
     const startVideo = () => {
@@ -67,7 +87,7 @@ const VideoContextProvider = ({ children }) => {
   }
   
   socket.on("cm", (c, m) => {
-    console.log(userCamera)
+    // console.log(userCamera)
     setUserCamera(c)
     setUserMic(m)
   })
@@ -108,6 +128,7 @@ const VideoContextProvider = ({ children }) => {
     console.log("Id to call: ", id)
 
     peer.on("signal", (data) => {
+      console.log("signal")
       socket.emit("callUser", {
         userToCall: id,
         signalData: data,
