@@ -50,7 +50,7 @@ export default function BloodDonor({ donorInfo }) {
           className="relative right-[35px] top-[10px] justify-center bg-gradient-to-l
           from-transparent to-yellow-200 dark:from-white dark:to-blue-300
           p-1 w-7 h-7 rounded-full"
-          textClassName="text-xs text-red-500 dark:text-gray-600 font-bold"
+          textClassName="text-sm text-red-500 dark:text-gray-600 font-bold"
         />
         {isActive === 1 ? (
           <div

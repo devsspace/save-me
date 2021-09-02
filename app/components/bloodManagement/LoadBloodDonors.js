@@ -18,13 +18,8 @@ export default function LoadBloodDonors() {
           <LoadingSpinner />
         </div>
       ) : (
-        <AppContainer className="!my-0">
-          <section
-            className="container mx-auto grid justify-center
-  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 xl:grid-cols-4 md:px-24"
-          >
-            <RandomComponent donors={donors} />
-          </section>
+        <AppContainer className="!my-0 search-donor-page">
+          <RandomComponent donors={donors} />
         </AppContainer>
       )}
     </>

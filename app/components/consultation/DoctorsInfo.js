@@ -1,11 +1,9 @@
 import DoctorAboutSection from "@components/consultation/DoctorAboutSection"
+import DoctorInfoBooking from "@components/consultation/DoctorInfoBooking"
 import DoctorProfileCard from "@components/consultation/DoctorProfileCard"
 import DoctorsInfoButtons from "@components/consultation/DoctorsInfoButtons"
-import AppButtonV2 from "@components/others/AppButtonV2"
-import AppModal from "@components/others/AppModal"
 import { useRouter } from "node_modules/next/dist/client/router"
 import React, { useState } from "react"
-import { GiRose } from "react-icons/gi"
 
 const DoctorsInfo = ({ doctor }) => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -53,28 +51,7 @@ const DoctorsInfo = ({ doctor }) => {
         setModalOpen={setModalOpen}
         doctorId={doctorId}
       />
-      <AppModal isOpen={modalOpen} setIsOpen={setModalOpen} title="Test Title">
-        <div className="mt-2">
-          <p className="text-sm text-gray-500">
-            Your payment has been successfully submitted. We’ve sent your an
-            email with all of the details of your order.
-          </p>
-        </div>
-
-        <div className="mt-4">
-          <button
-            type="button"
-            className="inline-flex justify-center"
-            onClick={() => setModalOpen(false)}
-          >
-            <AppButtonV2
-              textPrimary="Thank You"
-              textSecondary="Okay"
-              Icon={GiRose}
-            />
-          </button>
-        </div>
-      </AppModal>
+      <DoctorInfoBooking modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </section>
   )
 }
