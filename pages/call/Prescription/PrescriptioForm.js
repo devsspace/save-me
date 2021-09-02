@@ -12,7 +12,7 @@ const PrescriptioForm = ({ prescriptions }) => {
     format: [8, 6],
   }
   const { currentUser } = useUserContext()
-  const { name, degress = [], speciality = [], bmdcNumber } = currentUser
+  const { name = "", degress = [], speciality = [], bmdcNumber = "" } = currentUser
   const { complaints = [], investigations = [], textAreas } = prescriptions
   const complaintsInString = complaints.join(", ")
   const investigationsInString = investigations.join(", ")
