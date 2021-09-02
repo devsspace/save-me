@@ -8,29 +8,7 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { AiFillCreditCard } from "react-icons/ai"
 
-// const CARD_OPTIONS = {
-//   iconStyle: "solid",
-//   style: {
-//     base: {
-//       iconColor: "#00CFFC",
-//       color: "#fff",
-//       fontWeight: 500,
-//       fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-//       fontSize: "16px",
-//       fontSmoothing: "antialiased",
-//       ":-webkit-autofill": {
-//         color: "#fce883",
-//       },
-//       "::placeholder": {
-//         color: "#141414",
-//       },
-//     },
-//     invalid: {
-//       iconColor: "#ffc7ee",
-//       color: "#dc143c",
-//     },
-//   },
-// }
+
 
 const CardField = ({ onChange }) => (
   <div className="placeholder-gray-400 mt-2 rounded-md text-dark dark:text-light bg-white dark:bg-gray-600 shadow-md px-2 py-3 focus:ring-2 focus:ring-primary border-none outline-none">
@@ -101,13 +79,13 @@ const PaymentForm = () => {
         phone: currentUser.phoneNumber,
         name: currentUser.name,
         doctor: specificDoc.name,
-        fee: specificDoc.consultationFee
-
+        fee: specificDoc.consultationFee,
       })
-    else {
-      router.replace(`/user/login?from=${router.asPath}`)
-    }
-  }, [currentUser, router])
+      else {
+        router.replace(`/user/login?from=${router.asPath}`)
+      }
+      console.log(currentUser)
+  }, [currentUser, router, specificDoc])
 
   useEffect(() => {
     const getDoc = async () => {
@@ -115,7 +93,12 @@ const PaymentForm = () => {
       try {
         const { data } = await getDoctor(doctor)
         setSpecificDoc(data)
-
+        // setBillingDetails({
+        //   ...billingDetails,
+        //   doctor: data.name,
+        //   fee: data.consultationFee,
+        // })
+        // console.log(data)
       } catch (err) {
 
         console.log(err)
@@ -126,7 +109,7 @@ const PaymentForm = () => {
     getDoc()
   }, [])
 
-  console.log("PaymentMethod", paymentMethod)
+  // console.log("PaymentMethod", paymentMethod)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -159,16 +142,21 @@ const PaymentForm = () => {
     } else {
 
       const serviceData = {
-        paymentInfo: payload.paymentMethod,
-        fee: billingDetails.fee
+
 
       }
 
 
-      setPaymentMethod(serviceData)
+      // setPaymentMethod(serviceData)
       try {
-        const { data } = addPayment({ ...serviceData, doctorId: doctor._id, patientId: currentUser._id })
-        console.log(data)
+        const paymentInfo = {
+          paymentInfo: payload.paymentMethod,
+          fee: billingDetails.fee,
+          doctorId: specificDoc._id,
+          patientId: currentUser._id,
+        }
+        console.log(paymentInfo)
+        const { data } = await addPayment(paymentInfo)
         if (data._id) {
           router.push(`/doctors/${router.query.doctor}/waitingList`)
         } else {
@@ -208,9 +196,19 @@ const PaymentForm = () => {
     <div className="bg-gray-200 dark:bg-gray-900 shadow-xl p-5 pb-12 px-12 mt-20">
       <div className="w-full pt-1 pb-5">
         <div className="bg-primary text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
-
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mdi mdi-credit-card-outline text-3xl" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 mdi mdi-credit-card-outline text-3xl"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+            />
           </svg>
         </div>
       </div>
@@ -222,14 +220,33 @@ const PaymentForm = () => {
       <div className="mb-3 flex -mx-2">
         <div className="px-2">
           <label for="type1" className="flex items-center cursor-pointer">
-            <input type="radio" className="form-radio h-5 w-5 text-primary" name="type" id="type1" checked />
-            <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" className="h-8 ml-3" alt="" />
+            <input
+              type="radio"
+              className="form-radio h-5 w-5 text-primary"
+              name="type"
+              id="type1"
+              checked
+            />
+            <img
+              src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
+              className="h-8 ml-3"
+              alt=""
+            />
           </label>
         </div>
         <div className="px-2">
           <label for="type2" className="flex items-center cursor-pointer">
-            <input type="radio" className="form-radio h-5 w-5 text-primary" name="type" id="type2" />
-            <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" className="h-8 ml-3" alt="" />
+            <input
+              type="radio"
+              className="form-radio h-5 w-5 text-primary"
+              name="type"
+              id="type2"
+            />
+            <img
+              src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png"
+              className="h-8 ml-3"
+              alt=""
+            />
           </label>
         </div>
       </div>
@@ -245,9 +262,7 @@ const PaymentForm = () => {
           required
           autoComplete="name"
           value={billingDetails.name}
-          onChange={(e) => {
-            setBillingDetails({ ...billingDetails, name: e.target.value })
-          }}
+          readOnly
         />
 
         <FormInput
@@ -257,9 +272,7 @@ const PaymentForm = () => {
           required
           autoComplete="email"
           value={billingDetails.email}
-          onChange={(e) => {
-            setBillingDetails({ ...billingDetails, email: e.target.value })
-          }}
+          readOnly
         />
         <FormInput
           id="phone"
@@ -268,33 +281,23 @@ const PaymentForm = () => {
           required
           autoComplete="tel"
           value={billingDetails.phone}
-          onChange={(e) => {
-            setBillingDetails({ ...billingDetails, phone: e.target.value })
-          }}
+          readOnly
         />
 
         <FormInput
-
           type="tel"
           placeholder="Doctor's Name"
           required
-
           value={billingDetails.doctor}
-          onChange={(e) => {
-            setBillingDetails({ ...billingDetails, doctor: e.target.value })
-          }}
+          readOnly
         />
 
         <FormInput
-
           type="text"
-
           required
           placeholder="Consultation Fee"
           value={billingDetails.fee}
-          onChange={(e) => {
-            setBillingDetails({ ...billingDetails, fee: e.target.value })
-          }}
+          readOnly
         />
         <fieldset>
           <CardField

@@ -4,6 +4,7 @@ import DashButtons from "@components/Dashboard/DashButtons"
 import DashLogo from "@components/Dashboard/DashLogo"
 import { useUserContext } from "app/contexts/UserContext"
 import { useEffect, useRef, useState } from "react"
+import { MdVerifiedUser } from "react-icons/md"
 
 function DashboardWrapper({ children, adminOnly, forDoctor }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false)
@@ -26,10 +27,12 @@ function DashboardWrapper({ children, adminOnly, forDoctor }) {
     sideBarRef.current.classList.toggle("open")
     menuBtnChange()
   }
+  
+  let admin, doctor
 
   useEffect(() => {
-    const admin = currentUser?.role.includes("admin")
-    const doctor = currentUser?.role.includes("doctor")
+    admin = currentUser?.role.includes("admin")
+    doctor = currentUser?.role.includes("doctor")
     
     if (adminOnly && !admin) setPermissible(false)
     if (forDoctor && !(doctor || admin)) setPermissible(false)
@@ -53,11 +56,30 @@ function DashboardWrapper({ children, adminOnly, forDoctor }) {
           <DashBoardProfile />
         </ul>
       </div>
-      <section className="home-section">{
-        permissible ? children : <h1 className="text-center mt-10 text-5xl text-red-700">
-      Increase your ability first!
-    </h1>
-      }</section>
+      <section className="home-section">
+        {currentUser?.role.includes("doctor") && currentUser?.bmdcNumber ? (
+          currentUser?.isVerifiedDoctor === "Verified" ? (
+            <div className="absolute top-2 right-5 flex items-center text-green-500">
+              <MdVerifiedUser className=" text-xl" /> Verified Doc
+            </div>
+          ) : (
+            <div className="w-full text-center text-light py-2 bg-yellow-500">
+              We received your profile. Please wait to be verified
+            </div>
+          )
+        ) : (
+          <div className="w-full text-center text-light py-3 bg-error">
+            Complete your profile to get verified soon
+          </div>
+        )}
+        {permissible ? (
+          children
+        ) : (
+          <h1 className="text-center mt-10 text-5xl text-red-700">
+            Increase your ability first!
+          </h1>
+        )}
+      </section>
     </>
   )
 }

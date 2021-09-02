@@ -3,11 +3,11 @@ import FormInput from "@components/others/FormInput"
 export default function NavSearchField({ className }) {
   return (
     <div
-      className={`bg-primary active:bg-gray-400 items-center rounded-md cursor-pointer ml-3 ${className}`}
+      className={`bg-primary active:bg-gray-400 items-center rounded-full cursor-pointer ml-3 ${className}`}
     >
       <FormInput
         placeholder="Search Anywhere!"
-        className="p-2 h-full w-6 flex-grow focus:ring-0 flex-shrink rounded-l-md px-4 rounded-r-none"
+        className="p-2 h-full w-6 flex-grow focus:ring-0 flex-shrink rounded-full px-4 rounded-r-none"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"

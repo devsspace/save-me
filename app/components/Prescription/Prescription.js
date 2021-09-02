@@ -47,7 +47,7 @@ const Prescription = () => {
   }
   return (
     <>
-      <div className="shadow-lg flex-auto p-5 sm:p-10 pb-20 mx-auto w-full md:w-[500px]">
+      <div className="shadow-lg flex-auto p-5 mt-10 sm:p-10 pb-20 mx-auto w-full md:w-[500px]">
         <h1 className="text-center text-primary text-2xl">Make Rx</h1>
         <div className="w-full">
           <div className="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">

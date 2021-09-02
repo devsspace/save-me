@@ -6,11 +6,11 @@ import AppLink from "@components/others/AppLink"
 export default function MainNav() {
   return (
     <header className="bg-gray-700 dark:bg-dark">
-      <div className="flex items-center xl:px-14 py-2 container mx-auto">
+      <div className="flex items-center justify-between xl:px-14 py-2 container mx-auto">
         <AppLink href="/">
           <BrandLogo />
         </AppLink>
-        <NavSearchField className="flex flex-grow h-10" />
+        <NavSearchField className="flex w-full md:w-1/3 h-8 md:h-10" />
         <NavButtons />
       </div>
     </header>
