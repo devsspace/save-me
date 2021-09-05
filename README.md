@@ -1,10 +1,10 @@
 <h2 align="center">Save Me - Telemedicine</h2>
 
-<p align="center">
-      <img src="https://ibb.co/3rQgfH0" alt="Save Me Healthcare"  width="500px" /> </br>
-</p>
 
-<img src="https://ibb.co/Lvm1bvX"  alt="Save Me Healthcare"  width="500px" />
+![Home Page](https://ibb.co/3rQgfH0)
+
+![Search Donors Page](https://ibb.co/Lvm1bvX)
+<!--<img src="https://ibb.co/Lvm1bvX"  alt="Save Me Healthcare"  width="500px" />-->
 <!-- <p align="center">
       <img src="https://ibb.co/3rQgfH0" alt="Save Me Healthcare"  width="500px" /> </br>
 </p>
