@@ -12,18 +12,9 @@
 ## Homepage
 
 ![Homepage Save Me Healthcare](public/preview.png) -->
-Live View: https://save-me.vercel.app/
+Live View: https://save-me.vercel.app/ <br />
 Server Code: https://github.com/devsspace/save-me-server/
 
-
-### How to run this project
-
-- Clone first `git clone https://github.com/samayun/save-me.git save-me`
-- `cd save-me`
-- run command `npm install`
-
-- run command `npm run dev`
-- browse: http://localhost:3000 for seeing main application views
 
 ## Project Features:
 
@@ -56,6 +47,7 @@ Blood Management
 - Donors info
 - Search donors in local place
 
+### Future plan:
 Nursing Home Care
 
 - Regular Nursing care (6 hrs, 8 hrs, 12 hrs to 24 hrs) from Home
@@ -88,3 +80,12 @@ Frontend
 - Language : JavaScript
 - Framework : NEXT.js
 - UI component Library/framework : Tailwind CSS
+
+### How to run this project
+
+- Clone first `git clone https://github.com/samayun/save-me.git save-me`
+- `cd save-me`
+- run command `npm install`
+
+- run command `npm run dev`
+- browse: http://localhost:3000 for seeing main application views
