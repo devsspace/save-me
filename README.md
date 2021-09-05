@@ -1,20 +1,22 @@
-<h2 align="center">Save Me Healthcare Application </h2>
+<h2 align="center">Save Me - Telemedicine</h2>
 
+<p align="center">
+      <img src="https://ibb.co/3rQgfH0" alt="Save Me Healthcare"  width="500px" /> </br>
+</p>
+
+<img src="https://ibb.co/Lvm1bvX"  alt="Save Me Healthcare"  width="500px" />
 <!-- <p align="center">
-      <img src="https://res.cloudinary.com/dxvzhnyuo/image/upload/v1628089343/vectorstock_38025548_rxs6kv.png" alt="Save Me Healthcare"  width="500px" /> </br>
+      <img src="https://ibb.co/3rQgfH0" alt="Save Me Healthcare"  width="500px" /> </br>
 </p>
 
 ## Homepage
 
 ![Homepage Save Me Healthcare](public/preview.png) -->
+Live View: https://save-me.vercel.app/
+Server Code: https://github.com/devsspace/save-me-server/
 
-## Documentation
 
-- [How to work with multiple branch or team collaboration](docs/multile-branch-team-collaboration-guideline.md)
-
-- [How to Setup GrapHQL & Next.js Application ](docs/how-to-setup-graphql-nextjs-app.md)
-
-## How to run this project
+### How to run this project
 
 - Clone first `git clone https://github.com/samayun/save-me.git save-me`
 - `cd save-me`
@@ -22,7 +24,6 @@
 
 - run command `npm run dev`
 - browse: http://localhost:3000 for seeing main application views
-- browse to api query by GraphiQL: http://localhost:3000/api/graphql
 
 ## Project Features:
 
@@ -31,7 +32,7 @@ Technical
 - Push notification
 - Email marketing
 - Collect user experience & feedback
-- Multiple payment system : Link
+- Multiple payment system
 - User Registration
 - Admin Panel
 
@@ -78,7 +79,7 @@ Online Pharmacy
 Backend [API SERVER URI http://localhost:3000/api/graphql ]
 
 - Language : Node.js
-- Framework : Express.js ( express-graphql wrapper )
+- Framework : Express.js
 - ORM : Mongoose
 - Database : MongoDB
 
@@ -87,4 +88,3 @@ Frontend
 - Language : JavaScript
 - Framework : NEXT.js
 - UI component Library/framework : Tailwind CSS
-- State Mangement : Apollo
