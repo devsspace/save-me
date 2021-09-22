@@ -10,11 +10,6 @@ export default function AppDatePicker({
   canNotGoForward,
 }) {
   const [startDate, setDate] = useState(Date.parse(state[name]))
-  // const [endDate, setEndDate] = useState(new Date())
-  // useEffect(() => {
-  //   setEndDate(Date.parse(new Date().setMonth(startDate.getMonth() + 1)))
-  // }, [startDate])
-  // console.log(new Date(startDate.getTime() + 2592000000))
   const handleDateChange = (date) => {
     setDate(date)
     setState({ ...state, [name]: date })
