@@ -5,7 +5,7 @@ export default function MainHeader() {
   const arrayOfComponents = [ConsultationHeader, BloodManagementHeader]
   const RandomComponent = arrayOfComponents[Math.floor(Math.random() * 2)]
   return (
-    <section className="md:h-[90vh] 2xl:h-[60vh] flex justify-center items-center">
+    <section className="md:h-[90vh] 2xl:h-[80vh] flex justify-center items-center">
       <RandomComponent />
     </section>
   )
